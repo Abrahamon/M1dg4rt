@@ -8,11 +8,10 @@
 #include "../com.Midgard.Villages/Dwarves.h"
 
 Dwarves::Dwarves() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Dwarves::~Dwarves() {
-	// TODO Auto-generated destructor stub
+
 }
 

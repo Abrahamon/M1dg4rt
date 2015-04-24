@@ -5,13 +5,18 @@
  *      Author: abrahamon
  */
 
+
 #ifndef COM_MIDGARD_VILLAGES_DWARVES_H_
 #define COM_MIDGARD_VILLAGES_DWARVES_H_
 
-class Dwarves {
+#include "Population.h"
+
+class Dwarves : public Population {
+
 public:
 	Dwarves();
 	virtual ~Dwarves();
+
 };
 
 #endif /* COM_MIDGARD_VILLAGES_DWARVES_H_ */
