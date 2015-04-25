@@ -8,7 +8,7 @@
 #include "Entity.h"
 
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-		       LinkedList<short>* pGenome, int pLife) {
+		       Genome* pGenome, int pLife) {
 	_Gender = pGender;
 	_Father = pFather;
 	_Mother = pMother;
@@ -29,7 +29,7 @@ int Entity::getExp(){ return _Experience; }
 int Entity::getLife(){ return _Life; }
 bool Entity::getGender(){ return _Gender; }
 int Entity::getSuperstition(){ return _Superstition; }
-LinkedList<short>* Entity::getGenome(){ return _Genome;}
+Genome* Entity::getGenome(){ return _Genome;}
 
 //Entity's Setters
 
@@ -41,7 +41,7 @@ void Entity::gainLife(int pLife){ _Life+=pLife; }
 //Fight Methods
 void Entity::Attack(Entity* pDefender){
 	//Aplicar random aquí
-	int pDamage = 0;
+	int pDamage = _Genome->getAttack();
 	pDefender->Defend(pDamage);
 }
 void Entity::Defend(int pDamage){
