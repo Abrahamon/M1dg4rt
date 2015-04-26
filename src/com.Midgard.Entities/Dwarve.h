@@ -2,21 +2,26 @@
  * Dwarve.h
  *
  *  Created on: Apr 25, 2015
- *      Author: abrahamon
+ *      Author: fabian
  */
 
-#ifndef COM_MIDGARD_ENTITIES_DWARVE_H_
-#define COM_MIDGARD_ENTITIES_DWARVE_H_
+#ifndef SRC_COM_MIDGARD_ENTITIES_DWARVE_H_
+#define SRC_COM_MIDGARD_ENTITIES_DWARVE_H_
 
-#include "Entity.h"
+#include "../com.Midgard.Entities/Entity.h"
 
-class Dwarve : public Entity {
+/**
+ * Clase Enano
+ *
+ * CROMOSOMAS FUERTES: Intelligence, Energy, Defense
+ * CROMOSOMAS DÉBILES: Attack, Speed
+ */
+class Dwarve : public Entity{
 
-private:
-protected:
 public:
-	Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome);
+	Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
+		       Genome* pGenome, int pLife);
 	virtual ~Dwarve();
 };
+#endif /* SRC_COM_MIDGARD_ENTITIES_DWARVE_H_ */
 
-#endif /* COM_MIDGARD_ENTITIES_DWARVE_H_ */
