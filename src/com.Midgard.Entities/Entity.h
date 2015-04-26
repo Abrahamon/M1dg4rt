@@ -16,7 +16,10 @@
  * gigantes, elfos y enanos.
  */
 class Entity {
+
 private:
+
+protected:
 	int _Age;					//Entity's age
 	int _Experience;			//Entity's experience
 	int _Life;					//Entity's life

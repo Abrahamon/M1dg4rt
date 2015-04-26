@@ -9,12 +9,12 @@
 #define COM_MIDGARD_VILLAGES_POPULATION_H_
 
 #include "../com.Midgard.DataStructures/linkedList.h"
-#include "individuos.h"
+#include "../com.Midgard.Entities/Entity.h"
 
 class Population {
 
 private:
-	LinkedList<individuos*>* _individuos;
+	LinkedList<Entity*>* _individuos;
 
 public:
 	Population();
