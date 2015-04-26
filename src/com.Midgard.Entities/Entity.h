@@ -7,6 +7,7 @@
 
 #ifndef COM_MIDGARD_ENTITIES_ENTITY_H_
 #define COM_MIDGARD_ENTITIES_ENTITY_H_
+
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Genetic/Genome.h"
 #include <fstream>

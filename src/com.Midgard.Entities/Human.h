@@ -7,6 +7,7 @@
 
 #ifndef SRC_COM_MIDGARD_ENTITIES_HUMAN_H_
 #define SRC_COM_MIDGARD_ENTITIES_HUMAN_H_
+
 #include "../com.Midgard.Entities/Entity.h"
 
 /**
