@@ -1,14 +1,14 @@
 /*
- * Humans.cpp
+ * Dwarve.cpp
  *
  *  Created on: Apr 25, 2015
  *      Author: fabian
  */
 
-#include "Human.h"
+#include "Dwarve.h"
 
-Human::Human(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-		       Genome* pGenome, int pLife) {
+Dwarve::Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
+	       Genome* pGenome, int pLife) {
 	_Gender = pGender;
 	_Father = pFather;
 	_Mother = pMother;
@@ -22,6 +22,7 @@ Human::Human(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 
 }
 
-Human::~Human() {}
-
+Dwarve::~Dwarve() {
+	// TODO Auto-generated destructor stub
+}
 

@@ -1,14 +1,14 @@
 /*
- * Humans.cpp
+ * Elve.cpp
  *
  *  Created on: Apr 25, 2015
  *      Author: fabian
  */
 
-#include "Human.h"
+#include "Elve.h"
 
-Human::Human(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-		       Genome* pGenome, int pLife) {
+Elve::Elve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
+	       Genome* pGenome, int pLife) {
 	_Gender = pGender;
 	_Father = pFather;
 	_Mother = pMother;
@@ -22,6 +22,7 @@ Human::Human(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 
 }
 
-Human::~Human() {}
-
+Elve::~Elve() {
+	// TODO Auto-generated destructor stub
+}
 

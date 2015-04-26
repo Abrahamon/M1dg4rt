@@ -22,7 +22,7 @@ Entity::Entity() {
 
 Entity::~Entity() {}
 std::string Entity::getRandomName(){
-	std::ifstream file("src/com.Midgard.EntitiesNames/names.txt");
+	std::ifstream file("src/com.Midgard.EntitiesNames/humans.names");
 	std::string str;
 	std::string file_contents;
 	//sleep(1);

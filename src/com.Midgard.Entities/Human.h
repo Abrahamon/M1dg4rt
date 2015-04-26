@@ -13,7 +13,7 @@
  * Clase Humanas
  *
  * CROMOSOMAS FUERTES: Attack, Blot, RunesPower
- * CROMOSOMAS DÉBILES: Magia, Energy
+ * CROMOSOMAS DÉBILES: Magic, Energy
  */
 class Human : public Entity{
 public:
