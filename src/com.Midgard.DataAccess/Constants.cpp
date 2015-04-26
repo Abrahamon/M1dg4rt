@@ -20,6 +20,7 @@ Constants* Constants::getInstance(){
 
 Constants::Constants(){
 	//XML Reader
+	srand(time(0));
 	XMLReader* reader = new XMLReader();
 	reader->loadXMLFile("src/configs.xml");
 
