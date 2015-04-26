@@ -9,6 +9,11 @@
 #define COM_MIDGARD_ENTITIES_ENTITY_H_
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Genetic/Genome.h"
+#include <fstream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
 
 /**
  * Clase Entity, es el individuo base del cual heredan todos los
@@ -17,8 +22,14 @@
  */
 class Entity {
 
-private:
-protected:
+
+
+public:
+	Entity();
+	virtual ~Entity();
+	std::string getRandomName();
+
+	std::string _Name;
 	int _Age;					//Entity's age
 	int _Experience;			//Entity's experience
 	int _Life;					//Entity's life
@@ -29,19 +40,17 @@ protected:
 	Entity* _Mother;			//Entity's mother
 	Entity* _Brother;			//Entity's brother
 
-public:
-	Entity();
-	Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-		   Genome* pGenome, int pLife);
-	virtual ~Entity();
-
 	//Entity's Getters
+	std::string getName();
 	int getAge();
 	int getExp();
 	int getLife();
 	bool getGender();
 	int getSuperstition();
 	Genome* getGenome();
+	Entity* getFather();
+	Entity* getMother();
+	Entity* getBrother();
 
 	//Entity's Setters
 	void Birthday();
