@@ -18,7 +18,6 @@
 class Entity {
 
 private:
-
 protected:
 	int _Age;					//Entity's age
 	int _Experience;			//Entity's experience
@@ -31,6 +30,7 @@ protected:
 	Entity* _Brother;			//Entity's brother
 
 public:
+	Entity();
 	Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 		   Genome* pGenome, int pLife);
 	virtual ~Entity();

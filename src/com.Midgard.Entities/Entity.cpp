@@ -7,6 +7,10 @@
 
 #include "Entity.h"
 
+Entity::Entity(){
+
+}
+
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 		       Genome* pGenome, int pLife) {
 	_Gender = pGender;
