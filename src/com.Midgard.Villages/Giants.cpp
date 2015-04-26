@@ -1,18 +1,18 @@
 /*
- * individuos.cpp
+ * Giants.cpp
  *
- *  Created on: Apr 24, 2015
+ *  Created on: Apr 25, 2015
  *      Author: abrahamon
  */
 
-#include "individuos.h"
+#include "Giants.h"
 
-individuos::individuos() {
+Giants::Giants() {
 	// TODO Auto-generated constructor stub
 
 }
 
-individuos::~individuos() {
+Giants::~Giants() {
 	// TODO Auto-generated destructor stub
 }
 

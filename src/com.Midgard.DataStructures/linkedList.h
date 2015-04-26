@@ -26,6 +26,7 @@ private:
 
 public:
 	LinkedList();
+	//virtual ~LinkedList();
 	void insertTail(k);
 	void deleteData(k);
 	void showData();

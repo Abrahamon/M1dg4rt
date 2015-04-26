@@ -1,18 +1,18 @@
 /*
- * Fitness.cpp
+ * DarkElves.cpp
  *
- *  Created on: Apr 23, 2015
+ *  Created on: Apr 25, 2015
  *      Author: abrahamon
  */
 
-#include "Fitness.h"
+#include "DarkElves.h"
 
-Fitness::Fitness() {
+Dark_Elves::Dark_Elves() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Fitness::~Fitness() {
+Dark_Elves::~Dark_Elves() {
 	// TODO Auto-generated destructor stub
 }
 
