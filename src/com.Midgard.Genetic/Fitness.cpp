@@ -7,12 +7,6 @@
 
 #include "Fitness.h"
 
-Fitness::Fitness() {
-	// TODO Auto-generated constructor stub
+Fitness::Fitness(){}
 
-}
-
-Fitness::~Fitness() {
-	// TODO Auto-generated destructor stub
-}
-
+Fitness::~Fitness(){}

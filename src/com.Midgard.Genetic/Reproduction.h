@@ -9,9 +9,11 @@
 #define COM_MIDGARD_GENETIC_REPRODUCTION_H_
 
 class Reproduction {
+
 public:
 	Reproduction();
 	virtual ~Reproduction();
+
 };
 
 #endif /* COM_MIDGARD_GENETIC_REPRODUCTION_H_ */
