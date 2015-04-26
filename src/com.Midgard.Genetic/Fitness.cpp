@@ -7,6 +7,17 @@
 
 #include "Fitness.h"
 
-Fitness::Fitness(){}
+Fitness* Fitness::_Fitness =0;
+
+Fitness::Fitness(){
+
+}
 
 Fitness::~Fitness(){}
+
+Fitness* Fitness::getInstance(){
+	if(_Fitness == 0){
+		_Fitness = new Fitness();
+	}
+	return _Fitness;
+}

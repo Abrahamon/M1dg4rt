@@ -14,15 +14,17 @@
 
 #ifndef SRC_CONSTANTS_H_
 #define SRC_CONSTANTS_H_
-//#include "../src/com.LDMM.DataAccess/XMLReader.h"
+
 #include <string>
-using namespace std;
 #include <stdlib.h>
+
+using namespace std;
 
 class Constants{
 public:
 	static Constants* _Constants;
 	static float PROBABILIDAD_DE_MUTACION;
+	static int CANTIDAD_DE_GENES;
 
 	Constants* getInstance();
 

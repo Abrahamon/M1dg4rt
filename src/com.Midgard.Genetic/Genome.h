@@ -14,7 +14,6 @@
 class Genome : public LinkedList<short>{
 
 private:
-	short getCromosome(int pCromID);
 
 public:
 	Genome(short Attack,short Speed, short Defense, short Intelligence,
@@ -22,6 +21,8 @@ public:
 	virtual ~Genome();
 	void deleteData(short);
 
+	short getCromosome(int pCromID);
+	void setCromosome(int pCromID, short pData);
 	short getAttack();
 	short getSpeed();
 	short getDefense();

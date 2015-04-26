@@ -20,6 +20,16 @@ Entity::Entity() {
 	_Superstition = 0;
 }
 
+Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
+			   Genome* pGenome){
+	this->_Gender = pGender;
+	this->_Brother = pBrother;
+	this->_Father = pFather;
+	this->_Mother = pMother;
+	this->_Brother = pBrother;
+	this->_Genome = pGenome;
+}
+
 Entity::~Entity() {}
 std::string Entity::getRandomName(){
 	std::ifstream file("src/com.Midgard.EntitiesNames/names.txt");

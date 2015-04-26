@@ -10,9 +10,14 @@
 
 class Fitness {
 
+private:
+	static Fitness* _Fitness;
+
 public:
 	Fitness();
 	virtual ~Fitness();
+
+	static Fitness* getInstance();
 
 };
 

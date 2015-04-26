@@ -9,7 +9,8 @@
 #include "XMLReader.h"
 
 Constants* Constants::_Constants = 0;
-float Constants::PROBABILIDAD_DE_MUTACION;
+float Constants::PROBABILIDAD_DE_MUTACION = 0;
+int Constants::CANTIDAD_DE_GENES = 0;
 
 Constants* Constants::getInstance(){
 	if(_Constants == 0){
@@ -26,4 +27,5 @@ Constants::Constants(){
 
 	//General Constants
 	PROBABILIDAD_DE_MUTACION = atof(reader->getParameter("PROBABILIDAD"))/100;
+	CANTIDAD_DE_GENES =  atof(reader->getParameter("CANTIDAD_CROMOSOMAS"));
 }

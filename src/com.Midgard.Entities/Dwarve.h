@@ -15,8 +15,7 @@ class Dwarve : public Entity {
 private:
 protected:
 public:
-	Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-			   Genome* pGenome, int pLife);
+	Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome);
 	virtual ~Dwarve();
 };
 

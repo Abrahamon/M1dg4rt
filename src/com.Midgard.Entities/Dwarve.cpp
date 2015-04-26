@@ -7,8 +7,7 @@
 
 #include "Dwarve.h"
 
-Dwarve::Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-		   Genome* pGenome, int pLife) {
+Dwarve::Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome) {
 	// TODO Auto-generated constructor stub
 
 }
