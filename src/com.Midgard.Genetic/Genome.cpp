@@ -18,10 +18,10 @@ Genome::Genome(short Attack,short Speed, short Defense, short Intelligence,
 	insertTail(Energy);
 	insertTail(Blot);
 	insertTail(RunesPower);
-
 }
 
 Genome::~Genome() {}
+
 void Genome::deleteData(short p){}
 
 short Genome::getCromosome(int pCromID){
@@ -31,6 +31,15 @@ short Genome::getCromosome(int pCromID){
 	}
 	return tmp->getData();
 }
+
+void Genome::setCromosome(int pCromID, short pData){
+	Node<short>* tmp = getHead();
+	for(int i = 0; i!=pCromID;i++){
+		tmp = tmp->getNext();
+	}
+	tmp->setData(pData);
+}
+
 short Genome::getAttack(){ return getCromosome(0); }
 short Genome::getSpeed(){ return getCromosome(1); }
 short Genome::getDefense(){ return getCromosome(2); }

@@ -20,7 +20,7 @@ class Dwarve : public Entity{
 
 public:
 	Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-			   Genome* pGenome, int pLife);
+		       Genome* pGenome, int pLife);
 	virtual ~Dwarve();
 };
 #endif /* SRC_COM_MIDGARD_ENTITIES_DWARVE_H_ */

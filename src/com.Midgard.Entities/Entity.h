@@ -27,6 +27,7 @@ class Entity {
 
 public:
 	Entity();
+	Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome);
 	virtual ~Entity();
 	std::string getRandomName();
 
