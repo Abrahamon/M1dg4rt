@@ -26,31 +26,59 @@ Reproduction* Reproduction::getInstance(){
 	return _Reproduction;
 }
 
+/**
+ * Reproduccion entre dos Entidades, la primera es el padre, la segunda es la madre
+ * retorna el nuevo individuo, creado
+ */
 Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
-	std::cout<<"reproduciendo \n";
 
+	if(pFather->getGender() == pMother->getGender()){
+		cout<<"Reproduction.reproducir() 	No se reproducen individuos del mismo sexo"<<endl;
+		return 0;
+	}
 	Genome* pFatherGenome = pFather->getGenome();
 	Genome* pMotherGenome = pMother->getGenome();
-	short pGenFather = 0;
-	short pGenMother = 0;
-	short pNewGen = 0;
 	Genome* newGenome = new Genome(0,0,0,0,0,0,0,0);
+	uint16_t pGenFather = 0;
+	uint16_t pGenMother = 0;
+	uint16_t pNewGen1 = 0;
+	uint16_t pNewGen2 = 0;
+	uint16_t pMask1 = 1;
+	uint16_t pMask2 = 1;
 
-	for(int i = 0; i<Constants::CANTIDAD_DE_GENES;i++){
+	for(int i = 0; i<9;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
+		pMask1 = pMask1<<8;
+		pMask1 = pMask1 -1;
+		pMask2 = ~pMask1;
 
-		cout<<pGenFather<<endl;
-		newGenome->setCromosome(i,pNewGen);
+	//	cout<<"Gen del padre : "<<bitset<16>(pGenFather).to_string()<<" equivale: "<<pGenFather<<endl;
+	//	cout<<"Gen de la madre: "<<bitset<16>(pGenMother).to_string()<<" equivale: "<<pGenMother<<endl;
+
+		pNewGen1 = pGenFather & pMask1;
+		pNewGen2 = pGenMother & pMask2;
+		pNewGen1 = pNewGen1 | pNewGen2;
+		newGenome->setCromosome(i,pNewGen1);
+	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
-
-	short a = 187;
-	short b = (a& 14) >> 1;
-
-
+	//La mutacion ocurre dentro de la reproduccion
+	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome);
-	std::cout<<"termine de reproducir \n";
 	return newEntity;
+}
+
+/**
+ * Mutacion para un genoma entero
+ * De manera iterativa y impredecible
+ * modifica gen por gen del genoma
+ */
+Genome* Reproduction::mutate(Genome* pGenoma){
+
+	for(int i=0; i<8; i++){
+
+	}
+	return pGenoma;
 }
 
 

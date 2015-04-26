@@ -11,10 +11,15 @@
 #include "../com.Midgard.Entities/Entity.h"
 #include "../com.Midgard.Genetic/Genome.h"
 #include "../com.Midgard.DataAccess/Constants.h"
+
+#include <bitset>
+#include "stdint.h"
+
 class Reproduction {
 
 private:
 	static Reproduction* _Reproduction;
+	Genome* mutate(Genome* pGenome);
 
 public:
 	Reproduction();
