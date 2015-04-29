@@ -49,3 +49,4 @@ short Genome::getEnergy(){ return getCromosome(5); }
 short Genome::getBlot(){ return getCromosome(6); }
 short Genome::getRunesPower(){ return getCromosome(7); }
 
+//cambio
