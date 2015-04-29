@@ -30,5 +30,4 @@ Constants::Constants(){
 	PROBABILIDAD_DE_MUTACION = atof(reader->getParameter("PROBABILIDAD"))/100;
 	CANTIDAD_DE_GENES =  atof(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
-
 }
