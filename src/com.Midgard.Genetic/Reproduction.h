@@ -15,7 +15,7 @@
 #include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 
-#include <bitset>
+//#include <bitset>
 #include "stdint.h"
 
 class Reproduction {

@@ -82,7 +82,10 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 }
 
 int Reproduction::Fitness(Dwarve* pDwarve){
-
+	for(int i = 0; i<9; i++){
+		uint16_t value = pDwarve->getGenome()->getCromosome(i);
+		cout<<value<<endl;
+	}
 }
 
 int Reproduction::Fitness(Elve* pElve){

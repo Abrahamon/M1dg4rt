@@ -8,8 +8,7 @@
 #include "Population.h"
 
 Population::Population() {
-
-
+	this->_individuos = new LinkedList<Entity*>();
 }
 
 Population::~Population() {
