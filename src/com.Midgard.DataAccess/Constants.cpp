@@ -27,5 +27,5 @@ Constants::Constants(){
 
 	//General Constants
 	PROBABILIDAD_DE_MUTACION = atof(reader->getParameter("PROBABILIDAD"))/100;
-	CANTIDAD_DE_GENES =  atof(reader->getParameter("CANTIDAD_CROMOSOMAS"));
+	CANTIDAD_DE_GENES =  atof(reader->getParameter("CANTIDAD_GENES"));
 }
