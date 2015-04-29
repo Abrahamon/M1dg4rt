@@ -9,7 +9,10 @@
 #define COM_MIDGARD_GENETIC_REPRODUCTION_H_
 
 #include "../com.Midgard.Entities/Entity.h"
-#include "../com.Midgard.Genetic/Genome.h"
+#include "../com.Midgard.Entities/Dwarve.h"
+#include "../com.Midgard.Entities/Elve.h"
+#include "../com.Midgard.Entities/Giant.h"
+#include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 
 #include <bitset>
@@ -26,6 +29,11 @@ public:
 	virtual ~Reproduction();
 
 	static Reproduction* getInstance();
+	static int Fitness(Dwarve* pDwarve);
+	static int Fitness(Elve* pElve);
+	static int Fitness(Giant* pGiant);
+	static int Fitness(Human* pHuman);
+
 
 	Entity* reproducir(Entity* pFather, Entity* pMother);
 

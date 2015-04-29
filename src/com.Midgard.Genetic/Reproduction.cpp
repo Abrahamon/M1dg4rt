@@ -81,7 +81,21 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 	return pGenoma;
 }
 
+int Reproduction::Fitness(Dwarve* pDwarve){
 
+}
+
+int Reproduction::Fitness(Elve* pElve){
+
+}
+
+int Reproduction::Fitness(Giant* pGiant){
+
+}
+
+int Reproduction::Fitness(Human* pHuman){
+
+}
 
 
 
