@@ -81,27 +81,6 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 	return pGenoma;
 }
 
-int Reproduction::Fitness(Dwarve* pDwarve){
-	for(int i = 0; i<9; i++){
-		uint16_t value = pDwarve->getGenome()->getCromosome(i);
-		cout<<value<<endl;
-	}
-}
-
-int Reproduction::Fitness(Elve* pElve){
-
-}
-
-int Reproduction::Fitness(Giant* pGiant){
-
-}
-
-int Reproduction::Fitness(Human* pHuman){
-
-}
-
-
-
 
 
 

@@ -11,6 +11,9 @@
 #include "Population.h"
 
 class Elves : public Population{
+
+private:
+
 public:
 	Elves();
 	virtual ~Elves();

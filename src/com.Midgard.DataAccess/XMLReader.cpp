@@ -21,9 +21,9 @@ XMLReader::~XMLReader() {}
  */
 void XMLReader::loadXMLFile(std::string pData){
 	bool loadOkay = documento.LoadFile("src/configs.xml");
-	if (!loadOkay){
-		std::cout << "*XML* Failed to load file. File not found" << std::endl;
-	}
+//	if (!loadOkay){
+//		std::cout << "*XML* Failed to load file. File not found" << std::endl;
+//	}
 }
 
 /**

@@ -15,7 +15,6 @@
 #include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 
-//#include <bitset>
 #include "stdint.h"
 
 class Reproduction {
@@ -29,11 +28,6 @@ public:
 	virtual ~Reproduction();
 
 	static Reproduction* getInstance();
-	static int Fitness(Dwarve* pDwarve);
-	static int Fitness(Elve* pElve);
-	static int Fitness(Giant* pGiant);
-	static int Fitness(Human* pHuman);
-
 
 	Entity* reproducir(Entity* pFather, Entity* pMother);
 

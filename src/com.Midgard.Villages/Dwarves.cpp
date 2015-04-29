@@ -8,7 +8,12 @@
 #include "../com.Midgard.Villages/Dwarves.h"
 
 Dwarves::Dwarves() {
+	bool newGender = true;
+	Genome* newGenome = new Genome(0,0,0,0,0,0,0,0);
 
+	for(int i = 0; i < Constants::MAX_POBLACION_INICIAL; i++){
+		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,0);
+	}
 }
 
 Dwarves::~Dwarves() {

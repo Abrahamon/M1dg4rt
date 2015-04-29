@@ -9,11 +9,10 @@
 
 Population::Population() {
 	this->_individuos = new LinkedList<Entity*>();
+	this->_Fitness = new Fitness();
 }
 
-Population::~Population() {
-
-}
+Population::~Population() {}
 
 void Population::generacionCero(){
 
