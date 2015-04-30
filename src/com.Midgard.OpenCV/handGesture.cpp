@@ -284,3 +284,4 @@ void HandGesture::getFingerTips(MyImage *m){
 		checkForOneFinger(m);
 	}
 }
+

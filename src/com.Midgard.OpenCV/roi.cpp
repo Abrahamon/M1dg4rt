@@ -1,8 +1,4 @@
 
-
-
-
-
 #include "myImage.hpp"
 #include <opencv2/imgproc/imgproc.hpp>
 #include<opencv2/opencv.hpp>
@@ -34,3 +30,4 @@ void My_ROI::draw_rectangle(Mat src){
 	rectangle(src,upper_corner,lower_corner,color,border_thickness);
 
 }
+
