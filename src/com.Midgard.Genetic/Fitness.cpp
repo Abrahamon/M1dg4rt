@@ -16,8 +16,6 @@ Fitness::~Fitness(){}
 
 void Fitness::setBase(LinkedList<Entity*>* pListEntities){
 
-	cout<<"calculo el fitnes "<<endl;
-
 	for(Node<Entity*>* i = pListEntities->getHead();i !=0; i = i->getNext()){
 
 		_IniAttack =  _IniAttack + i->getData()->getGenome()->getCromosome(0);
