@@ -9,12 +9,19 @@
 #define COM_MIDGARD_GENETIC_REPRODUCTION_H_
 
 #include "../com.Midgard.Entities/Entity.h"
-#include "../com.Midgard.Genetic/Genome.h"
+#include "../com.Midgard.Entities/Dwarve.h"
+#include "../com.Midgard.Entities/Elve.h"
+#include "../com.Midgard.Entities/Giant.h"
+#include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
+
+#include "stdint.h"
+
 class Reproduction {
 
 private:
 	static Reproduction* _Reproduction;
+	Genome* mutate(Genome* pGenome);
 
 public:
 	Reproduction();

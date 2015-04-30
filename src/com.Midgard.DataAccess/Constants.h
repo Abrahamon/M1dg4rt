@@ -17,6 +17,7 @@
 
 #include <string>
 #include <stdlib.h>
+#include <iostream>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 	static Constants* _Constants;
 	static float PROBABILIDAD_DE_MUTACION;
 	static int CANTIDAD_DE_GENES;
+	static int MAX_POBLACION_INICIAL;
 
 	Constants* getInstance();
 

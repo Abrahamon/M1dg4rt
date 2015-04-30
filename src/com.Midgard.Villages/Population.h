@@ -10,10 +10,13 @@
 
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Entities/Entity.h"
+#include "../com.Midgard.Genetic/Fitness.h"
 
 class Population {
+public:
 
-private:
+protected:
+	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
 
 public:

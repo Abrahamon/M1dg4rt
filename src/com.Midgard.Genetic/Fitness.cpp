@@ -7,17 +7,34 @@
 
 #include "Fitness.h"
 
-Fitness* Fitness::_Fitness =0;
-
 Fitness::Fitness(){
 
 }
 
 Fitness::~Fitness(){}
 
-Fitness* Fitness::getInstance(){
-	if(_Fitness == 0){
-		_Fitness = new Fitness();
+
+void Fitness::setBase(LinkedList<Entity*>* pListEntities){
+
+	for(Node<Entity*>* i = pListEntities->getHead();i !=0; i = i->getNext()){
+
+		_IniAttack =  _IniAttack + i->getData()->getGenome()->getCromosome(0);
+		_IniSpeed = _IniSpeed + i->getData()->getGenome()->getCromosome(1);
+		_IniDefense = _IniDefense + i->getData()->getGenome()->getCromosome(2);
+		_IniIntelligence = _IniIntelligence + i->getData()->getGenome()->getCromosome(3);
+		_IniMagic = _IniMagic + i->getData()->getGenome()->getCromosome(4);
+		_IniEnergy = _IniEnergy + i->getData()->getGenome()->getCromosome(5);
+		_IniBloot = _IniBloot + i->getData()->getGenome()->getCromosome(6);
+		_IniRunesPower = _IniRunesPower + i->getData()->getGenome()->getCromosome(7);
+
 	}
-	return _Fitness;
+
+	cout<<"atributo ataque total:"<<_IniAttack<<endl;
+
 }
+
+int Fitness::calculateFitness(Dwarve* pDwarve){
+
+}
+
+
