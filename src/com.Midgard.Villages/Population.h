@@ -13,8 +13,9 @@
 #include "../com.Midgard.Genetic/Fitness.h"
 
 class Population {
+public:
 
-private:
+protected:
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
 
