@@ -9,6 +9,7 @@
 #define COM_MIDGARD_GENETIC_LARGO_H_
 
 #include "stdint.h"
+#include <math.h>
 
 class largo{
 
