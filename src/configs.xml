@@ -1,5 +1,6 @@
 <root>
 	<PROBABILIDAD value="5" />
 	<CANTIDAD_GENES value="8"/>
-	<MAX_POBLACION_INICIAL value="10"/>
+	<MAX_POBLACION_INICIAL value="1000"/>
+	<HARDWARE_CONFIG value = "tffhgrue"/>
 </root>

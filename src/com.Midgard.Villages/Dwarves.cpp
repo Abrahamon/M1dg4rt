@@ -9,12 +9,20 @@
 
 Dwarves::Dwarves() {
 	bool newGender = true;
-	Genome* newGenome = new Genome(10,10,10,10,10,10,10,10);
-
+	Genome* newGenome ;
 	for(int i = 0; i < Constants::MAX_POBLACION_INICIAL; i++){
+		newGenome = new Genome(_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50),
+				_random->getRandomNumber(50));
 		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,0);
 		this->_individuos->insertTail(newDwarve);
 	}
+	cout<<"termine \n";
 	_Fitness->setBase(this->_individuos);
 
 }
