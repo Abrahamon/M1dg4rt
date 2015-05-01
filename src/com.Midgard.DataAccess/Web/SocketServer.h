@@ -28,12 +28,12 @@ class SocketServer
 {
 public:
     SocketServer();
-    void run();
+    void run(int pPort);
     void sendMessage(const char *msn);
 private:
     int descriptor;
     sockaddr_in info;
-    bool createSocket();
+    bool createSocket(int pPort);
     bool setKernel();
     static void * clienteManager(void *obj);
     vector<int> clientes;
@@ -44,14 +44,14 @@ private:
 SocketServer::SocketServer(){}
 
 
-bool SocketServer::createSocket()
+bool SocketServer::createSocket(int pPort)
 {
     descriptor = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
     if(descriptor < 0)
         return false;
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = INADDR_ANY;
-    info.sin_port = htons(9090);
+    info.sin_port = htons(pPort);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
     return true;
 }
@@ -66,9 +66,9 @@ bool SocketServer::setKernel()
 }
 
 
-void SocketServer::run()
+void SocketServer::run(int pPort)
 {
-    if(!createSocket())
+    if(!createSocket(pPort))
         throw string("Error al crear el socket");
     if(!setKernel())
         throw string("Error al  ligar kernel");

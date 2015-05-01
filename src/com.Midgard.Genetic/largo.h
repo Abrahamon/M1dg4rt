@@ -15,6 +15,7 @@ class largo{
 private:
 
 public:
+	largo();
 	int tamano(uint16_t numero);
 };
 #endif /* COM_MIDGARD_GENETIC_LARGO_H_ */
