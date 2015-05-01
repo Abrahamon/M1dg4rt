@@ -82,13 +82,13 @@ Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion)
 	for(int i=0; i<8; i++){
 		if(valordemut<=10){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
-			largo tamano = new largo();
-			int cantidad=tamano.tamano(cromosoma);
+			largo* tamanoto = new largo();
+			int cantidad=tamanoto->tamano(cromosoma);
 			int posicion= rand()%cantidad;
 			int elor=1<<posicion;
-			int resultado=cromosoma|elor
+			int resultado=cromosoma|elor;
 			if(cromosoma=resultado){
-				int calculoand=(2**cantidad)-2**posicion;
+				int calculoand=pow(2,cantidad)-pow(2,posicion);
 				resultado=cromosoma&calculoand;
 			}
 			pGenoma->setCromosome(i,resultado);
