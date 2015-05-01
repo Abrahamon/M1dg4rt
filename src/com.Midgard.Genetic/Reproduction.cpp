@@ -75,7 +75,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * De manera iterativa y impredecible
  * modifica gen por gen del genoma
  */
-/*
+
 Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
 	int valordemut=probabilimutacion->getHead()->getData();
 	tmp=probabilimutacion->getHead()->getNext();
@@ -100,7 +100,7 @@ Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion)
 		tmp=tmp->getNext();
 	}
 	return pGenoma;
-}*/
+}
 
 
 
