@@ -4,7 +4,7 @@
  *  Created on: May 01, 2015
  *      Author: Mauricio
  */
-#include "largo.cpp"
+#include "largo.h"
 
 int largo::tamano(uint16_t numero){
 	int n=0;
