@@ -11,11 +11,12 @@
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Entities/Entity.h"
 #include "../com.Midgard.Genetic/Fitness.h"
-
+#include "../com.Midgard.Resources/Random.h"
 class Population {
 public:
 
 protected:
+	Random* _random;
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
 
