@@ -36,7 +36,7 @@ std::string Entity::getRandomName(){
 	std::string str;
 	std::string file_contents;
 	//sleep(1);
-	int random = rand() % 4966 + 1;
+	int random = rand() % 4946 + 1;
 	for(int i = 0; i < random; i++){
 	  std::getline(file, str);
 	  //file_contents += str;

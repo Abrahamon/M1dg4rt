@@ -47,6 +47,8 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pMask2 = 1;
 
 	for(int i = 0; i<9;i++){
+		int valorpro= rand() % 10000 + 1;
+		probabilidad->insertTail(valorpro);
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
 		pMask1 = pMask1<<8;
@@ -63,7 +65,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-	newGenome = mutate(newGenome);
+	newGenome = mutate(newGenome,probabilidad);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome);
 	return newEntity;
 }
@@ -73,10 +75,28 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * De manera iterativa y impredecible
  * modifica gen por gen del genoma
  */
-Genome* Reproduction::mutate(Genome* pGenoma){
-
+Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
+	int valordemut=probabilimutacion->getHead()->getData();
+	tmp=probabilimutacion->getHead()->getNext();
 	for(int i=0; i<8; i++){
-
+		if(valordemut<=10){
+			uint16_t cromosoma=pGenoma->getCromosome(i);
+			largo tamano = new largo();
+			int cantidad=tamano.tamano(cromosoma);
+			int posicion= rand()%cantidad;
+			int elor=1<<posicion;
+			int resultado=cromosoma|elor
+			if(cromosoma=resultado){
+				int calculoand=(2**cantidad)-2**posicion;
+				resultado=cromosoma&calculoand;
+			}
+			pGenoma->setCromosome(i,resultado);
+		}
+		if(valordemut=1){
+			uint16_t cromosoma=pGenoma->getCromosome(i);
+		}
+		valordemut=tmp->getData();
+		tmp=tmp->getNext();
 	}
 	return pGenoma;
 }
