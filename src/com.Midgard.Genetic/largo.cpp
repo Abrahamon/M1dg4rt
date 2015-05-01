@@ -5,7 +5,8 @@
  *      Author: Mauricio
  */
 #include "largo.h"
-#include <math.h>
+
+largo::largo(){}
 
 int largo::tamano(uint16_t numero){
 	int n=0;
