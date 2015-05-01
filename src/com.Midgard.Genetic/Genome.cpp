@@ -49,3 +49,4 @@ uint16_t Genome::getEnergy(){ return getCromosome(5); }
 uint16_t Genome::getBlot(){ return getCromosome(6); }
 uint16_t Genome::getRunesPower(){ return getCromosome(7); }
 
+//cambio
