@@ -11,7 +11,7 @@
 #include <SerialStream.h>
 #include <math.h>
 #include <random>
-#include "../com.Midgard.DataAccess/Constants.h"
+#include "../../com.Midgard.DataAccess/Constants.h"
 
 
 using namespace std;
@@ -30,6 +30,7 @@ public:
 	Random();
 	virtual ~Random();
 	int getRandomNumber(int pMax);
+	bool getRandomBool();
 };
 
 #endif /* COM_MIDGARD_RESOURCES_RANDOM_H_ */

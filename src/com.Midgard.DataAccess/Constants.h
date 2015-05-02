@@ -28,6 +28,7 @@ public:
 	static int CANTIDAD_DE_GENES;
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;
+	static string DEBUG;
 
 	Constants* getInstance();
 

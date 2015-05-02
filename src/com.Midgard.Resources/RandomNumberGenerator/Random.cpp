@@ -48,3 +48,13 @@ int Random::get(char pData){
     return RandomData;
 }
 
+
+bool Random::getRandomBool(){
+	int pAnswer = getRandomNumber(1000);
+	if(pAnswer > 500){
+		return false;
+	}else{
+		return true;
+	}
+}
+

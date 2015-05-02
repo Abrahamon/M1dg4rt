@@ -1,6 +1,7 @@
 <root>
 	<PROBABILIDAD value="5" />
 	<CANTIDAD_GENES value="8"/>
-	<MAX_POBLACION_INICIAL value="1000"/>
-	<HARDWARE_CONFIG value = "true"/>
+	<MAX_POBLACION_INICIAL value="2"/>
+	<HARDWARE_CONFIG value = "false"/>
+	<DEBUG value = "false"/>
 </root>
