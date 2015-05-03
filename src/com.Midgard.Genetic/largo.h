@@ -7,7 +7,7 @@
  */
 #ifndef COM_MIDGARD_GENETIC_LARGO_H_
 #define COM_MIDGARD_GENETIC_LARGO_H_
-
+#include <math.h>
 #include "stdint.h"
 #include <math.h>
 
