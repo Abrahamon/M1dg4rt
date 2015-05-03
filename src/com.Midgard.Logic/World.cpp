@@ -25,11 +25,10 @@ void World::start(){
 
 	cout<<"ataque del primero "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl;
 
-	for(int i =0; i<51; i++){
+	for(int i =0; i<2; i++){
 		this->_Dwarves->DoGeneration();
 	//	cout<<"termino ------------------------------------------- generacion: "<<i<<endl;
 	}
-	cout<<"numero de individuos: "<<_Dwarves->getIndividuals()->getLength()<<endl;
 	cout<<"ataque del ultimo nacido : "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getGenome()->getAttack()<<endl;
 }
 

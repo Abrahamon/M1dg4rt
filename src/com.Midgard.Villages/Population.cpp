@@ -67,7 +67,6 @@ Entity* Population::randomSelectTheFittestMother(){
 void Population::DoGeneration(){
 
 	int newBorns = _random->getRandomNumber(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5);
-
 	for(int i=0; i < newBorns;i++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
@@ -75,12 +74,13 @@ void Population::DoGeneration(){
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
-	//	EverybodyBirthday();
+	EverybodyBirthday();
 	//	DEATH();
 	//	_Fitness->setBase(_individuos);	//nuevo fitness
 }
 
 void Population::EverybodyBirthday(){
+
 	Node<Entity*>* tmp = _individuos->getHead();
 	for(int i = 0; i<_individuos->getLength(); i++){
 		tmp->getData()->Birthday();
