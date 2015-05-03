@@ -9,6 +9,7 @@
 #define SRC_COM_LDMM_DATAACCESS_XMLREADER_H_
 
 #include "../com.Midgard.DataAccess/lib.tinyxml/tinyxml.h"
+
 #include <string>
 
 class XMLReader {

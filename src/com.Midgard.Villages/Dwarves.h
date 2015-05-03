@@ -10,12 +10,14 @@
 #define COM_MIDGARD_VILLAGES_DWARVES_H_
 
 #include "Population.h"
+#include "../com.Midgard.DataAccess/Constants.h"
 
 class Dwarves : public Population {
 
 public:
 	Dwarves();
 	virtual ~Dwarves();
+
 
 };
 

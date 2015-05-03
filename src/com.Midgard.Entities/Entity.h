@@ -42,6 +42,9 @@ public:
 	Entity* _Mother;			//Entity's mother
 	Entity* _Brother;			//Entity's brother
 
+	//Entity's Setters
+	void setGender(bool pGender);
+
 	//Entity's Getters
 	std::string getName();
 	int getAge();

@@ -32,11 +32,11 @@ Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 
 Entity::~Entity() {}
 std::string Entity::getRandomName(){
-	std::ifstream file("src/com.Midgard.EntitiesNames/humans.names");
+	std::ifstream file("src/ com.Midgard.Resources/names/humans.names");
 	std::string str;
 	std::string file_contents;
 	//sleep(1);
-	int random = rand() % 4966 + 1;
+	int random = rand() % 4946 + 1;
 	for(int i = 0; i < random; i++){
 	  std::getline(file, str);
 	  //file_contents += str;
@@ -44,6 +44,11 @@ std::string Entity::getRandomName(){
 	  //file_contents.push_back('\n');
 	}
 	return file_contents;
+}
+
+//Entity's Setters
+void Entity::setGender(bool pGender){
+	this->_Gender = pGender;
 }
 
 //Entity's Getters
