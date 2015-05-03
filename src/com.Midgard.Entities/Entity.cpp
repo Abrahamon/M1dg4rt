@@ -46,6 +46,11 @@ std::string Entity::getRandomName(){
 	return file_contents;
 }
 
+//Entity's Setters
+void Entity::setGender(bool pGender){
+	this->_Gender = pGender;
+}
+
 //Entity's Getters
 std::string Entity::getName(){ return _Name; }
 int Entity::getAge(){ return _Life; }

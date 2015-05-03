@@ -33,7 +33,8 @@ Reproduction* Reproduction::getInstance(){
 Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 
 	if(pFather->getGender() == pMother->getGender()){
-		cout<<"Reproduction.reproducir() 	No se reproducen individuos del mismo sexo"<<endl;
+		if(Constants::DEBUG == "true")
+			cout<<"Reproduction.reproducir() 	No se reproducen individuos del mismo sexo"<<endl;
 		return 0;
 	}
 	Genome* pFatherGenome = pFather->getGenome();

@@ -25,7 +25,6 @@ Fitness::~Fitness(){
 
 
 void Fitness::setBase(LinkedList<Entity*>* pListEntities){
-int a=0;
 	this->~Fitness();
 	Node<Entity*>* tmp = pListEntities->getHead();
 	for(int j = 0 ; j < pListEntities->getLength(); j++){
@@ -39,10 +38,7 @@ int a=0;
 		_IniRunesPower = _IniRunesPower + tmp->getData()->getGenome()->getCromosome(7);
 		_sumAll = _sumAll + _IniAttack + _IniSpeed + _IniDefense + _IniIntelligence + _IniMagic + _IniEnergy + _IniBloot + _IniRunesPower;
 		tmp = tmp->getNext();
-		a = a + _IniAttack + _IniSpeed + _IniDefense + _IniIntelligence + _IniMagic + _IniEnergy + _IniBloot + _IniRunesPower;
 	}
-	cout<<"a:  "<<a<<endl;
-
 }
 
 int Fitness::getSumOfAll(){

@@ -29,6 +29,13 @@ public:
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;
 	static string DEBUG;
+	static int NUMBER_CHILDS_PER_PARENTS;
+	static float REPRODUCTION_PER_GENERATION;
+	static string HUMANS;
+	static string DARK_ELVES;
+	static string DWARVES;
+	static string ELVES;
+	static string GIANTS;
 
 	Constants* getInstance();
 
