@@ -11,7 +11,6 @@ World::World() {
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's
 
 	if(Constants::DWARVES=="true"){
-		cout<<"World() 		creo unos enanitos verdes\n";
 		_Dwarves = new Dwarves();}
 	if(Constants::ELVES=="true")
 		_Elves = new Elves();
@@ -63,7 +62,7 @@ bool World::loadMap(std::string pathToFile){
 				mat++;
 			}
 			MapFile.close();
-			_matrix->printMatrix();
+			//_matrix->printMatrix();
 			return true;
 		}
 
