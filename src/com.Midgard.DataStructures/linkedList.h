@@ -27,6 +27,7 @@ private:
 public:
 	LinkedList();
 	//virtual ~LinkedList();
+	//Node<k>* insertTail(k);
 	void insertTail(k);
 	void deleteData(k);
 	void showData();
@@ -71,6 +72,7 @@ LinkedList<k>::LinkedList(){
  * para el movimiento de los nodos doblemente enlazados.
  */
 template<class k>
+//Node<k>* LinkedList<k>::insertTail(k pData){
 void LinkedList<k>::insertTail(k pData){
 	Node<k>* tmp = new Node<k>(pData);
 
@@ -96,13 +98,15 @@ void LinkedList<k>::insertTail(k pData){
 template<class k>
 void LinkedList<k>::deleteData(k pData){
 	if(_head == 0){
-		cout << "La lista esta vacía" << endl;
+		cout << "Empty List" << endl;
 		return;
 	}
 	if(_head->getData() == pData){
+		Node<k>* pDelete = _head;	//Se guarda el puntero en una variable temporal
 		_head = _head->getNext();
 		_tail->setNext(_head);
 		_length--;
+		delete pDelete;				//Se libera la memoria de la variable temporal
 		return;
 	}
 
@@ -116,13 +120,17 @@ void LinkedList<k>::deleteData(k pData){
 	}
 	else{
 		if(tmpNode->getNext() == _tail){
+			Node<k>* pDelete = _tail;	//Se guarda el puntero en una variable temporal
 			_tail = tmpNode;
-			_tail->setNext(_head);
+			_tail->setNext(_head);		//Se libera la memoria de la variable temporal
 			_length--;
+			delete pDelete;
 			return;
 		}
 		else{
+			Node<k>* pDelete = tmpNode->getNext();//Se guarda el puntero en una variable temporal
 			tmpNode->setNext(tmpNode->getNext()->getNext());
+			delete pDelete;						  //Se libera la memoria de la variable temporal
 			_length--;
 			return;
 		}
@@ -137,6 +145,9 @@ void LinkedList<k>::deleteData(k pData){
  */
 template<class k>
 void LinkedList<k>::showData(){
+	if(_head == 0){
+		cout << "Empty List" << endl;
+	}
 	Node<k>* tmpNode = _head;
 	for(int i=0; i < _length; i++){
 		cout << "Dato: " << tmpNode->getData() << endl;
@@ -149,6 +160,13 @@ void LinkedList<k>::showData(){
  */
 template<class k>
 void LinkedList<k>::vaciar(){
+	Node<k>* tmpNode = _head;
+	for(int i=0; i < _length; i++){
+		Node<k>* pDelete = tmpNode;
+		tmpNode = tmpNode->getNext();
+		delete pDelete;
+	}
+	delete tmpNode;
 	this->_head = 0;
 	this->_tail = 0;
 	this->_length = 0;

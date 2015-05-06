@@ -12,11 +12,12 @@
 #include "../com.Midgard.Villages/Dwarves.h"
 #include "../com.Midgard.Villages/Elves.h"
 #include "../com.Midgard.Villages/Giants.h"
+#include "../com.Midgard.DataStructures/PyArray.h"
 
 class World {
 
 private:
-	int* _matriz[30][30];
+	PyArray<char>* _matrix; //Matriz para la lógica del movimiento
 	Dark_Elves* _Dark_Elves;
 	Elves* _Elves;
 	Giants* _Giants;
@@ -27,6 +28,7 @@ public:
 	virtual ~World();
 
 	void start();
+	bool loadMap(std::string pathToFile);
 };
 
 #endif /* COM_MIDGARD_LOGIC_WORLD_H_ */
