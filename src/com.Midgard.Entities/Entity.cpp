@@ -65,7 +65,10 @@ Entity* Entity::getBrother(){ return _Brother; }
 
 //Entity's Setters
 
-void Entity::Birthday(){ _Age++; }
+void Entity::Birthday(){
+	_Age = _Age + 1;
+}
+
 void Entity::gainExperience(int pExp){ _Experience+=pExp; }
 void Entity::gainSuperstition(int pSupr){ _Superstition+=pSupr; }
 void Entity::gainLife(int pLife){ _Life+=pLife; }

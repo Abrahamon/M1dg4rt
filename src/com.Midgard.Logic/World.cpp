@@ -9,7 +9,7 @@
 
 World::World() {
 	if(Constants::DWARVES=="true"){
-		cout<<"World() 		creo unos enanitos verdes\n";
+		cout<<"World() 		creo unos enanitos verdes\n"<<endl;
 		_Dwarves = new Dwarves();}
 	if(Constants::ELVES=="true")
 		_Elves = new Elves();
@@ -23,12 +23,15 @@ World::~World() {}
 
 void World::start(){
 
-	cout<<"ataque del primero "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl;
+	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+	cout<<"edad del segunda: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl<<endl;
 
-	for(int i =0; i<2; i++){
+	for(int i =0; i<1; i++){
 		this->_Dwarves->DoGeneration();
 	//	cout<<"termino ------------------------------------------- generacion: "<<i<<endl;
 	}
-	cout<<"ataque del ultimo nacido : "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getGenome()->getAttack()<<endl;
+	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+	cout<<"edad del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
+	cout<<"edad del tercero: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
 }
 

@@ -66,7 +66,8 @@ Entity* Population::randomSelectTheFittestMother(){
 
 void Population::DoGeneration(){
 
-	int newBorns = _random->getRandomNumber(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5);
+	int newBorns = _random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
+	cout<<"van a nacer: "<<newBorns<<endl;
 	for(int i=0; i < newBorns;i++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
@@ -74,15 +75,15 @@ void Population::DoGeneration(){
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
+
 	EverybodyBirthday();
 	//	DEATH();
-	//	_Fitness->setBase(_individuos);	//nuevo fitness
+	_Fitness->setBase(_individuos);	//nuevo fitness
 }
 
 void Population::EverybodyBirthday(){
-
 	Node<Entity*>* tmp = _individuos->getHead();
-	for(int i = 0; i<_individuos->getLength(); i++){
+	for(int i = 0 ; i < (_individuos->getLength()); i++){
 		tmp->getData()->Birthday();
 		tmp = tmp->getNext();
 	}
@@ -116,6 +117,10 @@ void Population::DEATH(){
 			//100% probabilidades de morir, aqui si muere el cabron
 		}
 	}
+}
+
+float Population::calculateFitnessTo(Entity* pEntity){
+	return _Fitness->caculateFitness(pEntity);
 }
 
 LinkedList<Entity*>* Population::getIndividuals(){ return _individuos; }
