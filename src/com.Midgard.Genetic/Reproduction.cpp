@@ -87,13 +87,13 @@ Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion)
 			int posicion= rand()%cantidad;
 			int elor=1<<posicion;
 			int resultado=cromosoma|elor;
-			if(cromosoma=resultado){
+			if(cromosoma==resultado){
 				int calculoand=pow(2,cantidad)-pow(2,posicion);
 				resultado=cromosoma&calculoand;
 			}
 			pGenoma->setCromosome(i,resultado);
 		}
-		if(valordemut=1){
+		if(valordemut==1){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 		}
 		valordemut=tmp->getData();
