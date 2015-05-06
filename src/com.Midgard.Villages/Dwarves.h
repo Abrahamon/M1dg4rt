@@ -18,6 +18,7 @@ public:
 	Dwarves();
 	virtual ~Dwarves();
 
+
 };
 
 #endif /* COM_MIDGARD_VILLAGES_DWARVES_H_ */

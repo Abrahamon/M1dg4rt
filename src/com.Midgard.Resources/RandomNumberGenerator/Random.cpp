@@ -23,7 +23,9 @@ Random::Random() {
 Random::~Random() {}
 
 int Random::getRandomNumber(int pMax){
-
+	if(pMax == 0){
+		return 0;
+	}
 	if(Constants::HARDWARE_CONFIG == "true"){
 		int exp = log2(pMax)+1;
 		int answer = get(_Dictionary[exp]);
@@ -46,5 +48,15 @@ int Random::get(char pData){
     ardu >> buffer;
     sscanf(buffer,"%d",&RandomData);
     return RandomData;
+}
+
+
+bool Random::getRandomBool(){
+	int pAnswer = getRandomNumber(1000);
+	if(pAnswer > 500){
+		return false;
+	}else{
+		return true;
+	}
 }
 

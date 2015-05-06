@@ -1,6 +1,14 @@
 <root>
+	<DEBUG value = "false"/>
 	<PROBABILIDAD value="5" />
 	<CANTIDAD_GENES value="8"/>
-	<MAX_POBLACION_INICIAL value="1000"/>
-	<HARDWARE_CONFIG value = "tffhgrue"/>
+	<MAX_POBLACION_INICIAL value="20"/>
+	<HARDWARE_CONFIG value = "false"/>
+	<REPRODUCTION_PER_GENERATION value = "0.5" />
+	<NUMBER_CHILDS_PER_PARENTS value = "2" />
+	<HUMANS value = "false"/>
+	<DARK_ELVES value = "false"/>
+	<DWARVES value = "true"/>
+	<ELVES value = "false"/>
+	<GIANTS value = "false"/>	
 </root>
