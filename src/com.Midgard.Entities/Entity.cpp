@@ -21,13 +21,18 @@ Entity::Entity() {
 }
 
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
-			   Genome* pGenome){
+			   Genome* pGenome, int pLife){
+	this->_Age = 0;
+	this->_Name = "";
+	this->_Experience = 0;
+	this->_Superstition = 0;
 	this->_Gender = pGender;
 	this->_Brother = pBrother;
 	this->_Father = pFather;
 	this->_Mother = pMother;
 	this->_Brother = pBrother;
 	this->_Genome = pGenome;
+	this->_Life = pLife;
 }
 
 Entity::~Entity() {}
@@ -53,7 +58,7 @@ void Entity::setGender(bool pGender){
 
 //Entity's Getters
 std::string Entity::getName(){ return _Name; }
-int Entity::getAge(){ return _Life; }
+int Entity::getAge(){ return _Age; }
 int Entity::getExp(){ return _Experience; }
 int Entity::getLife(){ return _Life; }
 bool Entity::getGender(){ return _Gender; }
@@ -65,7 +70,10 @@ Entity* Entity::getBrother(){ return _Brother; }
 
 //Entity's Setters
 
-void Entity::Birthday(){ _Age++; }
+void Entity::Birthday(){
+	_Age += 1;
+}
+
 void Entity::gainExperience(int pExp){ _Experience+=pExp; }
 void Entity::gainSuperstition(int pSupr){ _Superstition+=pSupr; }
 void Entity::gainLife(int pLife){ _Life+=pLife; }

@@ -31,6 +31,7 @@ public:
 	Entity* randomSelectTheFittest();
 	Entity* randomSelectTheFittestMother();
 	Entity* randomSelectTheFittestFather();
+	float calculateFitnessTo(Entity* pEntity);
 	void DoGeneration();
 	void DEATH();
 	void EverybodyBirthday();

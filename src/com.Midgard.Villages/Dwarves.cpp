@@ -20,7 +20,8 @@ Dwarves::Dwarves() {
 				_random->getRandomNumber(10),
 				_random->getRandomNumber(10),
 				_random->getRandomNumber(10));
-		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,0);
+		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,_random->getRandomNumber(10));
+
 		this->_individuos->insertTail(newDwarve);
 //		if(newGender)
 //			cout<<"creo un hombre ";

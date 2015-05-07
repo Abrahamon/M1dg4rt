@@ -11,7 +11,8 @@ World::World() {
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's
 
 	if(Constants::DWARVES=="true"){
-		_Dwarves = new Dwarves();}
+		_Dwarves = new Dwarves();
+	}
 	if(Constants::ELVES=="true")
 		_Elves = new Elves();
 	if(Constants::DARK_ELVES=="true")
@@ -24,13 +25,15 @@ World::~World() {}
 
 void World::start(){
 
-	cout<<"ataque del primero "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl;
+	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+	cout<<"edad del segunda: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl<<endl;
 
-	for(int i =0; i<2; i++){
+	for(int i =0; i<10; i++){
 		this->_Dwarves->DoGeneration();
-	//	cout<<"termino ------------------------------------------- generacion: "<<i<<endl;
 	}
-	cout<<"ataque del ultimo nacido : "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getGenome()->getAttack()<<endl;
+	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+	cout<<"edad del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
+	cout<<"edad del tercero: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
 }
 
 bool World::loadMap(std::string pathToFile){

@@ -8,10 +8,7 @@
 #include "Fitness.h"
 
 Fitness::Fitness(){
-
-}
-
-Fitness::~Fitness(){
+	_IniStrength =0;
 	_IniAttack = 0;
 	_IniSpeed = 0;
 	_IniDefense = 0;
@@ -23,9 +20,23 @@ Fitness::~Fitness(){
 	_sumAll = 0;
 }
 
+Fitness::~Fitness(){}
+
+void Fitness::restarData(){
+	_IniStrength =0;
+	_IniAttack = 0;
+	_IniSpeed = 0;
+	_IniDefense = 0;
+	_IniIntelligence = 0;
+	_IniMagic =0;
+	_IniEnergy = 0;
+	_IniBloot = 0;
+	_IniRunesPower = 0;
+	_sumAll = 0;
+}
 
 void Fitness::setBase(LinkedList<Entity*>* pListEntities){
-	this->~Fitness();
+	this->restarData();
 	Node<Entity*>* tmp = pListEntities->getHead();
 	for(int j = 0 ; j < pListEntities->getLength(); j++){
 		_IniAttack =  _IniAttack + tmp->getData()->getGenome()->getCromosome(0);
@@ -45,7 +56,7 @@ int Fitness::getSumOfAll(){
 	return _sumAll;
 }
 
-double Fitness::caculateFitness(Entity* pEntity){
+float Fitness::caculateFitness(Entity* pEntity){
 	Genome* pGen = pEntity->getGenome();
 
 	/*cout<<"calculando fitness \n";
@@ -58,10 +69,11 @@ double Fitness::caculateFitness(Entity* pEntity){
 	cout<<"bloot:"<<pGen->getBlot()<<endl;
 	cout<<"runes powa:"<<pGen->getRunesPower()<<endl;*/
 
-	double Thefitness = (pGen->getAttack()/_IniAttack)+(pGen->getSpeed()/_IniSpeed)+(pGen->getDefense()/_IniDefense)+
+	float Thefitness = (pGen->getAttack()/_IniAttack)+(pGen->getSpeed()/_IniSpeed)+(pGen->getDefense()/_IniDefense)+
 			(pGen->getIntelligence()/_IniIntelligence)+(pGen->getMagic()/_IniMagic)+(pGen->getEnergy()/_IniEnergy)+
 			(pGen->getBlot()/_IniBloot)+(pGen->getRunesPower()/_IniRunesPower);
 	return Thefitness;
+
 }
 
 
