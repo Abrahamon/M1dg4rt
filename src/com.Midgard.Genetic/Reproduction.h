@@ -34,9 +34,6 @@ public:
 	static Reproduction* getInstance();
 
 	Entity* reproducir(Entity* pFather, Entity* pMother);
-	LinkedList<int> *probabilidad=new LinkedList <int>();
-	Node<int> *tmp;
-
 };
 
 #endif /* COM_MIDGARD_GENETIC_REPRODUCTION_H_ */

@@ -67,18 +67,17 @@ Entity* Population::randomSelectTheFittestMother(){
 void Population::DoGeneration(){
 
 	int newBorns = _random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
-	cout<<"van a nacer: "<<newBorns<<endl;
 	for(int i=0; i < newBorns;i++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
+
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
-
 	EverybodyBirthday();
-	//	DEATH();
-	_Fitness->setBase(_individuos);	//nuevo fitness
+	//DEATH();
+	_Fitness->setBase(_individuos);	//de nuevo fitness
 }
 
 void Population::EverybodyBirthday(){

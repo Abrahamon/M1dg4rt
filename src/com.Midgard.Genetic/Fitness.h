@@ -15,24 +15,25 @@ class Fitness {
 
 private:
 
-	double _IniStrength;
-	double _IniAttack;
-	double _IniSpeed;
-	double _IniDefense;
-	double _IniIntelligence;
-	double _IniMagic;
-	double _IniEnergy;
-	double _IniBloot;
-	double _IniRunesPower;
+	float _IniStrength;
+	float _IniAttack;
+	float _IniSpeed;
+	float _IniDefense;
+	float _IniIntelligence;
+	float _IniMagic;
+	float _IniEnergy;
+	float _IniBloot;
+	float _IniRunesPower;
 	int _sumAll;
 
 public:
 	Fitness();
 	virtual ~Fitness();
 	int getSumOfAll();
+	void restarData();
 
 	void setBase(LinkedList<Entity*>* pListEntities);
-	double caculateFitness(Entity* pEntity);
+	float caculateFitness(Entity* pEntity);
 
 
 };
