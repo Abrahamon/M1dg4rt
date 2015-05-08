@@ -13,7 +13,6 @@ int largo::tamano(uint16_t numero){
 	for(int i=0;i<=16;i++){
 		if (numero>pow(2,n)){
 			n=n+1;
-			break;
 		}
 	}
 	return n;
