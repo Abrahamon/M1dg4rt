@@ -10,6 +10,7 @@
 #include <math.h>
 #include "stdint.h"
 #include <math.h>
+#include "../com.Midgard.Genetic/largo.h"
 
 class bitvector{
 
