@@ -76,7 +76,7 @@ void Population::DoGeneration(){
 		_individuos->insertTail(NewSon);
 	}
 	EverybodyBirthday();
-	//DEATH();
+	DEATH();
 	_Fitness->setBase(_individuos);	//de nuevo fitness
 }
 
@@ -93,29 +93,30 @@ void Population::DEATH(){
 	int edad;
 	for(int i =0; i<_individuos->getLength();i++){
 		edad = tmp->getData()->getAge();
-		if(edad <50){
+		if(edad <10){
 			//se salva
 		}
-		else if(edad <70){
+		else if(edad <15){
 			if(_random->getRandomNumber(100)>30){
-				tmp->getData()->_Life =0;
+				cout<<"mate a alguien \n";
 				_individuos->deleteData(tmp->getData());
 				//30% probabilidades de morir entre 50 y 70
 			}
 		}
-		else if(edad<100){
+		else if(edad<25){
 			if(_random->getRandomNumber(100)>50){
+				cout<<"mate a alguien \n";
 				//50% probabilidades de morir entre 50 y 70
-				tmp->getData()->_Life =0;
 				_individuos->deleteData(tmp->getData());
 			}
 		}
 		else{
-			tmp->getData()->_Life =0;
 			_individuos->deleteData(tmp->getData());
+			cout<<"mate a alguien \n";
 			//100% probabilidades de morir, aqui si muere el cabron
 		}
 	}
+	return;
 }
 
 float Population::calculateFitnessTo(Entity* pEntity){
