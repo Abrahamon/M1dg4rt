@@ -17,11 +17,8 @@
 #include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 #include "../com.Midgard.Genetic/largo.h"
-<<<<<<< HEAD
 #include"../com.Midgard.DataStructures/bitvector.h"
-=======
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
->>>>>>> 851ab574ebaa180aa3cf01969065cb07796c1d55
 #include <math.h>
 
 #include "stdint.h"
