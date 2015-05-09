@@ -13,7 +13,7 @@ Entity::Entity() {
 	_Mother = 0;
 	_Brother = 0;
 	_Genome = 0;
-	_Age = 0;
+	_Age = 1;
 	_Name = "";
 	_Experience = 0;
 	_Life = 0;
@@ -22,7 +22,7 @@ Entity::Entity() {
 
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 			   Genome* pGenome, int pLife){
-	this->_Age = 0;
+	this->_Age = 1;
 	this->_Name = "";
 	this->_Experience = 0;
 	this->_Superstition = 0;

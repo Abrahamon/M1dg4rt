@@ -50,6 +50,8 @@ void Fitness::setBase(LinkedList<Entity*>* pListEntities){
 		_sumAll = _sumAll + _IniAttack + _IniSpeed + _IniDefense + _IniIntelligence + _IniMagic + _IniEnergy + _IniBloot + _IniRunesPower;
 		tmp = tmp->getNext();
 	}
+
+	return;
 }
 
 int Fitness::getSumOfAll(){
