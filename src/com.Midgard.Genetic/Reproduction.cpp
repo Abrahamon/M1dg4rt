@@ -11,8 +11,7 @@ Reproduction* Reproduction::_Reproduction = 0;
 
 
 Reproduction::Reproduction() {
-	// TODO Auto-generated constructor stub
-
+	_random = new Random();
 }
 
 Reproduction::~Reproduction() {
@@ -84,6 +83,9 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * modifica gen por gen del genoma
  */
 Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
+
+	int a = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
+
 	Node<int> *tmp;
 	int valordemut=probabilimutacion->getHead()->getData();
 	tmp=probabilimutacion->getHead()->getNext();

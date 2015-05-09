@@ -24,7 +24,7 @@ using namespace std;
 class Constants{
 public:
 	static Constants* _Constants;
-	static float PROBABILIDAD_DE_MUTACION;
+	static int PROBABILIDAD_DE_MUTACION;
 	static int CANTIDAD_DE_GENES;
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;
