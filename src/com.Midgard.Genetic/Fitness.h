@@ -23,7 +23,6 @@ private:
 	float _IniEnergy;
 	float _IniBloot;
 	float _IniRunesPower;
-	int _sumAll;
 
 public:
 	Fitness();

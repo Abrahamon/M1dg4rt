@@ -7,19 +7,31 @@
 
 #include "Population.h"
 
+/**
+ * Constructor
+ */
 Population::Population() {
+	this->_Random = new Random();
 	this->_Evolving = true;
-	this->_random = new Random();
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
 }
 
+/**
+ * Destructor
+ */
 Population::~Population() {}
 
+/**
+ * Selecciona entre todos los individuos,
+ * aletoriamente un invididuo, asigna probabilidades de exito
+ * a los individuos con el fitness mas alto de la poblacion
+ * Es un auxiliar
+ */
 Entity* Population::randomSelectTheFittest(){
 
 	//obtener un numero aleatorio, desde 0 hasta la suma de todos los fitnes multiplicado por la cantidad de genes
-	int randomObtained= _random->getRandomNumber(_Fitness->getSumOfAll()*Constants::CANTIDAD_DE_GENES);
+	int randomObtained= _Random->getRandomNumber(_Fitness->getSumOfAll()*Constants::CANTIDAD_DE_GENES);
 //	cout<<"maximo :"<<_Fitness->getSumOfAll()*Constants::CANTIDAD_DE_GENES<<" .  Random : "<<randomObtained<<endl;
 
 	int cantidadElementos = this->_individuos->getLength();
@@ -45,6 +57,10 @@ Entity* Population::randomSelectTheFittest(){
 	return tmpNode->getData();
 }
 
+/**
+ * Utiliza el metodo "randomSelectTheFittest"
+ * pero retorna una entidad del genero deseado
+ */
 Entity* Population::randomSelectTheFittestFather(){
 	Entity* pResp = this->randomSelectTheFittest();
 	if(pResp->getGender() == true){
@@ -55,6 +71,10 @@ Entity* Population::randomSelectTheFittestFather(){
 	}
 }
 
+/**
+ * Utiliza el metodo "randomSelectTheFittest"
+ * pero retorna una entidad del genero deseado
+ */
 Entity* Population::randomSelectTheFittestMother(){
 	Entity* pResp = this->randomSelectTheFittest();
 	if(pResp->getGender() == false){
@@ -65,8 +85,18 @@ Entity* Population::randomSelectTheFittestMother(){
 	}
 }
 
+/**
+ * Tiene la siguiente forma:
+ * 1.Calcula aletoriamente un numero random que indica los nacimientos que se van a dar
+ * 	en esta generacion, no es maximo a la mitdad de la poblacion, porque se requieren dos entities para reproducir
+ * 2.selecciona aleatoriamente(con ventaja para los de fitness mas alto) a los padres del nuevo hijo, las veces que indique
+ * 	el paso anterior
+ * 3.Lo inserta en la poblacion
+ * 4.Aumenta la edad de todos los individuos en 1.
+ * 5.LLama a una verificacion de edad, donde los mayores a cierta edad tienen probabilidades cada vez mas altas de morir.
+ */
 void Population::DoGeneration(){
-	int newBorns = _random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
+	int newBorns = _Random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
 
 	for(int k=0; k < newBorns;k++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
@@ -84,6 +114,9 @@ void Population::DoGeneration(){
 	return;
 }
 
+/**
+ * Aumenta la edad de todos en 1
+ */
 void Population::EverybodyBirthday(){
 	Node<Entity*>* tmp = _individuos->getHead();
 	for(int i = 0 ; i < (_individuos->getLength()); i++){
@@ -93,6 +126,10 @@ void Population::EverybodyBirthday(){
 	return;
 }
 
+/**
+ * Para todos los individuos mayores a una cierta edad comienza tirar dados para decidir si se mueren o continuan.
+ * con forme se hacen viejos mas probabilidades tienen
+ */
 void Population::DEATH(){
 
 	Node<Entity*>* tmp = _individuos->getHead();
@@ -106,14 +143,14 @@ void Population::DEATH(){
 			//se salva
 		}
 		else if(edad <10){
-			if(_random->getRandomNumber(100)>30){
+			if(_Random->getRandomNumber(100)>30){
 				_individuos->deleteData(tmp->getPrevious()->getData());
 				//30% probabilidades de morir entre 50 y 70
 			}
 		}
 		else if(edad < 15){
-			if(_random->getRandomNumber(100)>50){
-				//50% probabilidades de morir entre 50 y 70
+			if(_Random->getRandomNumber(100)>50){
+				//5robabilidades de morir entre 50 y 70
 				_individuos->deleteData(tmp->getPrevious()->getData());
 			}
 		}
@@ -125,12 +162,24 @@ void Population::DEATH(){
 	return;
 }
 
+/**
+ * Metodo de prueba para poder calcular el fitness desde world
+ * para cualquier individuo
+ */
 float Population::calculateFitnessTo(Entity* pEntity){
 	return _Fitness->caculateFitness(pEntity);
 }
 
+/*
+ * Retorna la lista de individuos
+ */
 LinkedList<Entity*>* Population::getIndividuals(){ return _individuos; }
 
+/**
+ * Llama al metodo "desviacionEstandart" si es mayor a una constante
+ * decidimos que nuestro material genetico no esta cambiando
+ * y detenemos la reproduccion
+ */
 bool Population::getEvolvingState(){
 	float desviEst = desviacionEstandart(_individuos);
 	cout<<"La desviacion estandart en el ataque es de: "<<desviEst<<endl;
@@ -142,6 +191,10 @@ bool Population::getEvolvingState(){
 	return this->_Evolving;
 }
 
+/**
+ * Utiliza el mismo concepto de desviacion estandar utilizado
+ * en probabilidad y estadistica, para el conjunto de genes de un cromosoma
+ */
 float Population::desviacionEstandart(LinkedList<Entity*>* pList){
 	float ans;
 	Node<Entity*>* tmp = pList->getHead();

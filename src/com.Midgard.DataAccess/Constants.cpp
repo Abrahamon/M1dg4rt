@@ -21,6 +21,7 @@ string Constants::DARK_ELVES;
 string Constants::DWARVES;
 string Constants::ELVES;
 string Constants::GIANTS;
+int Constants::CANTIDAD_DE_DIOSES =0;
 
 Constants* Constants::getInstance(){
 	if(_Constants == 0){
@@ -44,10 +45,10 @@ Constants::Constants(){
 	DEBUG = reader->getParameter("DEBUG");
 	NUMBER_CHILDS_PER_PARENTS = atoi(reader->getParameter("NUMBER_CHILDS_PER_PARENTS"));
 	REPRODUCTION_PER_GENERATION = atof(reader->getParameter("REPRODUCTION_PER_GENERATION"));
+	CANTIDAD_DE_DIOSES = atoi(reader->getParameter("CANTIDAD_DE_DIOSES"));
 	HUMANS = reader->getParameter("HUMANS");
 	DARK_ELVES = reader->getParameter("DARK_ELVES");
 	DWARVES = reader->getParameter("DWARVES");
 	ELVES = reader->getParameter("ELVES");
 	GIANTS = reader->getParameter("GIANTS");
-
 }

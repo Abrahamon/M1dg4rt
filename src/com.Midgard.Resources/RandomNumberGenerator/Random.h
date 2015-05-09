@@ -20,6 +20,7 @@ using namespace LibSerial;
 class Random {
 
 private:
+
 	SerialStream ardu;
 	string PORT;
 	int get(char pData);

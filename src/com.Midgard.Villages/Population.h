@@ -19,9 +19,9 @@ class Population {
 private:
 
 protected:
-	Random* _random;
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
+	Random* _Random;
 	string _Eda;
 	bool _Evolving;
 

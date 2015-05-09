@@ -26,10 +26,9 @@ using namespace std;
 class Reproduction {
 
 private:
-	Random* _random;
 	static Reproduction* _Reproduction;
 	Genome* mutate(Genome* pGenome);
-
+	Random* _Random;
 public:
 	Reproduction();
 	virtual ~Reproduction();
