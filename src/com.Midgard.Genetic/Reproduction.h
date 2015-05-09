@@ -20,9 +20,9 @@
 #include"../com.Midgard.DataStructures/bitvector.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
 #include <math.h>
-
+#include <iostream>
 #include "stdint.h"
-
+using namespace std;
 class Reproduction {
 
 private:

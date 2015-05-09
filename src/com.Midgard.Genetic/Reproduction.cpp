@@ -84,41 +84,33 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 Genome* Reproduction::mutate(Genome* pGenoma){
 	for(int i=0; i<8; i++){
 		int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
-		if(valordemut<=1){
+		if(valordemut<=1000000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
-			cout<<"valorantes: " <<cromosoma<<endl;
 			largo* tamanoto = new largo();
+			cout<<"valor de antes: "<<cromosoma<<endl;
 			int cantidad=tamanoto->tamano(cromosoma);
-			//cout<<"tamano: " <<cantidad<<endl;
-			int posicion= rand()%(cantidad+2)+1;
-			cout<<"posicion: " <<cantidad<<endl;
-			int elor=1<<posicion;
-			uint16_t resultado=cromosoma|elor;
+			int posicion= _random->getRandomNumber(cantidad+2)+1;
+			cout<<posicion<<endl;
+			bitvector* usobitv =new bitvector();
+			uint16_t resultado=usobitv->cambiar(cromosoma,posicion,1);
 			if(cromosoma==resultado){
-				int calculoand=pow(2,cantidad)-pow(2,posicion);
-				resultado=cromosoma&calculoand;
+				resultado=usobitv->cambiar(cromosoma,posicion,0);
 			}
-			cout<<"valordesp: " <<resultado<<endl;
+			cout<<"valor de despues: "<<resultado<<endl;
 			pGenoma->setCromosome(i,resultado);
 		}
-		if(valordemut<=100000){
+		if(valordemut==1){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 			uint16_t resultado2=cromosoma;
-			cout<<"valorantes: " <<resultado2<<endl;
 			int primerrango=_random->getRandomNumber(3)+1;
 			int segundorango=_random->getRandomNumber(3)+5;
-			cout<<"primerran: " <<primerrango<<endl;
-			cout<<"segundran: " <<segundorango<<endl;
 			bitvector* usobitv =new bitvector();
 			int posicion=segundorango;
 			for(int i=primerrango;i<=segundorango;i++){
 				uint16_t primervalor= usobitv->tomar(cromosoma,i);
-				cout<<"primerval: " <<primervalor<<endl;
 				resultado2=usobitv->cambiar(resultado2,posicion,primervalor);
-				cout<<"valorcambio: " <<resultado2<<endl;
 				posicion=posicion-1;
 			}
-			cout<<"valordesp: " <<resultado2<<endl;
 			pGenoma->setCromosome(i,resultado2);
 		}
 
