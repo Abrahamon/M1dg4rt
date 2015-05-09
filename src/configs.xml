@@ -3,7 +3,7 @@
 	<CANTIDAD_GENES value="8"/>
 	<MAX_POBLACION_INICIAL value="2"/>
 	<HARDWARE_CONFIG value = "false"/>
-	<REPRODUCTION_PER_GENERATION value = "0.5" />
+	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<PROBABILIDAD_DE_MUTAR value = "1000000" />
 	<HUMANS value = "false"/>

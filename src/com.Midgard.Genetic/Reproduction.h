@@ -17,17 +17,18 @@
 #include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 #include "../com.Midgard.Genetic/largo.h"
+#include"../com.Midgard.DataStructures/bitvector.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
 #include <math.h>
-
+#include <iostream>
 #include "stdint.h"
-
+using namespace std;
 class Reproduction {
 
 private:
 	Random* _random;
 	static Reproduction* _Reproduction;
-	Genome* mutate(Genome* pGenome,LinkedList<int> *probabilidad);
+	Genome* mutate(Genome* pGenome);
 
 public:
 	Reproduction();

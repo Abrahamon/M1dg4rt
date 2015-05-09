@@ -9,7 +9,6 @@
 
 Reproduction* Reproduction::_Reproduction = 0;
 
-
 Reproduction::Reproduction() {
 	_random = new Random();
 }
@@ -44,25 +43,35 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pGenFather = 0;
 	uint16_t pGenMother = 0;
 	uint16_t pNewGen1 = 0;
-	uint16_t pNewGen2 = 0;
-	uint16_t pMask1 = 1;
-	uint16_t pMask2 = 1;
+	uint16_t temporal=0;
+	bitvector* usobitv =new bitvector();
+	int n=1;
+	int size=4;
 
 	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
-		pMask1 = pMask1<<8;
-		pMask1 = pMask1 -1;
-		pMask2 = ~pMask1;
-
-		pNewGen1 = pGenFather & pMask1;
-		pNewGen2 = pGenMother & pMask2;
-		pNewGen1 = pNewGen1 | pNewGen2;
+		for(int l=0;l<=size;l++){
+			if ((l%2)!=0){
+				temporal=usobitv->tomar(pGenMother,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenMother,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+			if ((l%2)==0){
+				temporal=usobitv->tomar(pGenFather,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenFather,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+		}
 		newGenome->setCromosome(i,pNewGen1);
 	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-	//newGenome = mutate(newGenome,probabilidad);
+	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
@@ -72,32 +81,39 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * De manera iterativa y impredecible
  * modifica gen por gen del genoma
  */
-Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
-
-	int a = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
-
-	Node<int> *tmp;
-	int valordemut=probabilimutacion->getHead()->getData();
-	tmp=probabilimutacion->getHead()->getNext();
+Genome* Reproduction::mutate(Genome* pGenoma){
 	for(int i=0; i<8; i++){
-		if(valordemut<=10){
+		int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
+		if(valordemut<=1000000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 			largo* tamanoto = new largo();
+			cout<<"valor de antes: "<<cromosoma<<endl;
 			int cantidad=tamanoto->tamano(cromosoma);
-			int posicion= rand()%cantidad;
-			int elor=1<<posicion;
-			int resultado=cromosoma|elor;
+			int posicion= _random->getRandomNumber(cantidad+2)+1;
+			cout<<posicion<<endl;
+			bitvector* usobitv =new bitvector();
+			uint16_t resultado=usobitv->cambiar(cromosoma,posicion,1);
 			if(cromosoma==resultado){
-				int calculoand=pow(2,cantidad)-pow(2,posicion);
-				resultado=cromosoma&calculoand;
+				resultado=usobitv->cambiar(cromosoma,posicion,0);
 			}
+			cout<<"valor de despues: "<<resultado<<endl;
 			pGenoma->setCromosome(i,resultado);
 		}
 		if(valordemut==1){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
+			uint16_t resultado2=cromosoma;
+			int primerrango=_random->getRandomNumber(3)+1;
+			int segundorango=_random->getRandomNumber(3)+5;
+			bitvector* usobitv =new bitvector();
+			int posicion=segundorango;
+			for(int i=primerrango;i<=segundorango;i++){
+				uint16_t primervalor= usobitv->tomar(cromosoma,i);
+				resultado2=usobitv->cambiar(resultado2,posicion,primervalor);
+				posicion=posicion-1;
+			}
+			pGenoma->setCromosome(i,resultado2);
 		}
-		valordemut=tmp->getData();
-		tmp=tmp->getNext();
+
 	}
 	return pGenoma;
 }
