@@ -10,8 +10,10 @@
 #include <math.h>
 #include "stdint.h"
 #include <math.h>
+#include <iostream>
 #include "../com.Midgard.Genetic/largo.h"
 
+using namespace std;
 class bitvector{
 
 private:

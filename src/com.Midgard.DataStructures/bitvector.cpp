@@ -30,7 +30,8 @@ uint16_t bitvector::cambiar(uint16_t numero,int posicion,int valor){
 		largo* tamanotot = new largo();
 		int tamadenum=tamanotot->tamano(numero);
 		int mascaraand=(pow(2,tamadenum)-1)-pow(2,posicion-1);
-		resultado=numero&numero;
+		resultado=numero&mascaraand;
+		cout<<"primerran: " <<mascaraand<<endl;
 	}
 	return resultado;
 }
