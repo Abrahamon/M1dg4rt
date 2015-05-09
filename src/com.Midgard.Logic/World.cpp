@@ -27,17 +27,17 @@ void World::start(){
 
 	cout<<"entities inicio : "<<_Dwarves->getIndividuals()->getLength()<<endl;
 	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl<<endl;
-	for(int i =0; i<20; i++){
+	for(int i =0; i<25; i++){
 		this->_Dwarves->DoGeneration();
-		//cout<<"Nueva generacion terminada: "<<i<<endl;
+	//	cout<<"Nueva generacion terminada: "<<i<<endl;
 	}
 //	cout<<"TERMINO\n";
-//	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getGenome()->getAttack()<<endl<<endl;
-//	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
-//	cout<<"edad del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
-//	cout<<"edad del tercero: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
-//	cout<<"entities final : "<<_Dwarves->getIndividuals()->getLength()<<endl;
-//	cout<<"TERMINO\n";
+	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getPrevious()->getData()->getGenome()->getAttack()<<endl<<endl;
+	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+	cout<<"edad del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
+	cout<<"edad del tercero: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
+	cout<<"entities final : "<<_Dwarves->getIndividuals()->getLength()<<endl;
+	cout<<"TERMINO\n";
 }
 
 bool World::loadMap(std::string pathToFile){

@@ -45,17 +45,11 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pGenFather = 0;
 	uint16_t pGenMother = 0;
 	uint16_t pNewGen1 = 0;
-<<<<<<< HEAD
 	uint16_t temporal=0;
 	bitvector* usobitv =new bitvector();
 	int n=1;
 	int size=4;
-=======
-	uint16_t pNewGen2 = 0;
-	uint16_t pMask1 = 1;
-	uint16_t pMask2 = 1;
 
->>>>>>> 8c051df806614858bc4e52f0adfb5ec710bd10e5
 	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
