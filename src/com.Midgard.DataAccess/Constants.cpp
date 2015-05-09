@@ -47,5 +47,4 @@ Constants::Constants(){
 	DARK_ELVES = reader->getParameter("DARK_ELVES");
 	DWARVES = reader->getParameter("DWARVES");
 	ELVES = reader->getParameter("ELVES");
-	GIANTS = reader->getParameter("GIANTS");
-}
+	GIANTS = reader->getParameter("GIANTS");}

@@ -2,9 +2,9 @@
 	<DEBUG value = "true"/>
 	<PROBABILIDAD value="5" />
 	<CANTIDAD_GENES value="8"/>
-	<MAX_POBLACION_INICIAL value="2"/>
+	<MAX_POBLACION_INICIAL value="4"/>
 	<HARDWARE_CONFIG value = "false"/>
-	<REPRODUCTION_PER_GENERATION value = "1" />
+	<REPRODUCTION_PER_GENERATION value = "0.5" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<HUMANS value = "false"/>
 	<DARK_ELVES value = "false"/>

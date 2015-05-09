@@ -49,7 +49,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pMask1 = 1;
 	uint16_t pMask2 = 1;
 
-	for(int i = 0; i<9;i++){
+	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
 		pMask1 = pMask1<<8;

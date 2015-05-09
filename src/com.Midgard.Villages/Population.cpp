@@ -65,9 +65,9 @@ Entity* Population::randomSelectTheFittestMother(){
 }
 
 void Population::DoGeneration(){
-
 	int newBorns = _random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
-	for(int i=0; i < newBorns;i++){
+
+	for(int k=0; k < newBorns;k++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
@@ -75,9 +75,12 @@ void Population::DoGeneration(){
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
+
 	EverybodyBirthday();
-	DEATH();
+//	DEATH();
 	_Fitness->setBase(_individuos);	//de nuevo fitness
+
+	return;
 }
 
 void Population::EverybodyBirthday(){
@@ -86,33 +89,35 @@ void Population::EverybodyBirthday(){
 		tmp->getData()->Birthday();
 		tmp = tmp->getNext();
 	}
+	return;
 }
 
 void Population::DEATH(){
+
 	Node<Entity*>* tmp = _individuos->getHead();
 	int edad;
-	for(int i =0; i<_individuos->getLength();i++){
+	for(int j =0; j<_individuos->getLength();j++){
+		if(tmp == 0)
+			return;
 		edad = tmp->getData()->getAge();
-		if(edad <10){
+		tmp = tmp->getNext();
+		if(edad < 5){
 			//se salva
 		}
-		else if(edad <15){
+		else if(edad <10){
 			if(_random->getRandomNumber(100)>30){
-				cout<<"mate a alguien \n";
-				_individuos->deleteData(tmp->getData());
+				_individuos->deleteData(tmp->getPrevious()->getData());
 				//30% probabilidades de morir entre 50 y 70
 			}
 		}
-		else if(edad<25){
+		else if(edad < 15){
 			if(_random->getRandomNumber(100)>50){
-				cout<<"mate a alguien \n";
 				//50% probabilidades de morir entre 50 y 70
-				_individuos->deleteData(tmp->getData());
+				_individuos->deleteData(tmp->getPrevious()->getData());
 			}
 		}
 		else{
-			_individuos->deleteData(tmp->getData());
-			cout<<"mate a alguien \n";
+			_individuos->deleteData(tmp->getPrevious()->getData());
 			//100% probabilidades de morir, aqui si muere el cabron
 		}
 	}
