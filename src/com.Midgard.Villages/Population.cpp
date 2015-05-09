@@ -8,6 +8,7 @@
 #include "Population.h"
 
 Population::Population() {
+	this->_Evolving = true;
 	this->_random = new Random();
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
@@ -129,5 +130,61 @@ float Population::calculateFitnessTo(Entity* pEntity){
 }
 
 LinkedList<Entity*>* Population::getIndividuals(){ return _individuos; }
+
+bool Population::getEvolvingState(){
+	float desviEst = desviacionEstandart(_individuos);
+	cout<<"La desviacion estandart en el ataque es de: "<<desviEst<<endl;
+	if( desviEst < 0.1 ){
+		if(Constants::DEBUG == "true")
+			cout<<"Population.getEvolvingState() 	La poblacion no cambia su material genetico"<<endl;
+		_Evolving = false;
+	}
+	return this->_Evolving;
+}
+
+float Population::desviacionEstandart(LinkedList<Entity*>* pList){
+	float ans;
+	Node<Entity*>* tmp = pList->getHead();
+	int attack = 0;
+//	int speed = 0;
+//	int defense = 0;
+//	int intelligence = 0;
+//	int magic =0;
+//	int energy = 0;
+//	int bloot = 0;
+//	int runesPower = 0;
+
+	for(int i =0; i< pList->getLength(); i++){
+		attack += tmp->getData()->getGenome()->getAttack();
+//		speed += tmp->getData()->getGenome()->getSpeed();
+//		defense += tmp->getData()->getGenome()->getDefense();
+//		intelligence += tmp->getData()->getGenome()->getIntelligence();
+//		magic += tmp->getData()->getGenome()->getMagic();
+//		energy += tmp->getData()->getGenome()->getEnergy();
+//		bloot += tmp->getData()->getGenome()->getBlot();
+//		runesPower += tmp->getData()->getGenome()->getRunesPower();
+		tmp = tmp->getNext();
+	}
+
+	attack = attack/pList->getLength();
+//	speed = speed/pList->getLength();
+//	defense = defense/pList->getLength();
+//	intelligence = intelligence/pList->getLength();
+//	magic = magic/pList->getLength();
+//	energy = energy/pList->getLength();
+//	bloot = bloot/pList->getLength();
+
+	tmp = pList->getHead();
+	for(int i= 0; i<pList->getLength();i++){
+		ans += exp2(attack-tmp->getData()->getGenome()->getAttack());
+	}
+	ans = sqrt(ans/pList->getLength());
+	return ans;
+}
+
+
+
+
+
 
 

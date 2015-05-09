@@ -13,6 +13,7 @@
 #include "../com.Midgard.Genetic/Reproduction.h"
 #include "../com.Midgard.Genetic/Fitness.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
+#include <math.h>
 
 class Population {
 private:
@@ -21,7 +22,8 @@ protected:
 	Random* _random;
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
-
+	string _Eda;
+	bool _Evolving;
 
 
 public:
@@ -36,6 +38,8 @@ public:
 	void DEATH();
 	void EverybodyBirthday();
 	LinkedList<Entity*>* getIndividuals();
+	bool getEvolvingState();
+	float desviacionEstandart(LinkedList<Entity*>* pList);
 };
 
 #endif /* COM_MIDGARD_VILLAGES_POPULATION_H_ */

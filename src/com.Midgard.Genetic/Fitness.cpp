@@ -8,7 +8,6 @@
 #include "Fitness.h"
 
 Fitness::Fitness(){
-	_IniStrength =0;
 	_IniAttack = 0;
 	_IniSpeed = 0;
 	_IniDefense = 0;
@@ -23,7 +22,6 @@ Fitness::Fitness(){
 Fitness::~Fitness(){}
 
 void Fitness::restarData(){
-	_IniStrength =0;
 	_IniAttack = 0;
 	_IniSpeed = 0;
 	_IniDefense = 0;
@@ -77,6 +75,8 @@ float Fitness::caculateFitness(Entity* pEntity){
 	return Thefitness;
 
 }
+
+
 
 
 

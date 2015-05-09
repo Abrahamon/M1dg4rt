@@ -15,7 +15,6 @@ class Fitness {
 
 private:
 
-	float _IniStrength;
 	float _IniAttack;
 	float _IniSpeed;
 	float _IniDefense;
@@ -34,8 +33,6 @@ public:
 
 	void setBase(LinkedList<Entity*>* pListEntities);
 	float caculateFitness(Entity* pEntity);
-
-
 };
 
 #endif /* COM_MIDGARD_GENETICSMANAGER_FITNESS_H_ */
