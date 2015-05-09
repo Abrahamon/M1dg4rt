@@ -36,7 +36,8 @@ Constants::Constants(){
 	reader->loadXMLFile("src/configs.xml");
 
 	//General Constants
-	PROBABILIDAD_DE_MUTACION = atoi(reader->getParameter("PROBABILIDAD"))/100;
+	PROBABILIDAD_DE_MUTACION = atoi(reader->getParameter("PROBABILIDAD_DE_MUTAR"));
+
 	CANTIDAD_DE_GENES =  atoi(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
@@ -47,4 +48,6 @@ Constants::Constants(){
 	DARK_ELVES = reader->getParameter("DARK_ELVES");
 	DWARVES = reader->getParameter("DWARVES");
 	ELVES = reader->getParameter("ELVES");
-	GIANTS = reader->getParameter("GIANTS");}
+	GIANTS = reader->getParameter("GIANTS");
+
+}
