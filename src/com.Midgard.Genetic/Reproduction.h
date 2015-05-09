@@ -17,6 +17,7 @@
 #include "../com.Midgard.Entities/Human.h"
 #include "../com.Midgard.DataAccess/Constants.h"
 #include "../com.Midgard.Genetic/largo.h"
+#include"../com.Midgard.DataStructures/bitvector.h"
 #include <math.h>
 
 #include "stdint.h"

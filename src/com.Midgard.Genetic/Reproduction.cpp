@@ -45,20 +45,29 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pGenFather = 0;
 	uint16_t pGenMother = 0;
 	uint16_t pNewGen1 = 0;
-	uint16_t pNewGen2 = 0;
-	uint16_t pMask1 = 1;
-	uint16_t pMask2 = 1;
-
-	for(int i = 0; i<9;i++){
+	uint16_t temporal=0;
+	bitvector* usobitv =new bitvector();
+	int n=1;
+	int size=4;
+	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
-		pMask1 = pMask1<<8;
-		pMask1 = pMask1 -1;
-		pMask2 = ~pMask1;
-
-		pNewGen1 = pGenFather & pMask1;
-		pNewGen2 = pGenMother & pMask2;
-		pNewGen1 = pNewGen1 | pNewGen2;
+		for(int l=0;l<=size;l++){
+			if ((l%2)!=0){
+				temporal=usobitv->tomar(pGenMother,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenMother,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+			if ((l%2)==0){
+				temporal=usobitv->tomar(pGenFather,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenFather,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+		}
 		newGenome->setCromosome(i,pNewGen1);
 	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
