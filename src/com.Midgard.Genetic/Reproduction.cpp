@@ -82,19 +82,23 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * modifica gen por gen del genoma
  */
 Genome* Reproduction::mutate(Genome* pGenoma){
-	int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
 	for(int i=0; i<8; i++){
-		if(valordemut<=1000000){
+		int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
+		if(valordemut<=100000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
+			cout<<"valorantes: " <<cromosoma<<endl;
 			largo* tamanoto = new largo();
 			int cantidad=tamanoto->tamano(cromosoma);
-			int posicion= rand()%cantidad;
+			//cout<<"tamano: " <<cantidad<<endl;
+			int posicion= rand()%(cantidad+2)+1;
+			cout<<"posicion: " <<cantidad<<endl;
 			int elor=1<<posicion;
 			int resultado=cromosoma|elor;
 			if(cromosoma==resultado){
 				int calculoand=pow(2,cantidad)-pow(2,posicion);
 				resultado=cromosoma&calculoand;
 			}
+			cout<<"valordesp: " <<resultado<<endl;
 			pGenoma->setCromosome(i,resultado);
 		}
 		if(valordemut==1){

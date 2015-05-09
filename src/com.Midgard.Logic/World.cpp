@@ -25,18 +25,21 @@ World::~World() {}
 
 void World::start(){
 
-	cout<<"fitness ultimo: "<< _Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
-	cout<<"entities inicio : "<<_Dwarves->getIndividuals()->getLength()<<endl;
+//	cout<<"fitness ultimo: "<< _Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+//	cout<<"entities inicio : "<<_Dwarves->getIndividuals()->getLength()<<endl;
 	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl<<endl;
+	cout<<"inteligencia: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getIntelligence()<<endl;
+	cout<<"defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<endl;
 	for(int i =0; i<25; i++){
 		this->_Dwarves->DoGeneration();
 	//	cout<<"Nueva generacion terminada: "<<i<<endl;
 	}
 //	cout<<"TERMINO\n";
-	cout<<"fitness ultimo: "<< _Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
-	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getTail()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl<<endl;
+//	cout<<"fitness ultimo: "<< _Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
+//	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getTail()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<endl<<endl;
 //	cout<<"edad del primero: "<<_Dwarves->getIndividuals()->getHead()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getData())<<endl;
 //	cout<<"edad del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
+//	cout<<"ataque del segundo: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getAttack()<<endl;
 //	cout<<"edad del tercero: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getNext()->getData()->getAge()<<". Fitness: "<<_Dwarves->calculateFitnessTo(_Dwarves->getIndividuals()->getHead()->getPrevious()->getData())<<endl;
 //	cout<<"entities final : "<<_Dwarves->getIndividuals()->getLength()<<endl;
 //	cout<<"TERMINO\n";

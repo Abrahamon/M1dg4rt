@@ -77,7 +77,7 @@ void Population::DoGeneration(){
 	}
 
 	EverybodyBirthday();
-//	DEATH();
+	DEATH();
 //	_Fitness->setBase(_individuos);	//de nuevo fitness
 
 	return;
