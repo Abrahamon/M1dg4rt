@@ -9,7 +9,7 @@
 #include "XMLReader.h"
 
 Constants* Constants::_Constants = 0;
-float Constants::PROBABILIDAD_DE_MUTACION = 0;
+int Constants::PROBABILIDAD_DE_MUTACION = 0;
 int Constants::CANTIDAD_DE_GENES = 0;
 int Constants::MAX_POBLACION_INICIAL = 0;
 string Constants::HARDWARE_CONFIG;
@@ -36,7 +36,7 @@ Constants::Constants(){
 	reader->loadXMLFile("src/configs.xml");
 
 	//General Constants
-	PROBABILIDAD_DE_MUTACION = atof(reader->getParameter("PROBABILIDAD"))/100;
+	PROBABILIDAD_DE_MUTACION = atoi(reader->getParameter("PROBABILIDAD"))/100;
 	CANTIDAD_DE_GENES =  atoi(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
