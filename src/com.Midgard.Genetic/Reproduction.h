@@ -28,7 +28,7 @@ class Reproduction {
 private:
 	Random* _random;
 	static Reproduction* _Reproduction;
-	Genome* mutate(Genome* pGenome,LinkedList<int> *probabilidad);
+	Genome* mutate(Genome* pGenome);
 
 public:
 	Reproduction();

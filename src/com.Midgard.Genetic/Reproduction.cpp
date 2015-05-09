@@ -9,7 +9,6 @@
 
 Reproduction* Reproduction::_Reproduction = 0;
 
-
 Reproduction::Reproduction() {
 	_random = new Random();
 }
@@ -72,7 +71,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-	//newGenome = mutate(newGenome,probabilidad);
+	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
@@ -82,13 +81,10 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * De manera iterativa y impredecible
  * modifica gen por gen del genoma
  */
-Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
-	int a = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
-	Node<int> *tmp;
-	int valordemut=probabilimutacion->getHead()->getData();
-	tmp=probabilimutacion->getHead()->getNext();
+Genome* Reproduction::mutate(Genome* pGenoma){
+	int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);
 	for(int i=0; i<8; i++){
-		if(valordemut<=10){
+		if(valordemut<=1000000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 			largo* tamanoto = new largo();
 			int cantidad=tamanoto->tamano(cromosoma);
@@ -104,8 +100,7 @@ Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion)
 		if(valordemut==1){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 		}
-		valordemut=tmp->getData();
-		tmp=tmp->getNext();
+
 	}
 	return pGenoma;
 }
