@@ -6,7 +6,6 @@
  */
 
 #include "Random.h"
-
 Random::Random() {
 
 	if(Constants::HARDWARE_CONFIG=="true"){

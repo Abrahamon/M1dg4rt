@@ -9,10 +9,8 @@
 
 Reproduction* Reproduction::_Reproduction = 0;
 
-
 Reproduction::Reproduction() {
-	// TODO Auto-generated constructor stub
-
+	this->_Random = new Random();
 }
 
 Reproduction::~Reproduction() {
@@ -45,25 +43,37 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pGenFather = 0;
 	uint16_t pGenMother = 0;
 	uint16_t pNewGen1 = 0;
-	uint16_t pNewGen2 = 0;
-	uint16_t pMask1 = 1;
-	uint16_t pMask2 = 1;
+	uint16_t temporal=0;
+	bitvector* usobitv =new bitvector();
+	int n=1;
+	int size=4;
 
-	for(int i = 0; i<9;i++){
+	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
-		pMask1 = pMask1<<8;
-		pMask1 = pMask1 -1;
-		pMask2 = ~pMask1;
 
-		pNewGen1 = pGenFather & pMask1;
-		pNewGen2 = pGenMother & pMask2;
-		pNewGen1 = pNewGen1 | pNewGen2;
+		for(int l=0;l<=size;l++){
+			if ((l%2)!=0){
+				temporal=usobitv->tomar(pGenMother,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenMother,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+			if ((l%2)==0){
+				temporal=usobitv->tomar(pGenFather,n);
+				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+				temporal=usobitv->tomar(pGenFather,n+1);
+				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+				n=n+2;
+			}
+		}
 		newGenome->setCromosome(i,pNewGen1);
-	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
+		cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
+		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-	//newGenome = mutate(newGenome,probabilidad);
+//	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
@@ -73,29 +83,38 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * De manera iterativa y impredecible
  * modifica gen por gen del genoma
  */
-Genome* Reproduction::mutate(Genome* pGenoma,LinkedList<int> *probabilimutacion){
-	Node<int> *tmp;
-	int valordemut=probabilimutacion->getHead()->getData();
-	tmp=probabilimutacion->getHead()->getNext();
+Genome* Reproduction::mutate(Genome* pGenoma){
 	for(int i=0; i<8; i++){
-		if(valordemut<=10){
-			uint16_t cromosoma=pGenoma->getCromosome(i);
+		int valordemut = _Random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
+		//esta parte se encarga de hacer la mutacion
+		if(valordemut<=100000){
+			uint16_t cromosoma=pGenoma->getCromosome(i);//cromosoma original
 			largo* tamanoto = new largo();
 			int cantidad=tamanoto->tamano(cromosoma);
-			int posicion= rand()%cantidad;
-			int elor=1<<posicion;
-			int resultado=cromosoma|elor;
+			int posicion= _Random->getRandomNumber(cantidad+2)+1;//posicion random donde se realiza mutacion
+			bitvector* usobitv =new bitvector();
+			uint16_t resultado=usobitv->cambiar(cromosoma,posicion,1);
 			if(cromosoma==resultado){
-				int calculoand=pow(2,cantidad)-pow(2,posicion);
-				resultado=cromosoma&calculoand;
+				resultado=usobitv->cambiar(cromosoma,posicion,0);
 			}
 			pGenoma->setCromosome(i,resultado);
 		}
-		if(valordemut==1){
+		//esta parte se encarga de hacer la inversion
+		if(valordemut<=100000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
+			uint16_t resultado2=cromosoma;
+			int primerrango=_Random->getRandomNumber(3)+1;//posicion inicial desde donde empieza la inversion
+			int segundorango=_Random->getRandomNumber(3)+5;//posicion final donde termina la inversion
+			bitvector* usobitv =new bitvector();
+			int posicion=segundorango;
+			for(int i=primerrango;i<=segundorango;i++){//se encarga de ir cambiando los bits
+				uint16_t primervalor= usobitv->tomar(cromosoma,i);
+				resultado2=usobitv->cambiar(resultado2,posicion,primervalor);
+				posicion=posicion-1;
+			}
+			pGenoma->setCromosome(i,resultado2);
 		}
-		valordemut=tmp->getData();
-		tmp=tmp->getNext();
+
 	}
 	return pGenoma;
 }

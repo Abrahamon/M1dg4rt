@@ -9,7 +9,7 @@
 #include "XMLReader.h"
 
 Constants* Constants::_Constants = 0;
-float Constants::PROBABILIDAD_DE_MUTACION = 0;
+int Constants::PROBABILIDAD_DE_MUTACION = 0;
 int Constants::CANTIDAD_DE_GENES = 0;
 int Constants::MAX_POBLACION_INICIAL = 0;
 string Constants::HARDWARE_CONFIG;
@@ -21,6 +21,7 @@ string Constants::DARK_ELVES;
 string Constants::DWARVES;
 string Constants::ELVES;
 string Constants::GIANTS;
+int Constants::CANTIDAD_DE_DIOSES =0;
 
 Constants* Constants::getInstance(){
 	if(_Constants == 0){
@@ -36,13 +37,15 @@ Constants::Constants(){
 	reader->loadXMLFile("src/configs.xml");
 
 	//General Constants
-	PROBABILIDAD_DE_MUTACION = atof(reader->getParameter("PROBABILIDAD"))/100;
+	PROBABILIDAD_DE_MUTACION = atoi(reader->getParameter("PROBABILIDAD_DE_MUTAR"));
+
 	CANTIDAD_DE_GENES =  atoi(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
 	DEBUG = reader->getParameter("DEBUG");
 	NUMBER_CHILDS_PER_PARENTS = atoi(reader->getParameter("NUMBER_CHILDS_PER_PARENTS"));
 	REPRODUCTION_PER_GENERATION = atof(reader->getParameter("REPRODUCTION_PER_GENERATION"));
+	CANTIDAD_DE_DIOSES = atoi(reader->getParameter("CANTIDAD_DE_DIOSES"));
 	HUMANS = reader->getParameter("HUMANS");
 	DARK_ELVES = reader->getParameter("DARK_ELVES");
 	DWARVES = reader->getParameter("DWARVES");

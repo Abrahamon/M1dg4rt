@@ -24,13 +24,14 @@ using namespace std;
 class Constants{
 public:
 	static Constants* _Constants;
-	static float PROBABILIDAD_DE_MUTACION;
+	static int PROBABILIDAD_DE_MUTACION;
 	static int CANTIDAD_DE_GENES;
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;
 	static string DEBUG;
 	static int NUMBER_CHILDS_PER_PARENTS;
 	static float REPRODUCTION_PER_GENERATION;
+	static int CANTIDAD_DE_DIOSES;
 	static string HUMANS;
 	static string DARK_ELVES;
 	static string DWARVES;
