@@ -26,7 +26,7 @@ public:
 	void printMatrix();
 };
 
-#endif /* SRC_COM_MIDGARD_DATASTRUCTURES_PYARRAY_H_ */
+
 
 template<typename k>
 PyArray<k>::PyArray(int NumberOfRows, int NumberOfColumns) {
@@ -77,20 +77,20 @@ void PyArray<k>::setDataID(int x, int y, k pData){
 
 template<class k>
 int PyArray<k>::getDataID(int x, int y){
-	if(x > _MaxX){
-		std::cout << "**PyArray: x outside Array **" << std::endl;
+	if((x > _MaxX) | (x < 0)){
+		//std::cout << "**PyArray: x outside Array **" << std::endl;
 		return 0;
 	}
-	if(y > _MaxY){
-		std::cout << "**PyArray: y outside Array **" << std::endl;
+	if((y > _MaxY) | (y < 0)){
+		//std::cout << "**PyArray: y outside Array **" << std::endl;
 		return 0;
 	}
 	Node<LinkedList<k>*>* tmpNode = _Array->getHead();
-	for(int j = 0; j < x; j++){
+	for(int j = 0; j < y; j++){
 		tmpNode = tmpNode->getNext();
 	}
-	Node<int>* tmpData = tmpNode->getData()->getHead();
-	for(int i = 0; i < y; i++){
+	Node<k>* tmpData = tmpNode->getData()->getHead();
+	for(int i = 0; i < x; i++){
 		tmpData = tmpData->getNext();
 	}
 	return tmpData->getData();
@@ -120,3 +120,5 @@ void PyArray<k>::printMatrix(){
 		printRow(i);
 	}
 }
+
+#endif /* SRC_COM_MIDGARD_DATASTRUCTURES_PYARRAY_H_ */
