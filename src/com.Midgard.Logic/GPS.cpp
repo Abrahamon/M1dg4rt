@@ -11,28 +11,31 @@ GPS::GPS(Entity* pOwner) {
 	_Owner = pOwner;
 	_map = new PyArray<char>(30,30);
 	_closedList = new LinkedList<Cell*>();
+	_pathList = new LinkedList<Cell*>();
 }
 
 GPS::~GPS() {}
 
 
-void GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
-	//uint8_t CurrX = _Owner->getX();
-	//uint8_t CurrY = _Owner->getY();
+bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,bool retry){
 	int pG = 0;
 	bool finished = false;
 
 	Cell* currentCell = new Cell();
 	currentCell->setData(pX,pY,NULL,0);
 
-	_closedList->insertTail(currentCell);
-
+	if(retry == false)
+		_closedList->insertTail(currentCell);
+	else
+		_pathList->insertTail(currentCell);
 
 	while(!finished){
 		LinkedList<Cell*>* _openList = new LinkedList<Cell*>();
-
+		std::cout << "CLOSEEEEED LIST LENGHT: "<< _closedList->getLength() << std::endl;
 		if(pX == endX && pY == endY){
+
 			finished = true;
+			return true;
 		}
 		else{
 
@@ -78,13 +81,21 @@ void GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
 					_openList->insertTail(rightCell);
 				}
 			}
+			if(_openList->getLength() == 0){
+				//_closedList->vaciar();
+				break;
+			}
 
-			Cell* tmpCell = getBestCell(_openList);
+			Cell* tmpCell = getBestCell(_openList,retry);
 			Cell* newCell = new Cell();
 
 			newCell->setData(tmpCell->getX(),tmpCell->getY(),tmpCell->getPrevious(),tmpCell->getF());
 
-			_closedList->insertTail(newCell);
+
+			if(retry == false)
+				_closedList->insertTail(newCell);
+			else
+				_pathList->insertTail(newCell);
 
 
 			//currentCell = newCell;
@@ -98,6 +109,8 @@ void GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
 		}
 	}
 
+	return false;
+
 }
 
 int GPS::getH(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
@@ -107,7 +120,7 @@ int GPS::getH(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
 	return abs(H);
 }
 
-Cell* GPS::getBestCell(LinkedList<Cell*>* openList){
+Cell* GPS::getBestCell(LinkedList<Cell*>* openList,bool retry){
 	Cell* currentCell = openList->getHead()->getData();
 	Node<Cell*>* currentNode = openList->getHead();
 	if(openList->getLength() == 1){
@@ -115,7 +128,7 @@ Cell* GPS::getBestCell(LinkedList<Cell*>* openList){
 	}
 	else{
 		for(int i = 0; i < openList->getLength(); i++){
-			currentCell = getBestBetween(currentCell,currentNode->getNext()->getData());
+			currentCell = getBestBetween(currentCell,currentNode->getNext()->getData(),retry);
 			currentNode = currentNode->getNext();
 		}
 	}
@@ -123,7 +136,7 @@ Cell* GPS::getBestCell(LinkedList<Cell*>* openList){
 	return currentCell;
 }
 
-Cell* GPS::getBestBetween(Cell* A, Cell* B){
+Cell* GPS::getBestBetween(Cell* A, Cell* B,bool retry){
 	if(A->getF() < B->getF()){ //Si A es menor que B, retorna A
 		return A;
 	}
@@ -136,10 +149,19 @@ Cell* GPS::getBestBetween(Cell* A, Cell* B){
 }
 
 void GPS::printBestPath(){
-	Node<Cell*>* tmp = _closedList->getHead();
-	for(int i = 0; i < _closedList->getLength(); i++){
-		std::cout << tmp->getData()->getX() << " " << tmp->getData()->getY() << std::endl;
-		tmp=tmp->getNext();
+	if(_pathList->getHead() != 0){
+		Node<Cell*>* tmp = _pathList->getHead();
+		for(int i = 0; i < _pathList->getLength(); i++){
+			std::cout << tmp->getData()->getX() << " " << tmp->getData()->getY() << std::endl;
+			tmp=tmp->getNext();
+		}
+	}
+	else{
+		Node<Cell*>* tmp = _closedList->getHead();
+		for(int i = 0; i < _closedList->getLength(); i++){
+			std::cout << tmp->getData()->getX() << " " << tmp->getData()->getY() << std::endl;
+			tmp=tmp->getNext();
+		}
 	}
 
 }
@@ -156,7 +178,7 @@ bool GPS::isOnClosedList(Cell* pCell){
 }
 
 void GPS::loadMap(){
-	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba3.map");
+	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba8.map");
 
 	int mat = 0;
 		if (MapFile.is_open()){
