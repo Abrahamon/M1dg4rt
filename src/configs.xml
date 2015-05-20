@@ -10,6 +10,6 @@
 	<HUMANS value = "false"/>
 	<DARK_ELVES value = "false"/>
 	<DWARVES value = "true"/>
-	<ELVES value = "false"/>
-	<GIANTS value = "false"/>
+	<ELVES value = "true"/>
+	<GIANTS value = "true"/>
 </root>

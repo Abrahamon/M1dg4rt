@@ -15,6 +15,7 @@
 #include "../com.Midgard.Villages/Giants.h"
 #include "../com.Midgard.DataStructures/PyArray.h"
 #include "../com.Midgard.Entities/Good.h"
+#include <pthread.h>
 
 class World {
 
@@ -29,6 +30,8 @@ private:
 public:
 	World();
 	virtual ~World();
+
+	static void* DoGeneration(void* name);
 
 	void onsetOfGoods();
 	void start();
