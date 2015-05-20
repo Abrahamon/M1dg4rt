@@ -18,6 +18,8 @@ Entity::Entity() {
 	_Experience = 0;
 	_Life = 0;
 	_Superstition = 0;
+	_CurrX = 0;
+	_CurrY = 0;
 }
 
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
@@ -26,6 +28,8 @@ Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 	this->_Name = "";
 	this->_Experience = 0;
 	this->_Superstition = 0;
+	_CurrX = 0;
+	_CurrY = 0;
 	this->_Gender = pGender;
 	this->_Brother = pBrother;
 	this->_Father = pFather;
@@ -67,16 +71,17 @@ Genome* Entity::getGenome(){ return _Genome;}
 Entity* Entity::getFather(){ return _Father; }
 Entity* Entity::getMother(){ return _Mother; }
 Entity* Entity::getBrother(){ return _Brother; }
+uint8_t Entity::getX(){ return _CurrX; }
+uint8_t Entity::getY(){ return _CurrY; }
 
 //Entity's Setters
 
-void Entity::Birthday(){
-	_Age += 1;
-}
-
+void Entity::Birthday(){_Age += 1;}
 void Entity::gainExperience(int pExp){ _Experience+=pExp; }
 void Entity::gainSuperstition(int pSupr){ _Superstition+=pSupr; }
 void Entity::gainLife(int pLife){ _Life+=pLife; }
+void Entity::setX(uint8_t pX){ _CurrX = pX; }
+void Entity::setY(uint8_t pY){ _CurrY = pY; }
 
 //Fight Methods
 void Entity::Attack(Entity* pDefender){

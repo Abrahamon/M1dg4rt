@@ -10,7 +10,7 @@
 Reproduction* Reproduction::_Reproduction = 0;
 
 Reproduction::Reproduction() {
-	_random = new Random();
+	this->_Random = new Random();
 }
 
 Reproduction::~Reproduction() {
@@ -51,6 +51,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
+
 		for(int l=0;l<=size;l++){
 			if ((l%2)!=0){
 				temporal=usobitv->tomar(pGenMother,n);
@@ -68,10 +69,11 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 			}
 		}
 		newGenome->setCromosome(i,pNewGen1);
-	//	cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
+		cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
+		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-	newGenome = mutate(newGenome);
+//	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
@@ -83,13 +85,13 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  */
 Genome* Reproduction::mutate(Genome* pGenoma){
 	for(int i=0; i<8; i++){
-		int valordemut = _random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
+		int valordemut = _Random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
 		//esta parte se encarga de hacer la mutacion
-		if(valordemut<=100){
+		if(valordemut<=100000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);//cromosoma original
 			largo* tamanoto = new largo();
 			int cantidad=tamanoto->tamano(cromosoma);
-			int posicion= _random->getRandomNumber(cantidad+2)+1;//posicion random donde se realiza mutacion
+			int posicion= _Random->getRandomNumber(cantidad+2)+1;//posicion random donde se realiza mutacion
 			bitvector* usobitv =new bitvector();
 			uint16_t resultado=usobitv->cambiar(cromosoma,posicion,1);
 			if(cromosoma==resultado){
@@ -98,11 +100,11 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 			pGenoma->setCromosome(i,resultado);
 		}
 		//esta parte se encarga de hacer la inversion
-		if(valordemut==1){
+		if(valordemut<=100000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 			uint16_t resultado2=cromosoma;
-			int primerrango=_random->getRandomNumber(3)+1;//posicion inicial desde donde empieza la inversion
-			int segundorango=_random->getRandomNumber(3)+5;//posicion final donde termina la inversion
+			int primerrango=_Random->getRandomNumber(3)+1;//posicion inicial desde donde empieza la inversion
+			int segundorango=_Random->getRandomNumber(3)+5;//posicion final donde termina la inversion
 			bitvector* usobitv =new bitvector();
 			int posicion=segundorango;
 			for(int i=primerrango;i<=segundorango;i++){//se encarga de ir cambiando los bits
