@@ -32,7 +32,12 @@ uint16_t bitvector::cambiar(uint16_t numero,int posicion,int valor){
 		largo* tamanotot = new largo();
 		int tamadenum=tamanotot->tamano(numero);
 		int mascaraand=(pow(2,tamadenum)-1)-pow(2,posicion-1);// formula que da una mascar de 1s con un 0 en la posicion que se quiere cambiar
-		resultado=numero&mascaraand;
+		if (mascaraand<=0){
+			resultado=numero;
+		}
+		else{
+			resultado=numero&mascaraand;
+		}
 	}
 	return resultado;
 }

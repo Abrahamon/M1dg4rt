@@ -15,6 +15,7 @@ Population::Population() {
 	this->_Evolving = true;
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
+	this->CurrentGeneration=0;
 }
 
 /**
@@ -102,13 +103,15 @@ void Population::DoGeneration(){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
-
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
 
+	//cout << "GENERATION: " << CurrentGeneration <<"Population " << _individuos->getLength() <<endl;
+	CurrentGeneration++;
 	EverybodyBirthday();
 	DEATH();
+
 //	_Fitness->setBase(_individuos);	//de nuevo fitness
 
 	return;
@@ -235,6 +238,66 @@ float Population::desviacionEstandart(LinkedList<Entity*>* pList){
 	return ans;
 }
 
+short Population::getCurrentGeneration() { return CurrentGeneration; }
+int Population::getCantidadDeIndividuos(){ return _individuos->getLength(); }
+float Population::getBestFitness(){
+	float best = 0;
+	float current= 0;
+	Node<Entity*>* tmp = _individuos->getHead();
+	best = _Fitness->caculateFitness(tmp->getData());
+
+	for(int i = 0; i < _individuos->getLength(); i++){
+		current = _Fitness->caculateFitness(tmp->getData());
+
+		if(current > best){
+			best = current;
+		}
+
+		tmp = tmp->getNext();
+	}
+
+	return best;
+}
+
+float Population::getWorstFitness(){
+	float worst = 0;
+	float current= 0;
+	Node<Entity*>* tmp = _individuos->getHead();
+	worst = _Fitness->caculateFitness(tmp->getData());
+
+	for(int i = 0; i < _individuos->getLength(); i++){
+		current = _Fitness->caculateFitness(tmp->getData());
+
+		if(current < worst){
+			worst = current;
+		}
+
+		tmp = tmp->getNext();
+	}
+
+	return worst;
+}
+
+int Population::getBestAttribute(){
+	int BestAttack = 0;
+	int current= 0;
+
+	Node<Entity*>* tmp = _individuos->getHead();
+	BestAttack = tmp->getData()->getGenome()->getAttack();
+
+	for(int i = 0; i < _individuos->getLength(); i++){
+		current = tmp->getData()->getGenome()->getAttack();
+
+		if(current > BestAttack){
+			BestAttack = current;
+		}
+
+		tmp = tmp->getNext();
+	}
+
+	return BestAttack;
+
+}
 
 
 

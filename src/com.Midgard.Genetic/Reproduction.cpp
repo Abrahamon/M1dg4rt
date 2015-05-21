@@ -44,36 +44,57 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	uint16_t pGenMother = 0;
 	uint16_t pNewGen1 = 0;
 	uint16_t temporal=0;
+	uint16_t primerval=0;
 	bitvector* usobitv =new bitvector();
-	int n=1;
-	int size=4;
 
 	for(int i = 0; i<8;i++){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
-
-		for(int l=0;l<=size;l++){
-			if ((l%2)!=0){
-				temporal=usobitv->tomar(pGenMother,n);
-				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
-				temporal=usobitv->tomar(pGenMother,n+1);
-				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
-				n=n+2;
+		temporal=_Random->getRandomNumber(7)+1;
+		//cout<<"porcentaje padre "<<temporal<<endl;
+		pNewGen1 = 0;
+		//cout<<"valor padre "<<pGenFather<<endl<<"valor madre "<<pGenMother<<endl;
+		for (int l=1;l<=8;l++){
+			if(l<=temporal){
+				primerval=usobitv->tomar(pGenFather,l);
+			//	cout<<"valor del padre "<<primerval<<endl;
+				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
+			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
-			if ((l%2)==0){
-				temporal=usobitv->tomar(pGenFather,n);
-				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
-				temporal=usobitv->tomar(pGenFather,n+1);
-				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
-				n=n+2;
+			else{
+				primerval=usobitv->tomar(pGenMother,l);
+			//	cout<<"valor de la madre "<<primerval<<endl;
+				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
+			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
 		}
+//		for(int l=0;l<=size;l++){
+//			if ((l%2)!=0){
+//				temporal=usobitv->tomar(pGenMother,n);
+//				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+//				cout<<"valor hijo antes "<<pNewGen1<<endl;
+//				temporal=usobitv->tomar(pGenMother,n+1);
+//				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+//				cout<<"valor hijo antes "<<pNewGen1<<endl;
+//				n=n+2;
+//			}
+//			if ((l%2)==0){
+//				temporal=usobitv->tomar(pGenFather,n);
+//				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
+//				cout<<"valor hijo antes "<<pNewGen1<<endl;
+//				temporal=usobitv->tomar(pGenFather,n+1);
+//				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
+//				cout<<"valor hijo antes "<<pNewGen1<<endl;
+//				n=n+2;
+//			}
+//		}
 		newGenome->setCromosome(i,pNewGen1);
-		cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
+		//cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
+//		cout<<"valor hijo antes2 "<<pNewGen1<<endl;
 		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
-//	newGenome = mutate(newGenome);
+	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
@@ -87,7 +108,7 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 	for(int i=0; i<8; i++){
 		int valordemut = _Random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
 		//esta parte se encarga de hacer la mutacion
-		if(valordemut<=100000){
+		if(valordemut<=10){
 			uint16_t cromosoma=pGenoma->getCromosome(i);//cromosoma original
 			largo* tamanoto = new largo();
 			int cantidad=tamanoto->tamano(cromosoma);
@@ -98,9 +119,10 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 				resultado=usobitv->cambiar(cromosoma,posicion,0);
 			}
 			pGenoma->setCromosome(i,resultado);
+		//	cout<<"valor hijo despues "<<resultado<<endl;
 		}
 		//esta parte se encarga de hacer la inversion
-		if(valordemut<=100000){
+		if(valordemut==100000){
 			uint16_t cromosoma=pGenoma->getCromosome(i);
 			uint16_t resultado2=cromosoma;
 			int primerrango=_Random->getRandomNumber(3)+1;//posicion inicial desde donde empieza la inversion
@@ -113,6 +135,7 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 				posicion=posicion-1;
 			}
 			pGenoma->setCromosome(i,resultado2);
+			//cout<<"valor hijo despues "<<resultado2<<endl;
 		}
 
 	}
