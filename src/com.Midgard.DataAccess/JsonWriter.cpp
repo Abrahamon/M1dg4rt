@@ -66,7 +66,7 @@ void JsonWriter::JsonSend(std::string pData) {
 
 	Jzon::Writer writer;
 	writer.writeStream(node, cout);
-	writer.writeFile(node, "/home/tvlenin/Dropbox/Universidad/2015/I Semestre/Datos II/Proyectos/Proyecto II/WEBANGULAR/pueblos.json");
+	writer.writeFile(node, "/home/tvlenin/Dropbox/Universidad/2015/I Semestre/Datos II/Proyectos/Proyecto II/WEBANGULAR/JSON/pueblos.json");
 }
 /*
  * JsonWriter.cpp
