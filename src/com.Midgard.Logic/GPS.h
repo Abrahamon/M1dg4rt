@@ -18,11 +18,12 @@ private:
 	PyArray<char>* _map;
 	Entity* _Owner;
 	LinkedList<Cell*>* _closedList;
+	LinkedList<Cell*>* _pathList;
 
 
 	int getH(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY);
-	Cell* getBestCell(LinkedList<Cell*>* openList);
-	Cell* getBestBetween(Cell* A, Cell* B);
+	Cell* getBestCell(LinkedList<Cell*>* openList,bool retry);
+	Cell* getBestBetween(Cell* A, Cell* B,bool retry);
 	bool isOnClosedList(Cell* pCell);
 
 
@@ -30,7 +31,7 @@ public:
 	GPS(Entity* pOwner);
 	virtual ~GPS();
 	void findPath(Entity* pEnd);
-	void getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY);
+	bool getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,bool retry);
 	void printBestPath();
 	void loadMap();
 };

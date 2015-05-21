@@ -35,7 +35,6 @@ Dwarves::Dwarves() {
 //				". Int: "<<newGenome->getIntelligence()<<". Magic: "<<newGenome->getMagic()<<". Energy: "<<newGenome->getEnergy()<<
 //				" Bloot: "<<newGenome->getBlot()<<". Runes powa: "<<newGenome->getRunesPower()<<endl;
 	}
-
 	_Fitness->setBase(this->_individuos);
 }
 

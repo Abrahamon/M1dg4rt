@@ -69,7 +69,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 			}
 		}
 		newGenome->setCromosome(i,pNewGen1);
-		cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
+		//cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
 		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion

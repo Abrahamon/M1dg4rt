@@ -31,7 +31,7 @@ public:
 	World();
 	virtual ~World();
 
-	static void* DoGeneration(void* name);
+	static void* DoGeneration(void* pPop);
 
 	void onsetOfGoods();
 	void start();
