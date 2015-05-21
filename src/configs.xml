@@ -5,7 +5,11 @@
 	<HARDWARE_CONFIG value = "false"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
+<<<<<<< HEAD
 	<PROBABILIDAD_DE_MUTAR value = "100" />
+=======
+	<PROBABILIDAD_DE_MUTAR value = "10000" />
+>>>>>>> f2dc9be109abfd5290c5dc1cc0d79e3c4ba3d969
 	<CANTIDAD_DE_DIOSES value = "4" />
 	<HUMANS value = "false"/>
 	<DARK_ELVES value = "false"/>

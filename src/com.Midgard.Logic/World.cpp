@@ -51,6 +51,7 @@ void World::onsetOfGoods(){
  * Hasta que el material genetico no cambie notablemente
  */
 void World::start(){
+<<<<<<< HEAD
 	pthread_t HiloDwarves;
 	pthread_create(&HiloDwarves,0,World::DoGeneration,(void*)this); //Se crea el pthread
 
@@ -113,6 +114,45 @@ void* World::DoGeneration(void* pPop){
 		_Dwarves = new Dwarves();
 		cout << "GENERACION: " <<i << endl;
 
+=======
+//	cout<<"individuo 1 con ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<
+//			" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<
+//			" con bloot: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getBlot()<<
+//			" con energy : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getEnergy()<<
+//			" con intelligence : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getIntelligence()<<
+//			" con magic : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getMagic()<<
+//			" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getRunesPower()<<
+//			" con speed : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getSpeed()<<endl;
+//	cout<<"individuo 2 con ataque: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getAttack()<<
+//				" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getDefense()<<
+//				" con bloot: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getBlot()<<
+//				" con energy : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getEnergy()<<
+//				" con intelligence : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getIntelligence()<<
+//				" con magic : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getMagic()<<
+//				" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getRunesPower()<<
+//				" con speed : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getSpeed()<<endl<<endl;
+	for(int i =0; i<1; i++){
+
+		this->_Dwarves->DoGeneration();
+//		if(i%10 == 0){
+//			if(!_Dwarves->getEvolvingState()){
+//				break;
+//				//Las poblaciones dejaron de evolucionar, pasemos a la siguiente etapa
+//				//cout<<"Termine de evolucionar a probar la solucion!"<<endl;
+//			}
+//		}
+//		if(i%20 ==0){
+//			cout<<"individuo hijo, con ataque: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getAttack()<<
+//					" con defensa: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getDefense()<<
+//					" con bloot: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getBlot()<<
+//					" con energy : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getEnergy()<<
+//					" con intelligence : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getIntelligence()<<
+//					" con magic : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getMagic()<<
+//					" con runes power : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getRunesPower()<<
+//					" con speed : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getSpeed()<<endl;
+//		}
+//		cout<<"Nueva generacion terminada: "<<i<<endl;
+>>>>>>> f2dc9be109abfd5290c5dc1cc0d79e3c4ba3d969
 	}
 
 
