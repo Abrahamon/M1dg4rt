@@ -24,7 +24,7 @@ protected:
 	Random* _Random;
 	string _Eda;
 	bool _Evolving;
-
+	short CurrentGeneration;
 
 public:
 	Population();
@@ -40,6 +40,11 @@ public:
 	LinkedList<Entity*>* getIndividuals();
 	bool getEvolvingState();
 	float desviacionEstandart(LinkedList<Entity*>* pList);
+
+	short getCurrentGeneration();
+	int getCantidadDeIndividuos();
+	float getWorstFitness();
+	float getBestFitness();
 };
 
 #endif /* COM_MIDGARD_VILLAGES_POPULATION_H_ */

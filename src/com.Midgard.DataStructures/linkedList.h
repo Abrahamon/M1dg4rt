@@ -178,13 +178,12 @@ bool LinkedList<k>::findData(k pData){
  */
 template<class k>
 void LinkedList<k>::vaciar(){
-	Node<k>* tmpNode = _head;
+
+	Node<k>* pDelete = _head;
 	for(int i=0; i < _length; i++){
-		Node<k>* pDelete = tmpNode;
-		tmpNode = tmpNode->getNext();
-		delete pDelete;
+		deleteData(pDelete->getData());
+		pDelete = pDelete->getNext();
 	}
-	delete tmpNode;
 	this->_head = 0;
 	this->_tail = 0;
 	this->_length = 0;

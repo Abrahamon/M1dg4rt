@@ -1,11 +1,11 @@
 <root>
 	<DEBUG value = "true"/>
 	<CANTIDAD_GENES value="8"/>
-	<MAX_POBLACION_INICIAL value="2"/>
+	<MAX_POBLACION_INICIAL value="10"/>
 	<HARDWARE_CONFIG value = "false"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
-	<PROBABILIDAD_DE_MUTAR value = "1000000" />
+	<PROBABILIDAD_DE_MUTAR value = "100" />
 	<CANTIDAD_DE_DIOSES value = "4" />
 	<HUMANS value = "false"/>
 	<DARK_ELVES value = "false"/>
