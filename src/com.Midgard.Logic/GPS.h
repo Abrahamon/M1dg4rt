@@ -13,6 +13,7 @@
 #include "../com.Midgard.Entities/Entity.h"
 #include "Cell.h"
 
+
 class GPS {
 private:
 	PyArray<char>* _map;

@@ -7,6 +7,7 @@
 
 #include "World.h"
 
+Dwarves* World::_Dwarves = 0;
 /**
  * Constructor
  */
@@ -71,29 +72,6 @@ void World::start(){
 				" con magic : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getMagic()<<
 				" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getRunesPower()<<
 				" con speed : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getSpeed()<<endl<<endl;
-	for(int i =0; i<1; i++){
-
-		this->_Dwarves->DoGeneration();*/
-//		if(i%10 == 0){
-//			if(!_Dwarves->getEvolvingState()){
-//				break;
-//				//Las poblaciones dejaron de evolucionar, pasemos a la siguiente etapa
-//				//cout<<"Termine de evolucionar a probar la solucion!"<<endl;
-//			}
-//		}
-//		if(i%20 ==0){
-//			cout<<"individuo hijo, con ataque: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getAttack()<<
-//					" con defensa: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getDefense()<<
-//					" con bloot: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getBlot()<<
-//					" con energy : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getEnergy()<<
-//					" con intelligence : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getIntelligence()<<
-//					" con magic : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getMagic()<<
-//					" con runes power : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getRunesPower()<<
-//					" con speed : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getSpeed()<<endl;
-////		}
-////		cout<<"Nueva generacion terminada: "<<i<<endl;
-//	}
-
 //	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getTail()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getAttack()<<endl<<endl;	cout<<"entities final : "<<_Dwarves->getIndividuals()->getLength()<<endl;
 //	cout<<"individuo INICIAL con ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<
 //			" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<
@@ -104,14 +82,84 @@ void World::start(){
 //			" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getRunesPower()<<
 //			" con speed : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getSpeed()<<endl;
 	//	cout<<"TERMINO\n";
+
+	//for(int i =0; i<5; i++){
+
+		//this->_Dwarves->DoGeneration();
+		/if(i%10 == 0){
+			if(!_Dwarves->getEvolvingState()){
+				break;
+				//Las poblaciones dejaron de evolucionar, pasemos a la siguiente etapa
+				//cout<<"Termine de evolucionar a probar la solucion!"<<endl;
+			}
+		}
+		if(i%20 ==0){
+			cout<<"individuo hijo, con ataque: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getAttack()<<
+					" con defensa: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getDefense()<<
+					" con bloot: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getBlot()<<
+					" con energy : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getEnergy()<<
+					" con intelligence : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getIntelligence()<<
+					" con magic : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getMagic()<<
+					" con runes power : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getRunesPower()<<
+					" con speed : "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getSpeed()<<endl;
+		}*/
+	//}
 }
 
 
 void* World::DoGeneration(void* pPop){
-	while(true){
-		cout<< "HOLA" << endl;
-		sleep(1);
+	//Dwarves* pDwarves = new Dwarves();
+	//pDwarves = (Dwarves*) pPop;
+	ofstream file;
+	file.open("Pruebas/Prueba20.ods");
+
+	//file << "Generation"<<","<<"Cantidad"<<"\n";
+	file << "Generation"<<","<<"Mejor"<<","<<"Fuerza"<<"\n";
+	int MaxCorridas = 10;
+	int MaxGeneraciones = 60;
+	int CantidadDeIndividuos[MaxGeneraciones];
+
+	float Mejores[MaxGeneraciones];
+	float Peores[MaxGeneraciones];
+
+
+	for(int i = 0; i < MaxGeneraciones; i++){
+		CantidadDeIndividuos[i]=0;
+		Mejores[i]=0;
+		Peores[i]=0;
 	}
+
+
+	for(int i = 0; i < MaxCorridas; i++){
+		for(int j = 0; j < MaxGeneraciones; j++){
+
+			CantidadDeIndividuos[j] += World::_Dwarves->getCantidadDeIndividuos();
+			Mejores[j]+= World::_Dwarves->getBestFitness();
+			//Peores[j]+= World::_Dwarves->getWorstFitness();
+			Peores[j]+= World::_Dwarves->getBestAttribute();
+
+			World::_Dwarves->DoGeneration();
+		}
+		delete _Dwarves;
+		_Dwarves = new Dwarves();
+		cout << "GENERACION: " <<i << endl;
+
+	}
+
+
+	for(int i = 0; i < MaxGeneraciones; i++){
+		//CantidadDeIndividuos[i] = CantidadDeIndividuos[i]/MaxCorridas;
+		//file << i <<","<< CantidadDeIndividuos[i] <<"\n";
+
+		Mejores[i] = Mejores[i]/MaxCorridas;
+		Peores[i] = Peores[i]/MaxCorridas;
+
+		file << i <<","<< Mejores[i]<<","<< Peores[i] <<"\n";
+	}
+	//file << World::_Dwarves->getCurrentGeneration()<<","<<World::_Dwarves->getCantidadDeIndividuos()<<"\n";
+	file.close();
+	cout << "Archivo Cerrado" << endl;
+	system("mplayer -msglevel all=0 -msgmodule alarm.wav");
 
 	pthread_exit(NULL);
 }

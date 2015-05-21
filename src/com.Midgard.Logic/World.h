@@ -16,6 +16,7 @@
 #include "../com.Midgard.DataStructures/PyArray.h"
 #include "../com.Midgard.Entities/Good.h"
 #include <pthread.h>
+#include <fstream>
 
 class World {
 
@@ -25,7 +26,7 @@ private:
 	Dark_Elves* _Dark_Elves;
 	Elves* _Elves;
 	Giants* _Giants;
-	Dwarves* _Dwarves;
+
 
 public:
 	World();
@@ -36,6 +37,8 @@ public:
 	void onsetOfGoods();
 	void start();
 	bool loadMap(std::string pathToFile);
+
+	static Dwarves* _Dwarves;
 };
 
 #endif /* COM_MIDGARD_LOGIC_WORLD_H_ */
