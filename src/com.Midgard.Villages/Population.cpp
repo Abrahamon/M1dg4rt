@@ -102,7 +102,6 @@ void Population::DoGeneration(){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
-
 		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
