@@ -51,21 +51,21 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
 		temporal=_Random->getRandomNumber(7)+1;
-		cout<<"porcentaje padre "<<temporal<<endl;
+		//cout<<"porcentaje padre "<<temporal<<endl;
 		pNewGen1 = 0;
-		cout<<"valor padre "<<pGenFather<<endl<<"valor madre "<<pGenMother<<endl;
+		//cout<<"valor padre "<<pGenFather<<endl<<"valor madre "<<pGenMother<<endl;
 		for (int l=1;l<=8;l++){
 			if(l<=temporal){
 				primerval=usobitv->tomar(pGenFather,l);
-				cout<<"valor del padre "<<primerval<<endl;
+			//	cout<<"valor del padre "<<primerval<<endl;
 				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
-				cout<<"valor hijo antes "<<pNewGen1<<endl;
+			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
 			else{
 				primerval=usobitv->tomar(pGenMother,l);
-				cout<<"valor de la madre "<<primerval<<endl;
+			//	cout<<"valor de la madre "<<primerval<<endl;
 				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
-				cout<<"valor hijo antes "<<pNewGen1<<endl;
+			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
 		}
 //		for(int l=0;l<=size;l++){
@@ -89,12 +89,8 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 //			}
 //		}
 		newGenome->setCromosome(i,pNewGen1);
-<<<<<<< HEAD
 		//cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
-=======
-		cout<<"valor hijo antes2 "<<pNewGen1<<endl;
-//		cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
->>>>>>> f2dc9be109abfd5290c5dc1cc0d79e3c4ba3d969
+//		cout<<"valor hijo antes2 "<<pNewGen1<<endl;
 		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
 	//La mutacion ocurre dentro de la reproduccion
@@ -123,7 +119,7 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 				resultado=usobitv->cambiar(cromosoma,posicion,0);
 			}
 			pGenoma->setCromosome(i,resultado);
-			cout<<"valor hijo despues "<<resultado<<endl;
+		//	cout<<"valor hijo despues "<<resultado<<endl;
 		}
 		//esta parte se encarga de hacer la inversion
 		if(valordemut==100000){
@@ -139,7 +135,7 @@ Genome* Reproduction::mutate(Genome* pGenoma){
 				posicion=posicion-1;
 			}
 			pGenoma->setCromosome(i,resultado2);
-			cout<<"valor hijo despues "<<resultado2<<endl;
+			//cout<<"valor hijo despues "<<resultado2<<endl;
 		}
 
 	}

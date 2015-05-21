@@ -278,6 +278,27 @@ float Population::getWorstFitness(){
 	return worst;
 }
 
+int Population::getBestAttribute(){
+	int BestAttack = 0;
+	int current= 0;
+
+	Node<Entity*>* tmp = _individuos->getHead();
+	BestAttack = tmp->getData()->getGenome()->getAttack();
+
+	for(int i = 0; i < _individuos->getLength(); i++){
+		current = tmp->getData()->getGenome()->getAttack();
+
+		if(current > BestAttack){
+			BestAttack = current;
+		}
+
+		tmp = tmp->getNext();
+	}
+
+	return BestAttack;
+
+}
+
 
 
 

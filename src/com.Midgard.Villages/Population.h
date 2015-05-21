@@ -45,6 +45,7 @@ public:
 	int getCantidadDeIndividuos();
 	float getWorstFitness();
 	float getBestFitness();
+	int getBestAttribute();
 };
 
 #endif /* COM_MIDGARD_VILLAGES_POPULATION_H_ */
