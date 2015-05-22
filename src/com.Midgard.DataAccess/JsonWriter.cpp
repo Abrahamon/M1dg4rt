@@ -12,7 +12,7 @@ JsonWriter::JsonWriter() {
 
 }
 
-void JsonWriter::JsonSend(std::string pData) {
+void JsonWriter::JsonSend(std::string pData,string pueblo) {
 
 	string str = pData;
 	for (int i=0; i<str.length(); i++)

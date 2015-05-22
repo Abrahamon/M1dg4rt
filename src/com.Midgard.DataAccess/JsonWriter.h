@@ -6,7 +6,7 @@
 class JsonWriter{
 public:
 	JsonWriter();
-	void JsonSend(std::string pData);
+	void JsonSend(std::string pData, std::string pueblo);
 };
 
 

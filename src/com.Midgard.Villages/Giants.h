@@ -11,6 +11,8 @@
 #include "Population.h"
 
 class Giants : public Population {
+private:
+	Random* _random;
 public:
 	Giants();
 	virtual ~Giants();

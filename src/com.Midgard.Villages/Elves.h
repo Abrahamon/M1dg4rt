@@ -13,6 +13,7 @@
 class Elves : public Population{
 
 private:
+	Random* _random;
 
 public:
 	Elves();

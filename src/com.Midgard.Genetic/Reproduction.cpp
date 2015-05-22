@@ -7,7 +7,6 @@
 
 #include "Reproduction.h"
 
-Reproduction* Reproduction::_Reproduction = 0;
 
 Reproduction::Reproduction() {
 	this->_Random = new Random();
@@ -17,12 +16,6 @@ Reproduction::~Reproduction() {
 	// TODO Auto-generated destructor stub
 }
 
-Reproduction* Reproduction::getInstance(){
-	if(_Reproduction == 0){
-		_Reproduction = new Reproduction();
-	}
-	return _Reproduction;
-}
 
 /**
  * Reproduccion entre dos Entidades, la primera es el padre, la segunda es la madre

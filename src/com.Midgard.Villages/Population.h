@@ -14,6 +14,7 @@
 #include "../com.Midgard.Genetic/Fitness.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
 #include <math.h>
+#include <pthread.h>
 
 class Population {
 private:
@@ -22,6 +23,7 @@ protected:
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
 	Random* _Random;
+	Reproduction* _reproduction;
 	string _Eda;
 	bool _Evolving;
 	short CurrentGeneration;
@@ -40,7 +42,7 @@ public:
 	LinkedList<Entity*>* getIndividuals();
 	bool getEvolvingState();
 	float desviacionEstandart(LinkedList<Entity*>* pList);
-
+	static pthread_mutex_t mutex;
 	short getCurrentGeneration();
 	int getCantidadDeIndividuos();
 	float getWorstFitness();

@@ -10,8 +10,10 @@
 
 Constants* Constants::_Constants = 0;
 int Constants::PROBABILIDAD_DE_MUTACION = 0;
+int Constants::CANTIDAD_MAX_GENERACIONES = 0;
 int Constants::CANTIDAD_DE_GENES = 0;
 int Constants::MAX_POBLACION_INICIAL = 0;
+int Constants::FIGHT_FRECUENCY = 0;
 string Constants::HARDWARE_CONFIG;
 string Constants::DEBUG;
 float Constants::REPRODUCTION_PER_GENERATION = 0;
@@ -38,9 +40,10 @@ Constants::Constants(){
 
 	//General Constants
 	PROBABILIDAD_DE_MUTACION = atoi(reader->getParameter("PROBABILIDAD_DE_MUTAR"));
-
+	CANTIDAD_MAX_GENERACIONES= atoi(reader->getParameter("CANTIDAD_MAX_GENERACIONES"));
 	CANTIDAD_DE_GENES =  atoi(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
+	FIGHT_FRECUENCY = atoi(reader->getParameter("FIGHT_FRECUENCY"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
 	DEBUG = reader->getParameter("DEBUG");
 	NUMBER_CHILDS_PER_PARENTS = atoi(reader->getParameter("NUMBER_CHILDS_PER_PARENTS"));

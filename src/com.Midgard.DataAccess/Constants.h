@@ -25,6 +25,8 @@ class Constants{
 public:
 	static Constants* _Constants;
 	static int PROBABILIDAD_DE_MUTACION;
+	static int FIGHT_FRECUENCY;
+	static int CANTIDAD_MAX_GENERACIONES;
 	static int CANTIDAD_DE_GENES;
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;

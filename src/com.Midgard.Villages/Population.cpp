@@ -6,13 +6,15 @@
  */
 
 #include "Population.h"
-
+pthread_mutex_t Population::mutex;
 /**
  * Constructor
  */
+
 Population::Population() {
 	this->_Random = new Random();
 	this->_Evolving = true;
+	this->_reproduction = new Reproduction();
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
 	this->CurrentGeneration=0;
@@ -97,13 +99,14 @@ Entity* Population::randomSelectTheFittestMother(){
  * 5.LLama a una verificacion de edad, donde los mayores a cierta edad tienen probabilidades cada vez mas altas de morir.
  */
 void Population::DoGeneration(){
+	//pthread_mutex_lock(&mutex);
 	int newBorns = _Random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
 
 	for(int k=0; k < newBorns;k++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
-		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
+		Entity* NewSon = _reproduction->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
 
@@ -111,6 +114,7 @@ void Population::DoGeneration(){
 	CurrentGeneration++;
 	EverybodyBirthday();
 	DEATH();
+	//pthread_mutex_unlock(&mutex);
 
 //	_Fitness->setBase(_individuos);	//de nuevo fitness
 
