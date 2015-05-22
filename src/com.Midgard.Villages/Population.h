@@ -13,6 +13,8 @@
 #include "../com.Midgard.Genetic/Reproduction.h"
 #include "../com.Midgard.Genetic/Fitness.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
+#include "../com.Midgard.DataStructures/vBinaryTree.h"
+#include "../com.Midgard.DataStructures/vBinaryNode.h"
 #include <math.h>
 
 class Population {
@@ -40,6 +42,8 @@ public:
 	LinkedList<Entity*>* getIndividuals();
 	bool getEvolvingState();
 	float desviacionEstandart(LinkedList<Entity*>* pList);
+	LinkedList<Entity*>* mejores(LinkedList<Entity*>* indList);
+
 };
 
 #endif /* COM_MIDGARD_VILLAGES_POPULATION_H_ */
