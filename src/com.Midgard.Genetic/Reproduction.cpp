@@ -98,6 +98,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * modifica gen por gen del genoma
  */
 Genome* Reproduction::mutate(Genome* pGenoma){
+	cout<<"mutando "<<endl;
 	for(int i=0; i<8; i++){
 		int valordemut = _Random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
 		//esta parte se encarga de hacer la mutacion

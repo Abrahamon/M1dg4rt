@@ -114,8 +114,12 @@ void Population::DoGeneration(){
 	CurrentGeneration++;
 	EverybodyBirthday();
 	DEATH();
+<<<<<<< HEAD
 	//pthread_mutex_unlock(&mutex);
 
+=======
+	mejores(_individuos);
+>>>>>>> 04b30bbbb44e73662a9cdbb912fa73a75522e5d4
 //	_Fitness->setBase(_individuos);	//de nuevo fitness
 
 	return;
@@ -241,6 +245,7 @@ float Population::desviacionEstandart(LinkedList<Entity*>* pList){
 	ans = sqrt(ans/pList->getLength());
 	return ans;
 }
+<<<<<<< HEAD
 
 short Population::getCurrentGeneration() { return CurrentGeneration; }
 int Population::getCantidadDeIndividuos(){ return _individuos->getLength(); }
@@ -303,6 +308,35 @@ int Population::getBestAttribute(){
 
 }
 
+=======
+// Metodo encargardo de obtener los 20 mejores individuos de la poblacion
+
+LinkedList<Entity*>* Population::mejores(LinkedList<Entity*>* indList){
+	LinkedList<Entity*>* bests=new LinkedList<Entity*>(); //Lista donde estaran los individuos
+	Node <Entity*>* tmp= indList->getHead(); //Nodo temporal
+	Node <Entity*>* mejorindividuo; //Nodo donde esta el mejor individuo
+	float restriccion=100; //Restriccion de que no se copie el mismo valor de fitness
+	for (int i=0;i<=20*indList->getLength();i++){  //for para encontrar a 20 individuos
+		float mejor =0;  //fitness mas alto
+		float temporal =0;
+		for (int l=0;l<=indList->getLength();l++){ // for encargado de encontrar un individuo con fitness alto
+			temporal=_Fitness->caculateFitness(tmp->getData());
+			cout<<"posibles"<<temporal<<endl;
+			if(temporal>mejor && temporal<restriccion){
+				mejor=temporal;
+				cout<<"entro"<<mejor<<endl;
+				mejorindividuo=tmp;
+				tmp=tmp->getNext();
+			}
+			tmp=tmp->getNext();
+		}
+		restriccion=mejor;
+		cout<<"final"<<restriccion<<endl;
+		bests->insertTail(mejorindividuo->getData());
+	}
+	return bests;
+}
+>>>>>>> 04b30bbbb44e73662a9cdbb912fa73a75522e5d4
 
 
 
