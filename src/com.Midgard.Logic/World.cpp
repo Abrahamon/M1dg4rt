@@ -8,6 +8,8 @@
 #include "World.h"
 
 Dwarves* World::_Dwarves = 0;
+Giants* World::_Giants =0;
+Dark_Elves* World::_Dark_Elves = 0;
 /**
  * Constructor
  */
@@ -53,8 +55,18 @@ void World::onsetOfGoods(){
  * Hasta que el material genetico no cambie notablemente
  */
 void World::start(){
-	pthread_t HiloDwarves;
-	pthread_create(&HiloDwarves,0,World::DoGeneration,(void*)this); //Se crea el pthread
+//	pthread_t HiloDwarves;
+//	pthread_create(&HiloDwarves,0,World::DoGeneration,(void*)this); //Se crea el pthread
+
+	int rc;
+	pthread_t threads[4];
+	rc =pthread_create(&threads[0], NULL, metodo1, (void *)0);
+	rc =pthread_create(&threads[1], NULL, metodo2, (void *)1);
+//	rc =pthread_create(&threads[2], NULL, metodo3, (void *)2);
+//	rc =pthread_create(&threads[3], NULL, metodo4, (void *)3);
+
+
+	//	pthread_exit(NULL);
 
 /*	cout<<"individuo 1 con ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<
 			" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<
@@ -106,6 +118,41 @@ void World::start(){
 	//}
 }
 
+void* World::metodo1(void* threadID){
+	sleep(1);
+	while(true){
+		sleep(1);
+		cout<<"1 GENERACION: "<<_Dwarves->getCurrentGeneration()<<" \n";
+		sleep(3);
+		_Dwarves->DoGeneration();
+	}
+	pthread_exit(NULL);
+}
+
+void* World::metodo2(void* threadID){
+	sleep(1);
+	while(true){
+		sleep(1);
+		cout<<"2 GENERACION: "<<_Dark_Elves->getCurrentGeneration()<<"\n";
+		sleep(1);
+		_Dark_Elves->DoGeneration();
+	}
+	pthread_exit(NULL);
+}
+void* World::metodo3(void* threadID){
+	while(true){
+		cout<<"metodo 3\n";
+		sleep(7);
+	}
+	pthread_exit(NULL);
+}
+void* World::metodo4(void* threadID){
+	while(true){
+		cout<<"metodo 4\n";
+		sleep(9);
+	}
+	pthread_exit(NULL);
+}
 
 void* World::DoGeneration(void* pPop){
 	//Dwarves* pDwarves = new Dwarves();

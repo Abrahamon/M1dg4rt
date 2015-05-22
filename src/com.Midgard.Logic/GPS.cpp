@@ -178,7 +178,7 @@ bool GPS::isOnClosedList(Cell* pCell){
 }
 
 void GPS::loadMap(){
-	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba8.map");
+	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba1.map");
 
 	int mat = 0;
 		if (MapFile.is_open()){

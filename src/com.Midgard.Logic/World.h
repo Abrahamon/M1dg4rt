@@ -23,9 +23,8 @@ class World {
 private:
 	PyArray<char>* _matrix; //Matriz para la lógica del movimiento
 	LinkedList<Good*>* _Goods;
-	Dark_Elves* _Dark_Elves;
 	Elves* _Elves;
-	Giants* _Giants;
+
 
 
 public:
@@ -33,12 +32,19 @@ public:
 	virtual ~World();
 
 	static void* DoGeneration(void* pPop);
+	static void* metodo1(void* threadID);
+	static void* metodo2(void* threadID);
+	static void* metodo3(void* threadID);
+	static void* metodo4(void* threadID);
 
 	void onsetOfGoods();
 	void start();
 	bool loadMap(std::string pathToFile);
 
 	static Dwarves* _Dwarves;
+	static Giants* _Giants;
+	static Dark_Elves* _Dark_Elves;
+
 };
 
 #endif /* COM_MIDGARD_LOGIC_WORLD_H_ */
