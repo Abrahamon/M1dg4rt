@@ -89,6 +89,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	//La mutacion ocurre dentro de la reproduccion
 	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
+	//cout<<"New Entity: "<< newEntity->getID() << endl;
 	return newEntity;
 }
 
@@ -98,7 +99,6 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
  * modifica gen por gen del genoma
  */
 Genome* Reproduction::mutate(Genome* pGenoma){
-	cout<<"mutando "<<endl;
 	for(int i=0; i<8; i++){
 		int valordemut = _Random->getRandomNumber(Constants::PROBABILIDAD_DE_MUTACION);//porcentaje de mutacion y inversion
 		//esta parte se encarga de hacer la mutacion

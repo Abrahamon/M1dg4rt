@@ -18,6 +18,7 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
+#include <pthread.h>
 
 using namespace std;
 
@@ -39,8 +40,11 @@ public:
 	static string DWARVES;
 	static string ELVES;
 	static string GIANTS;
+	static pthread_mutex_t mutex;
+	static int IDCounter;
 
 	Constants* getInstance();
+	static int getIDCounter();
 
 private:
 	Constants();

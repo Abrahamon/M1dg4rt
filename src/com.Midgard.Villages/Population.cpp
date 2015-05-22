@@ -114,13 +114,10 @@ void Population::DoGeneration(){
 	CurrentGeneration++;
 	EverybodyBirthday();
 	DEATH();
-<<<<<<< HEAD
-	//pthread_mutex_unlock(&mutex);
 
-=======
-	mejores(_individuos);
->>>>>>> 04b30bbbb44e73662a9cdbb912fa73a75522e5d4
-//	_Fitness->setBase(_individuos);	//de nuevo fitness
+	//mejores(_individuos); //PRUEBA DE MEJORES INDIVIDUOS
+
+	//_Fitness->setBase(_individuos);	//de nuevo fitness
 
 	return;
 }
@@ -245,7 +242,7 @@ float Population::desviacionEstandart(LinkedList<Entity*>* pList){
 	ans = sqrt(ans/pList->getLength());
 	return ans;
 }
-<<<<<<< HEAD
+
 
 short Population::getCurrentGeneration() { return CurrentGeneration; }
 int Population::getCantidadDeIndividuos(){ return _individuos->getLength(); }
@@ -308,7 +305,7 @@ int Population::getBestAttribute(){
 
 }
 
-=======
+
 // Metodo encargardo de obtener los 20 mejores individuos de la poblacion
 
 LinkedList<Entity*>* Population::mejores(LinkedList<Entity*>* indList){
@@ -336,7 +333,6 @@ LinkedList<Entity*>* Population::mejores(LinkedList<Entity*>* indList){
 	}
 	return bests;
 }
->>>>>>> 04b30bbbb44e73662a9cdbb912fa73a75522e5d4
 
 
 

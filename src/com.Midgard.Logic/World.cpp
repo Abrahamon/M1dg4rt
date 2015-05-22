@@ -25,6 +25,7 @@ World::World() {
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's por voluntad de los dioses
 	_random = new Random();
 	JWriter = new JsonWriter();
+
 	if(Constants::DWARVES=="true"){
 		_Dwarves = new Dwarves();
 	}
@@ -123,14 +124,14 @@ void World::start(){
 	pthread_t HiloDwarves;
 	pthread_create(&HiloDwarves,0,World::DwarvesGeneration,(void*)this); //Se crea el pthread
 
-	//pthread_t HiloDarkElves;
-	//pthread_create(&HiloDarkElves,0,World::DarkElvesGeneration,(void*)this); //Se crea el pthread
+	pthread_t HiloDarkElves;
+	pthread_create(&HiloDarkElves,0,World::DarkElvesGeneration,(void*)this); //Se crea el pthread
 
-	//pthread_t HiloElves;
-	//pthread_create(&HiloElves,0,World::ElvesGeneration,(void*)this); //Se crea el pthread
+	pthread_t HiloElves;
+	pthread_create(&HiloElves,0,World::ElvesGeneration,(void*)this); //Se crea el pthread
 
-	//pthread_t HiloGiants;
-	//pthread_create(&HiloGiants,0,World::GiantsGeneration,(void*)this); //Se crea el pthread
+	pthread_t HiloGiants;
+	pthread_create(&HiloGiants,0,World::GiantsGeneration,(void*)this); //Se crea el pthread
 }
 
 void* World::consoleLog(std::string pPopulation,short pGeneration){
@@ -149,6 +150,9 @@ void* World::DwarvesGeneration(void* pPop){
 				_Reproduce = false;
 			}
 			consoleLog("Dwar Gen: ",World::_Dwarves->getCurrentGeneration());
+			string text = "Dwarves:2:50:558:5:#";
+
+			//JWriter->JsonSend(text,"puebloDwarves");
 
 			World::_Dwarves->DoGeneration();
 			usleep(200000);

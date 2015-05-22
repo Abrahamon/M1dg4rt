@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "XMLReader.h"
 
+
 Constants* Constants::_Constants = 0;
 int Constants::PROBABILIDAD_DE_MUTACION = 0;
 int Constants::CANTIDAD_MAX_GENERACIONES = 0;
@@ -24,6 +25,8 @@ string Constants::DWARVES;
 string Constants::ELVES;
 string Constants::GIANTS;
 int Constants::CANTIDAD_DE_DIOSES =0;
+int Constants::IDCounter = 0;
+pthread_mutex_t Constants::mutex = PTHREAD_MUTEX_INITIALIZER;
 
 Constants* Constants::getInstance(){
 	if(_Constants == 0){
@@ -54,4 +57,14 @@ Constants::Constants(){
 	DWARVES = reader->getParameter("DWARVES");
 	ELVES = reader->getParameter("ELVES");
 	GIANTS = reader->getParameter("GIANTS");
+	IDCounter = 0;
+}
+
+int Constants::getIDCounter(){
+	pthread_mutex_lock(&mutex);
+	IDCounter++;
+	pthread_mutex_unlock(&mutex);
+	return IDCounter;
+
+
 }
