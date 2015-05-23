@@ -15,6 +15,7 @@ int Constants::CANTIDAD_MAX_GENERACIONES = 0;
 int Constants::CANTIDAD_DE_GENES = 0;
 int Constants::MAX_POBLACION_INICIAL = 0;
 int Constants::FIGHT_FRECUENCY = 0;
+int Constants::GENERATION_SLEEP_uSeconds = 0;
 string Constants::HARDWARE_CONFIG;
 string Constants::DEBUG;
 float Constants::REPRODUCTION_PER_GENERATION = 0;
@@ -26,6 +27,8 @@ string Constants::ELVES;
 string Constants::GIANTS;
 int Constants::CANTIDAD_DE_DIOSES =0;
 int Constants::IDCounter = 0;
+int Constants::VillagesWhoFinishedItsLinage=0;
+int Constants::FRECUENCY_REPORT_Gens;
 pthread_mutex_t Constants::mutex = PTHREAD_MUTEX_INITIALIZER;
 
 Constants* Constants::getInstance(){
@@ -46,6 +49,7 @@ Constants::Constants(){
 	CANTIDAD_MAX_GENERACIONES= atoi(reader->getParameter("CANTIDAD_MAX_GENERACIONES"));
 	CANTIDAD_DE_GENES =  atoi(reader->getParameter("CANTIDAD_GENES"));
 	MAX_POBLACION_INICIAL = atoi(reader->getParameter("MAX_POBLACION_INICIAL"));
+	GENERATION_SLEEP_uSeconds = atoi(reader->getParameter("GENERATION_SLEEP_uSeconds"));
 	FIGHT_FRECUENCY = atoi(reader->getParameter("FIGHT_FRECUENCY"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
 	DEBUG = reader->getParameter("DEBUG");
@@ -58,6 +62,8 @@ Constants::Constants(){
 	ELVES = reader->getParameter("ELVES");
 	GIANTS = reader->getParameter("GIANTS");
 	IDCounter = 0;
+	VillagesWhoFinishedItsLinage = 0;
+	FRECUENCY_REPORT_Gens = atoi(reader->getParameter("FRECUENCY_REPORT_Gens"));
 }
 
 int Constants::getIDCounter(){
@@ -65,6 +71,20 @@ int Constants::getIDCounter(){
 	IDCounter++;
 	pthread_mutex_unlock(&mutex);
 	return IDCounter;
+}
 
+void Constants::VillageFinishedLinage(){
+	pthread_mutex_lock(&mutex);
+	VillagesWhoFinishedItsLinage++;
+	pthread_mutex_unlock(&mutex);
+}
 
+int Constants::getVillagesWhoFinishedItsLinage(){
+	pthread_mutex_lock(&mutex);
+	pthread_mutex_unlock(&mutex);
+	return VillagesWhoFinishedItsLinage;
+}
+
+void Constants::resetVillagesLinageCounter(){
+	VillagesWhoFinishedItsLinage = 0;
 }

@@ -42,9 +42,15 @@ public:
 	static string GIANTS;
 	static pthread_mutex_t mutex;
 	static int IDCounter;
+	static int VillagesWhoFinishedItsLinage;
+	static int GENERATION_SLEEP_uSeconds;
+	static int FRECUENCY_REPORT_Gens;
 
 	Constants* getInstance();
 	static int getIDCounter();
+	static void VillageFinishedLinage();
+	static int getVillagesWhoFinishedItsLinage();
+	static void resetVillagesLinageCounter();
 
 private:
 	Constants();

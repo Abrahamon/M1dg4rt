@@ -1,8 +1,10 @@
 <root>
-	<DEBUG value = "true"/>
+	<DEBUG value = "false"/>
 	<CANTIDAD_GENES value="8"/>
 	<MAX_POBLACION_INICIAL value="12"/>
 	<CANTIDAD_MAX_GENERACIONES value="60"/>
+	<GENERATION_SLEEP_uSeconds value="800000"/>
+	<FRECUENCY_REPORT_Gens value="10"/>
 	<FIGHT_FRECUENCY value="10"/>
 	<HARDWARE_CONFIG value = "false"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
