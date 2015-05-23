@@ -25,6 +25,7 @@ string Constants::DARK_ELVES;
 string Constants::DWARVES;
 string Constants::ELVES;
 string Constants::GIANTS;
+string Constants::JSONS_PATH;
 int Constants::CANTIDAD_DE_DIOSES =0;
 int Constants::IDCounter = 0;
 int Constants::VillagesWhoFinishedItsLinage=0;
@@ -61,6 +62,7 @@ Constants::Constants(){
 	DWARVES = reader->getParameter("DWARVES");
 	ELVES = reader->getParameter("ELVES");
 	GIANTS = reader->getParameter("GIANTS");
+	JSONS_PATH = reader->getParameter("JSONS_PATH");
 	IDCounter = 0;
 	VillagesWhoFinishedItsLinage = 0;
 	FRECUENCY_REPORT_Gens = atoi(reader->getParameter("FRECUENCY_REPORT_Gens"));

@@ -9,7 +9,9 @@
 #include <time.h>
 using namespace std;
 
-JsonWriter::JsonWriter() {}
+JsonWriter::JsonWriter() {
+	Path_to_Json = Constants::JSONS_PATH;
+}
 
 void JsonWriter::startFight(std::string pBool,int A, int B){
 
@@ -51,7 +53,7 @@ void JsonWriter::startFight(std::string pBool,int A, int B){
 	  node.add("records", array);
 	}
 	Jzon::Writer writer;
-	writer.writeFile(node, "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/fight.json");
+	writer.writeFile(node, Path_to_Json+"fight.json");
 }
 void JsonWriter::updateVillageInfo(std::string pData,string pueblo) {
 
@@ -102,16 +104,16 @@ void JsonWriter::updateVillageInfo(std::string pData,string pueblo) {
 	Jzon::Writer writer;
 	//writer.writeStream(node, cout);
 	if(pueblo == "Dwarves"){
-		writer.writeFile(node, "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/puebloDwarves.json");
+		writer.writeFile(node, Path_to_Json+"puebloDwarves.json");
 	}
 	else if (pueblo == "Giants"){
-		writer.writeFile(node, "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/puebloGiants.json");
+		writer.writeFile(node, Path_to_Json+"puebloGiants.json");
 	}
 	else if (pueblo == "DarkElves"){
-		writer.writeFile(node, "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/puebloDarkElves.json");
+		writer.writeFile(node, Path_to_Json+"puebloDarkElves.json");
 	}
 	else if (pueblo == "Elves"){
-		writer.writeFile(node, "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/puebloElves.json");
+		writer.writeFile(node, Path_to_Json+"puebloElves.json");
 	}
 }
 /*

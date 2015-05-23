@@ -40,6 +40,7 @@ public:
 	static string DWARVES;
 	static string ELVES;
 	static string GIANTS;
+	static string JSONS_PATH;
 	static pthread_mutex_t mutex;
 	static int IDCounter;
 	static int VillagesWhoFinishedItsLinage;
