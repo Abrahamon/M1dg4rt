@@ -1,12 +1,12 @@
 /*
- * vLinkedList.h
+ * linkedQueue.h
  *
- *  Created on: Mar 16, 2015
+ *  Created on: May 6, 2015
  *      Author: fabian
  */
 
-#ifndef SRC_VLINKEDLIST_H_
-#define SRC_VLINKEDLIST_H_
+#ifndef SRC_COM_MIDGARD_DATASTRUCTURES_LINKEDQUEUE_H_
+#define SRC_COM_MIDGARD_DATASTRUCTURES_LINKEDQUEUE_H_
 #include <iostream>
 
 #include "../com.Midgard.DataStructures/linkedNode.h"
@@ -28,15 +28,14 @@ public:
 	LinkedList();
 	//virtual ~LinkedList();
 	//Node<k>* insertTail(k);
-	void insertTail(k pData);
-	void deleteData(k pData);
+	void insertTail(k);
+	void deleteData(k);
 	void showData();
 	void vaciar();
 	Node<k>* getHead();
 	Node<k>* getTail();
 	int getLength();
 	bool isEmpty();
-	bool findData(k pData);
 };
 
 template<class k>
@@ -155,39 +154,25 @@ void LinkedList<k>::showData(){
 		tmpNode = tmpNode->getNext();
 	}
 }
-template<class k>
-bool LinkedList<k>::findData(k pData){
-	if(_head == 0){
-		return false;
-	}
-	Node<k>* tmpNode = _head;
-	for(int i=0; i < _length; i++){
-
-		if(tmpNode->getData() == pData){
-			return true;
-		}
-		else{
-			tmpNode = tmpNode->getNext();
-		}
-	}
-	return false;
-}
 
 /**
  * Limpiar la lista por completo
  */
 template<class k>
 void LinkedList<k>::vaciar(){
-
-	Node<k>* pDelete = _head;
+	Node<k>* tmpNode = _head;
 	for(int i=0; i < _length; i++){
-		deleteData(pDelete->getData());
-		pDelete = pDelete->getNext();
+		Node<k>* pDelete = tmpNode;
+		tmpNode = tmpNode->getNext();
+		delete pDelete;
 	}
+	delete tmpNode;
 	this->_head = 0;
 	this->_tail = 0;
 	this->_length = 0;
 }
 
 
-#endif /* SRC_VLINKEDLIST_H_ */
+
+
+#endif /* SRC_COM_MIDGARD_DATASTRUCTURES_LINKEDQUEUE_H_ */

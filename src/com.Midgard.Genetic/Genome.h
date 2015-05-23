@@ -21,7 +21,6 @@ public:
 	Genome(uint16_t Attack,uint16_t Speed, uint16_t Defense, uint16_t Intelligence,
 			uint16_t Magic, uint16_t Energy, uint16_t Blot, uint16_t RunesPower);
 	virtual ~Genome();
-	void deleteData(short);
 
 	uint16_t getCromosome(int pCromID);
 	void setCromosome(int pCromID, uint16_t pData);

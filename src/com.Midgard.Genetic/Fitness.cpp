@@ -7,11 +7,12 @@
 
 #include "Fitness.h"
 
+/**
+ * Constructor
+ * Cada una de las siguientes variables, almacena la sumatoria de todos los respectivos
+ * genes de la poblacion inicial, para el calculo de fitness en el futuro.
+ */
 Fitness::Fitness(){
-
-}
-
-Fitness::~Fitness(){
 	_IniAttack = 0;
 	_IniSpeed = 0;
 	_IniDefense = 0;
@@ -20,12 +21,32 @@ Fitness::~Fitness(){
 	_IniEnergy = 0;
 	_IniBloot = 0;
 	_IniRunesPower = 0;
-	_sumAll = 0;
 }
 
+/**
+ * Destructor
+ */
+Fitness::~Fitness(){}
 
+/**
+ * Reiniciar todas las sumas
+ */
+void Fitness::restarData(){
+	_IniAttack = 0;
+	_IniSpeed = 0;
+	_IniDefense = 0;
+	_IniIntelligence = 0;
+	_IniMagic =0;
+	_IniEnergy = 0;
+	_IniBloot = 0;
+	_IniRunesPower = 0;
+}
+
+/**
+ * Calcular de nuevo la suma de todos los respectivos genes en la poblacion
+ */
 void Fitness::setBase(LinkedList<Entity*>* pListEntities){
-	this->~Fitness();
+	this->restarData();
 	Node<Entity*>* tmp = pListEntities->getHead();
 	for(int j = 0 ; j < pListEntities->getLength(); j++){
 		_IniAttack =  _IniAttack + tmp->getData()->getGenome()->getCromosome(0);
@@ -36,16 +57,25 @@ void Fitness::setBase(LinkedList<Entity*>* pListEntities){
 		_IniEnergy = _IniEnergy + tmp->getData()->getGenome()->getCromosome(5);
 		_IniBloot = _IniBloot + tmp->getData()->getGenome()->getCromosome(6);
 		_IniRunesPower = _IniRunesPower + tmp->getData()->getGenome()->getCromosome(7);
-		_sumAll = _sumAll + _IniAttack + _IniSpeed + _IniDefense + _IniIntelligence + _IniMagic + _IniEnergy + _IniBloot + _IniRunesPower;
 		tmp = tmp->getNext();
 	}
+
+	return;
 }
 
+/**
+ * Retorna la suma de todos los atributos en conjunto
+ */
 int Fitness::getSumOfAll(){
-	return _sumAll;
+	return _IniAttack + _IniSpeed + _IniDefense + _IniIntelligence + _IniMagic + _IniEnergy + _IniBloot + _IniRunesPower;;
 }
 
-double Fitness::caculateFitness(Entity* pEntity){
+/**
+ * Con la suma de todos tenemos el denominador
+ * el numerador es el gen respectivo del pEntity argumento.
+ * La suma de cada una de las diviciones es el fitness total.
+ */
+float Fitness::caculateFitness(Entity* pEntity){
 	Genome* pGen = pEntity->getGenome();
 
 	/*cout<<"calculando fitness \n";
@@ -58,11 +88,14 @@ double Fitness::caculateFitness(Entity* pEntity){
 	cout<<"bloot:"<<pGen->getBlot()<<endl;
 	cout<<"runes powa:"<<pGen->getRunesPower()<<endl;*/
 
-	double Thefitness = (pGen->getAttack()/_IniAttack)+(pGen->getSpeed()/_IniSpeed)+(pGen->getDefense()/_IniDefense)+
+	float Thefitness = (pGen->getAttack()/_IniAttack)+(pGen->getSpeed()/_IniSpeed)+(pGen->getDefense()/_IniDefense)+
 			(pGen->getIntelligence()/_IniIntelligence)+(pGen->getMagic()/_IniMagic)+(pGen->getEnergy()/_IniEnergy)+
 			(pGen->getBlot()/_IniBloot)+(pGen->getRunesPower()/_IniRunesPower);
 	return Thefitness;
+
 }
+
+
 
 
 

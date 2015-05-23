@@ -11,9 +11,12 @@
 
 #include "Population.h"
 #include "../com.Midgard.DataAccess/Constants.h"
+#include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
 
 class Dwarves : public Population {
 
+private:
+	Random* _random;
 public:
 	Dwarves();
 	virtual ~Dwarves();

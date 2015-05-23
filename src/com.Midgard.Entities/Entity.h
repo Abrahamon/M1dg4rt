@@ -10,11 +10,13 @@
 
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Genetic/Genome.h"
+#include "../com.Midgard.DataAccess/Constants.h"
 #include <fstream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
 #include <unistd.h>
+#include <stdint.h>
 
 /**
  * Clase Entity, es el individuo base del cual heredan todos los
@@ -23,11 +25,12 @@
  */
 class Entity {
 
-
-
+private:
+	 uint8_t _CurrX;
+	 uint8_t _CurrY;
 public:
 	Entity();
-	Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome);
+	Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,Genome* pGenome, int pLife);
 	virtual ~Entity();
 	std::string getRandomName();
 
@@ -41,9 +44,8 @@ public:
 	Entity* _Father;			//Entity's father
 	Entity* _Mother;			//Entity's mother
 	Entity* _Brother;			//Entity's brother
+	int _ID;
 
-	//Entity's Setters
-	void setGender(bool pGender);
 
 	//Entity's Getters
 	std::string getName();
@@ -56,12 +58,20 @@ public:
 	Entity* getFather();
 	Entity* getMother();
 	Entity* getBrother();
+	uint8_t getX();
+	uint8_t getY();
+	void setID(int pID);
 
 	//Entity's Setters
 	void Birthday();
 	void gainExperience(int pExp);
 	void gainSuperstition(int pSupr);
 	void gainLife(int pLife);
+	void setGender(bool pGender);
+	void setX(uint8_t pX);
+	void setY(uint8_t pY);
+	int getID();
+
 
 	//Fight Methods
 	void Attack(Entity* pDefender);

@@ -6,24 +6,34 @@
  */
 
 #include "Random.h"
+Random* Random::_SlaveRandom = 0;
 
-Random::Random() {
+Random::Random() {}
 
-	if(Constants::HARDWARE_CONFIG=="true"){
-		PORT = "/dev/ttyACM0";
-		ardu.Open(PORT);
-		ardu.SetBaudRate(SerialStreamBuf::BAUD_9600);
-		ardu.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
-	}
-	else{
-		return;
-	}
-}
 
 Random::~Random() {}
 
-int Random::getRandomNumber(int pMax){
+Random* Random::getInstance(){
+	if(_SlaveRandom == 0){
+		_SlaveRandom = new Random();
 
+		initConnection();
+	}
+	return _SlaveRandom;
+}
+
+void Random::initConnection(){
+	cout<<"11"<<endl;
+	ardu.Open("/dev/ttyACM0");
+	cout<<"22"<<endl;
+	ardu.SetBaudRate(SerialStreamBuf::BAUD_9600);
+	ardu.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
+	cout<<"33"<<endl;
+}
+int Random::getRandomNumber(int pMax){
+	if(pMax == 0){
+		return 0;
+	}
 	if(Constants::HARDWARE_CONFIG == "true"){
 		int exp = log2(pMax)+1;
 		int answer = get(_Dictionary[exp]);

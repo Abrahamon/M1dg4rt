@@ -20,17 +20,20 @@ using namespace LibSerial;
 class Random {
 
 private:
+
 	SerialStream ardu;
-	string PORT;
+	static Random* _SlaveRandom;
 	int get(char pData);
 	char getChar(int pData);
 	char _Dictionary[18]={'0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?'};
+	void initConnection();
 
 public:
 	Random();
 	virtual ~Random();
 	int getRandomNumber(int pMax);
 	bool getRandomBool();
+	Random* getInstance();
 };
 
 #endif /* COM_MIDGARD_RESOURCES_RANDOM_H_ */

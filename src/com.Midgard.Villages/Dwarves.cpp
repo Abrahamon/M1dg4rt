@@ -7,20 +7,25 @@
 
 #include "../com.Midgard.Villages/Dwarves.h"
 
+/**
+ * Constructor que inizializa la poblacion de acuerda a config.xml
+ */
 Dwarves::Dwarves() {
+	_random = new Random();
 	bool newGender;
 	Genome* newGenome ;
 	for(int i = 0; i < Constants::MAX_POBLACION_INICIAL; i++){
-		newGender = this->_random->getRandomBool();
-		newGenome = new Genome(_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10),
-				_random->getRandomNumber(10));
-		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,0);
+		newGender = _random->getRandomBool();
+		newGenome = new Genome(_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100),
+				_random->getRandomNumber(100));
+		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,_random->getRandomNumber(10));
+
 		this->_individuos->insertTail(newDwarve);
 //		if(newGender)
 //			cout<<"creo un hombre ";
