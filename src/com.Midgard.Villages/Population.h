@@ -50,7 +50,8 @@ public:
 	float getWorstFitness();
 	float getBestFitness();
 	int getBestAttribute();
-	LinkedList<Entity*>* mejores(LinkedList<Entity*>* indList);
+	LinkedList<Entity*>* getBestEntities(LinkedList<Entity*>* indList);
+	LinkedList<Entity*>* getArmy();
 
 };
 

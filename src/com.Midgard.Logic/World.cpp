@@ -80,10 +80,10 @@ void World::onsetOfGoods(){
  */
 void World::start(){
 	resetJSONs();
-	for(int i = 5; i > 0; i--){
+	/*for(int i = 5; i > 0; i--){
 		cout<<"Starting simulation in "<<i<<"..."<<endl;
 		sleep(1);
-	}
+	}*/
 	cout<<endl;
 	if(Constants::DWARVES=="true"){
 		pthread_t HiloDwarves;
@@ -250,17 +250,29 @@ void* World::TimeController(void* pPop){
 				int A = getBestFighterOption(_Dwarves,_Elves);
 				int B = getBestFighterOption(_Dark_Elves,_Giants)+2;
 
-				if(A || B == 1) _ReproduceDwarves = false;
-				if(A || B == 2) _ReproduceElves = false;
-				if(A || B == 3) _ReproduceDarkElves = false;
-				if(A || B == 4) _ReproduceGiants = false;
+				if(A || B == 1){
+					_ReproduceDwarves = false;
+				}
+				if(A || B == 2){
+					_ReproduceElves = false;
+				}
+				if(A || B == 3){
+					_ReproduceDarkElves = false;
+				}
+				if(A || B == 4){
+					_ReproduceGiants = false;
+				}
 				_FightIsAvailable = true;
 				_DarkElvesWriter->startFight("true",A,B);
+
+				_DarkElvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getArmy());
 
 				cout<<"##########################"<<endl;
 				cout<<"   GOOO TOOOO WAAAAAAAR   "<<endl;
 				cout<<"     "+lexical_cast<string>(A)+"  vs  "+lexical_cast<string>(B)+"     "<<endl;
 				cout<<"##########################"<<endl;
+
+
 			}
 		}
 		if(_FightIsAvailable == true){

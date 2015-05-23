@@ -14,7 +14,7 @@ Entity::Entity() {
 	_Brother = 0;
 	_Genome = 0;
 	_Age = 1;
-	_Name = "";
+	_Name = getRandomName();
 	_Experience = 0;
 	_Life = 0;
 	_Superstition = 0;
@@ -26,7 +26,7 @@ Entity::Entity() {
 Entity::Entity(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 			   Genome* pGenome, int pLife){
 	this->_Age = 1;
-	this->_Name = "";
+	this->_Name = getRandomName();
 	this->_Experience = 0;
 	this->_Superstition = 0;
 	_CurrX = 0;
@@ -47,7 +47,7 @@ std::string Entity::getRandomName(){
 	std::string str;
 	std::string file_contents;
 	//sleep(1);
-	int random = rand() % 4945 + 1;
+	int random = rand() % 4900 + 1;
 	for(int i = 0; i < random; i++){
 	  std::getline(file, str);
 	  //file_contents += str;

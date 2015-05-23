@@ -308,20 +308,20 @@ int Population::getBestAttribute(){
 
 // Metodo encargardo de obtener los 20 mejores individuos de la poblacion
 
-LinkedList<Entity*>* Population::mejores(LinkedList<Entity*>* indList){
+LinkedList<Entity*>* Population::getBestEntities(LinkedList<Entity*>* indList){
 	LinkedList<Entity*>* bests=new LinkedList<Entity*>(); //Lista donde estaran los individuos
 	Node <Entity*>* tmp= indList->getHead(); //Nodo temporal
 	Node <Entity*>* mejorindividuo; //Nodo donde esta el mejor individuo
-	float restriccion=100; //Restriccion de que no se copie el mismo valor de fitness
+	float restriccion=2000; //Restriccion de que no se copie el mismo valor de fitness
 	for (int i=0;i<=20*indList->getLength();i++){  //for para encontrar a 20 individuos
 		float mejor =0;  //fitness mas alto
 		float temporal =0;
 		for (int l=0;l<=indList->getLength();l++){ // for encargado de encontrar un individuo con fitness alto
 			temporal=_Fitness->caculateFitness(tmp->getData());
-			cout<<"posibles"<<temporal<<endl;
+			//cout<<"posibles"<<temporal<<endl;
 			if(temporal>mejor && temporal<restriccion){
 				mejor=temporal;
-				cout<<"entro"<<mejor<<endl;
+				//cout<<"entro"<<mejor<<endl;
 				mejorindividuo=tmp;
 				tmp=tmp->getNext();
 			}
@@ -332,6 +332,22 @@ LinkedList<Entity*>* Population::mejores(LinkedList<Entity*>* indList){
 		bests->insertTail(mejorindividuo->getData());
 	}
 	return bests;
+}
+
+LinkedList<Entity*>* Population::getArmy(){
+	int randomIterator = _Random->getRandomNumber(_individuos->getLength());
+	randomIterator-=20;
+	LinkedList<Entity*>* PopulationArmy = new LinkedList<Entity*>();
+
+	Node<Entity*>* tmp = _individuos->getHead();
+	for(int i = 0; i < randomIterator; i++){
+		tmp = tmp->getNext();
+	}
+	for(int j = 0; j < 20; j++){
+		PopulationArmy->insertTail(tmp->getData());
+		tmp = tmp->getNext();
+	}
+	return PopulationArmy;
 }
 
 
