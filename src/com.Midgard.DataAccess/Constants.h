@@ -47,6 +47,9 @@ public:
 	static int VillagesWhoFinishedItsLinage;
 	static int GENERATION_SLEEP_uSeconds;
 	static int FRECUENCY_REPORT_Gens;
+	static int GODS_MIN_LIFE;
+	static int GODS_MAX_LIFE;
+	static float GODS_DEFENSE;
 
 	Constants* getInstance();
 	static int getIDCounter();

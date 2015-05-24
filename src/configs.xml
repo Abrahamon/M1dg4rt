@@ -7,7 +7,7 @@
 	<GENERATION_SLEEP_uSeconds value="800000"/>
 	<FRECUENCY_REPORT_SECONDS value="10"/>
 	<FIGHT_FRECUENCY value="10"/>
-	<HARDWARE_CONFIG value = "true"/>
+	<HARDWARE_CONFIG value = "false"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<PROBABILIDAD_DE_MUTAR value = "10000" />
@@ -18,4 +18,7 @@
 	<DWARVES value = "true"/>
 	<ELVES value = "true"/>
 	<GIANTS value = "true"/>
+	<GODS_MIN_LIFE value = "500000"/>
+	<GODS_MAX_LIFE value = "2000000"/>
+	<GODS_DEFENSE value = "0.5"/>
 </root>

@@ -15,7 +15,7 @@
 #include "../com.Midgard.Villages/Elves.h"
 #include "../com.Midgard.Villages/Giants.h"
 #include "../com.Midgard.DataStructures/PyArray.h"
-#include "../com.Midgard.Entities/Good.h"
+#include "../com.Midgard.Entities/God.h"
 #include <fstream>
 #include "../com.Midgard.DataAccess/JsonWriter.h"
 #include <boost/lexical_cast.hpp>
@@ -27,7 +27,7 @@ class World {
 
 private:
 	PyArray<char>* _matrix; //Matriz para la lógica del movimiento
-	LinkedList<Good*>* _Goods;
+	LinkedList<God*>* _Goods;
 	static bool _ReproduceDwarves;
 	static bool _ReproduceDarkElves;
 	static bool _ReproduceElves;

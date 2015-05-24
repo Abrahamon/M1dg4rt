@@ -20,6 +20,7 @@ string Constants::HARDWARE_CONFIG;
 string Constants::DEBUG;
 string Constants::HARD_DEBUG;
 float Constants::REPRODUCTION_PER_GENERATION = 0;
+float Constants::GODS_DEFENSE;
 int Constants::NUMBER_CHILDS_PER_PARENTS =0;
 string Constants::HUMANS;
 string Constants::DARK_ELVES;
@@ -31,6 +32,8 @@ int Constants::CANTIDAD_DE_DIOSES =0;
 int Constants::IDCounter = 0;
 int Constants::VillagesWhoFinishedItsLinage=0;
 int Constants::FRECUENCY_REPORT_Gens;
+int Constants::GODS_MAX_LIFE;
+int Constants::GODS_MIN_LIFE;
 pthread_mutex_t Constants::mutex = PTHREAD_MUTEX_INITIALIZER;
 
 Constants* Constants::getInstance(){
@@ -68,6 +71,9 @@ Constants::Constants(){
 	IDCounter = 0;
 	VillagesWhoFinishedItsLinage = 0;
 	FRECUENCY_REPORT_Gens = atoi(reader->getParameter("FRECUENCY_REPORT_SECONDS"));
+	GODS_MAX_LIFE = atoi(reader->getParameter("GODS_MAX_LIFE"));
+	GODS_MIN_LIFE = atoi(reader->getParameter("GODS_MIN_LIFE"));
+	GODS_DEFENSE = atof(reader->getParameter("GODS_DEFENSE"));
 }
 
 int Constants::getIDCounter(){

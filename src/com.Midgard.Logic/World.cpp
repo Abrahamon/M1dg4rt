@@ -36,7 +36,7 @@ int World::reportFrecuency = 0;
 World::World() {
 
 
-	_Goods = new LinkedList<Good*>();	//Creamos
+	_Goods = new LinkedList<God*>();	//Creamos
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's por voluntad de los dioses
 	_random = new Random();
 
@@ -71,10 +71,10 @@ World::~World() {}
  * una lista para acceso fácil a los mismos.
  */
 void World::onsetOfGoods(){
-	Good* newGood;
+	God* newGod;
 	for(int i = 0; i < Constants::CANTIDAD_DE_DIOSES; i++){
-		newGood = new Good();
-		_Goods->insertTail(newGood);
+		newGod = new God("zeus");
+		_Goods->insertTail(newGod);
 	}
 }
 
@@ -121,11 +121,6 @@ void* World::consoleLog(std::string pPopulation,short pGeneration){
 void* World::DwarvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceDwarves == true){
-			if(((_Dwarves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Dwarves->getCurrentGeneration() > 0){
-				//_Reproduce = false;
-
-			}
 			if(_Dwarves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
@@ -146,11 +141,6 @@ void* World::DwarvesGeneration(void* pPop){
 void* World::DarkElvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceDarkElves == true){
-			if(((_Dark_Elves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Dark_Elves->getCurrentGeneration() > 0){
-				//_ReproduceDarkElves = false;
-
-			}
 			if(_Dark_Elves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
@@ -171,11 +161,6 @@ void* World::DarkElvesGeneration(void* pPop){
 void* World::ElvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceElves == true){
-			if(((_Elves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Elves->getCurrentGeneration() > 0){
-				//_ReproduceElves = false;
-
-			}
 			if(_Elves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
@@ -196,11 +181,6 @@ void* World::ElvesGeneration(void* pPop){
 void* World::GiantsGeneration(void* pPop){
 	while(true){
 		if(_ReproduceGiants == true){
-			if(((_Giants->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-					_Giants->getCurrentGeneration() > 0){
-				//_ReproduceGiants = false;
-
-			}
 			if(_Giants->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
@@ -246,32 +226,34 @@ void* World::TimeController(void* pPop){
 				cout << "DarkElves: "<< _Dark_Elves->getIndividuals()->getLength()
 					 <<"   Generacion: "<< _Dark_Elves->getCurrentGeneration()<<endl;
 				cout<<"-------------------------------------------"<< endl;
+				cout<<endl;
 			}
-			cout<<endl;
+
 		}
 		if(_Dwarves->getCurrentGeneration() > 15 && _FightIsAvailable == false){
+				pthread_mutex_lock(&mutex);
 				int A = getBestFighterOption(_Dwarves,_Elves);
 				int B = getBestFighterOption(_Dark_Elves,_Giants)+2;
 
 				if(A== 1 || B == 1){
 					_ReproduceDwarves = false;
-					//_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getArmy());
-					_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getBestEntities(_Dwarves->getIndividuals()));
+					_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getArmy());
+					//_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getBestEntities(_Dwarves->getIndividuals()));
 				}
 				if(A== 2 || B == 2){
 					_ReproduceElves = false;
-					//_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getArmy());
-					_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getBestEntities(_Elves->getIndividuals()));
+					_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getArmy());
+					//_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getBestEntities(_Elves->getIndividuals()));
 				}
 				if(A== 3 || B == 3){
 					_ReproduceDarkElves = false;
-					//_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getArmy());
-					_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getBestEntities(_Dark_Elves->getIndividuals()));
+					_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getArmy());
+					//_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getBestEntities(_Dark_Elves->getIndividuals()));
 				}
 				if(A== 4 || B == 4){
 					_ReproduceGiants = false;
-					//_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getArmy());
-					_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getBestEntities(_Giants->getIndividuals()));
+					_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getArmy());
+					//_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getBestEntities(_Giants->getIndividuals()));
 				}
 				_FightIsAvailable = true;
 				_DarkElvesWriter->startFight("true",A,B);
@@ -284,6 +266,7 @@ void* World::TimeController(void* pPop){
 					cout<<"##########################"<<endl;
 					cout<<endl;
 				}
+				pthread_mutex_unlock(&mutex);
 		}
 		if(_FightIsAvailable == true){
 			if(_FightTimer >= 35){ //Cuando se acabe la batalla, se debe correr este código.
