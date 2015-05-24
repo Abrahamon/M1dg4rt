@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="TableData">
+
+<head>
+    <img id="mapa" width="600" height="570" src="pictures/map1.jpg"  hidden >
+    <img id="mapaPelea" width="6000" src="pictures/prueba1.jpg"  hidden >
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+    <h5 id="Titulo">Midgard</h5>
+</head>
+    <body id = "Cuerpo" >
+        <canvas id="MapaCanvas" width="700" height="500" style="border:1px solid #d3d3d3;">
+
+        </canvas>
+
+        <div id="Miembros" ng-init="pueblo = 'Pueblo'">
+            <h3 id="MiembrosTitulo" >Miembros</h3>
+
+            <table id="ListaMiembros" class="scroll">
+            <thead>
+            <tr id="EncabezadoDeMiembros">
+                <td>{{pueblo}}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="y in nombres">
+                <td><input id ="botonHabitante" type="button" value={{y.Nombre}}
+                           ng-click="caracteristicas(y.Nombre,y.Attack,y.Speed,y.Defence,y.Intelligence,y.Magic,y.Energy,y.Blot,y.RunesPower)" ></td>
+            </tr>
+            </tbody>
+
+            </table>
+
+            <table id="ListaCaracteristicas" >
+
+                <tr>
+                    <td>Name: </td>
+                    <td>{{NombreDeIndividuo}}</td>
+                </tr>
+                <tr>
+                    <td>Attack: </td>
+                    <td>{{Attack}}</td>
+                </tr>
+                <tr>
+                    <td>Speed:</td>
+                    <td>{{Speed}}</td>
+                </tr>
+                <tr>
+                    <td>Defense:</td>
+                    <td>{{Defence}}</td>
+                </tr>
+                <tr>
+                    <td>Intelligence:</td>
+                    <td>{{Intelligence}}</td>
+                </tr>
+                <tr>
+                    <td>Magic:</td>
+                    <td>{{Magic}}</td>
+                </tr>
+                <tr>
+                    <td>Energy:</td>
+                    <td>{{Energy}}</td>
+                </tr>
+                <tr>
+                    <td>Blot:</td>
+                    <td>{{Blot}}</td>
+                </tr>
+                <tr>
+                    <td>RunesPower:</td>
+                    <td>{{RunesPower}}</td>
+               </tr>
+            </table>
+
+        </div>
+
+        <div id="Menu" >
+
+
+
+            <table id="TablaDatos">
+                <thead>
+                    <tr id="EncabezadoDeTabla">
+                        <td>Pueblo</td>
+                        <td>Edda</td>
+                        <td>#Miembros</td>
+                        <td>Supersticion</td>
+                        <td>Inteligencia</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in name1">
+                        <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
+                        <td>{{x.Edda}}</td>
+                        <td>{{x.Miembros}}</td>
+                        <td>{{x.Inteligencia}}</td>
+                        <td>{{x.Supersticion}}</td>
+                    </tr>
+                    <tr ng-repeat="x in name2">
+                        <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
+                        <td>{{x.Edda}}</td>
+                        <td>{{x.Miembros}}</td>
+                        <td>{{x.Inteligencia}}</td>
+                        <td>{{x.Supersticion}}</td>
+                    </tr>
+                    <tr ng-repeat="x in name3">
+                        <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
+                        <td>{{x.Edda}}</td>
+                        <td>{{x.Miembros}}</td>
+                        <td>{{x.Inteligencia}}</td>
+                        <td>{{x.Supersticion}}</td>
+                    </tr>
+                    <tr ng-repeat="x in name4">
+                        <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
+                        <td>{{x.Edda}}</td>
+                        <td>{{x.Miembros}}</td>
+                        <td>{{x.Inteligencia}}</td>
+                        <td>{{x.Supersticion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <input id ="botonPelea" type="button" value="Prueba Pelea"  ng-click="cerrarBatalla()" >
+
+            <table id = TimeTable >
+                <thead>
+                <tr id = "EncabezadoDeTablaTiempo">
+                    <td>Tiempo Transcurrido</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in TotalTime">
+
+                        <td>{{x.time}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+    </body>
+    <script type="text/javascript" src = "scripts.js"></script>
+
+
+</html>

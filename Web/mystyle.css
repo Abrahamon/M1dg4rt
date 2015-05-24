@@ -1,0 +1,165 @@
+#ListaMiembros{
+    width: 200px;
+    top: 100px;
+    position: fixed;
+    border: 1px solid black;
+
+}
+#MiembrosTitulo{
+    color: #ddff00;
+    position: fixed;
+    left: 780px;
+    text-shadow: ButtonShadow;
+}
+#botones{
+    width: 75px;
+    background-color: #a66b34;
+    border: 1px solid olivedrab;
+}
+#botonHabitante{
+    width: 190px;
+    background-color: sienna;
+    border:1px solid #b3001b;
+}
+#Miembros {
+
+    background-color: #61765e;
+    width: 250px;
+    height: 570px;
+    position: fixed;
+
+    resize: both;
+    overflow: hidden;
+    top: 50px;
+    left: 712px;
+    border: groove 5px;
+    background-image: url("pictures/menu.jpg");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: 430px 570px;
+}
+#Cuerpo{
+    background-color: #233023;
+
+}
+#ListaCaracteristicas{
+    width: 200px;
+    top: 375px;
+    position: fixed;
+    border: 1px solid black;
+}
+
+#TablaDatos{
+    width: 340px;
+    top: 100px;
+    position: fixed;
+    border: 1px solid black;
+}
+#TimeTable{
+    width: 250px;
+    top: 580px;
+    position: fixed;
+    border: 1px solid black;
+}
+#EncabezadoDeTabla{
+    width: 100px;
+    box-sizing: border-box;
+
+    border: 1px solid black;
+
+}
+#MapaCanvas {
+    background-size: 900px 580px;
+    width: 700px;
+    height: 578px;
+    position: fixed;
+    resize: both;
+    top: 50px;
+    left: 10px;
+    border: groove 5px;
+
+ }
+#Menu {
+
+    background-color: #61765e;
+    width: 370px;
+    height: 570px;
+    position: fixed;
+
+    resize: both;
+    overflow: hidden;
+    top: 50px;
+    left: 920px;
+    border: groove 5px;
+    background-image: url("pictures/menu.jpg");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: 430px 570px;
+}
+#Informacion{
+    color: #69563c;
+    position: fixed;
+    right: 170px;
+    text-shadow: ButtonShadow;
+}
+#Titulo{
+    position: fixed;
+    top: -50px;
+    left: 500px;
+    font-family: fantasy ;
+    font-size: 30px;
+    color: darkred;
+    text-shadow: 2px 2px #526900;
+}
+
+
+
+
+
+
+
+
+
+table.scroll {
+    /* width: 100%; */ /* Optional */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 2px solid black;
+}
+
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+thead tr th {
+    height: 30px;
+    line-height: 30px;
+    /* text-align: left; */
+}
+
+table.scroll tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody { border-top: 2px solid black; }
+
+tbody td, thead th {
+     width: 20%;  /* Optional */
+    border-right: 1px solid black;
+    /* white-space: nowrap; */
+}
+
+tbody td:last-child, thead th:last-child {
+    border-right: none;
+}
+
+
+
+
+
+
+
+
+
+
