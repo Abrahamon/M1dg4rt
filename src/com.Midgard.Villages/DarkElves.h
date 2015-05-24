@@ -11,6 +11,8 @@
 #include "Population.h"
 
 class Dark_Elves : public Population {
+private:
+	Random* _random;
 public:
 	Dark_Elves();
 	virtual ~Dark_Elves();

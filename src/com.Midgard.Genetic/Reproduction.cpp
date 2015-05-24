@@ -7,7 +7,6 @@
 
 #include "Reproduction.h"
 
-Reproduction* Reproduction::_Reproduction = 0;
 
 Reproduction::Reproduction() {
 	this->_Random = new Random();
@@ -17,12 +16,6 @@ Reproduction::~Reproduction() {
 	// TODO Auto-generated destructor stub
 }
 
-Reproduction* Reproduction::getInstance(){
-	if(_Reproduction == 0){
-		_Reproduction = new Reproduction();
-	}
-	return _Reproduction;
-}
 
 /**
  * Reproduccion entre dos Entidades, la primera es el padre, la segunda es la madre
@@ -96,6 +89,7 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 	//La mutacion ocurre dentro de la reproduccion
 	newGenome = mutate(newGenome);
 	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
+	//cout<<"New Entity: "<< newEntity->getID() << endl;
 	return newEntity;
 }
 
