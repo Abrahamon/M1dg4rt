@@ -9,7 +9,7 @@
 Random::Random() {
 
 	if(Constants::HARDWARE_CONFIG=="true"){
-		PORT = "/dev/ttyACM0";
+		PORT = "/dev/ttyACM1";
 		ardu.Open(PORT);
 		ardu.SetBaudRate(SerialStreamBuf::BAUD_9600);
 		ardu.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);

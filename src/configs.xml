@@ -2,7 +2,7 @@
 	<DEBUG value = "true"/>
 	<CANTIDAD_GENES value="8"/>
 	<MAX_POBLACION_INICIAL value="12"/>
-	<HARDWARE_CONFIG value = "false"/>
+	<HARDWARE_CONFIG value = "true"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<PROBABILIDAD_DE_MUTAR value = "10000" />
