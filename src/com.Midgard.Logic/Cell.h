@@ -9,13 +9,13 @@
 #define SRC_COM_MIDGARD_LOGIC_CELL_H_
 
 class Cell{
-private:
+public:
 	bool _Null;
 	int _Xcoord;
 	int _Ycoord;
 	int _F;
 	Cell* _Previous;
-public:
+//public:
 	Cell();
 	virtual ~Cell();
 
