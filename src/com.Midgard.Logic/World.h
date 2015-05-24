@@ -27,7 +27,7 @@ class World {
 
 private:
 	PyArray<char>* _matrix; //Matriz para la lógica del movimiento
-	LinkedList<God*>* _Goods;
+	static LinkedList<God*>* _GodsList;
 	static bool _ReproduceDwarves;
 	static bool _ReproduceDarkElves;
 	static bool _ReproduceElves;
@@ -46,6 +46,7 @@ private:
 	static int timeInSeconds;
 	static int timeSinceLastWar;
 
+	static bool fightTheGods();
 	static int getBestFighterOption(Population* popA, Population* popB);
 	static void resetJSONs();
 

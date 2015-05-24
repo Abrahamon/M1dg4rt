@@ -39,3 +39,4 @@ bool God::isGodAlive(){
 }
 
 int God::getLife(){ return _Life; }
+std::string God::getName(){ return _Name; }

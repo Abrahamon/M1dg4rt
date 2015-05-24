@@ -27,6 +27,7 @@ public:
 	void receiveAttack(int pAttack);
 	bool isGodAlive();
 	int getLife();
+	std::string getName();
 };
 
 #endif /* SRC_COM_MIDGARD_ENTITIES_GOD_H_ */

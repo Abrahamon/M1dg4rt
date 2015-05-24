@@ -29,6 +29,7 @@ int World::timeSleep = 0;
 int World::timeInSeconds =0;
 int World::timeSinceLastWar=0;
 int World::reportFrecuency = 0;
+LinkedList<God*>* World::_GodsList;
 
 /**
  * Constructor
@@ -36,7 +37,7 @@ int World::reportFrecuency = 0;
 World::World() {
 
 
-	_Goods = new LinkedList<God*>();	//Creamos
+	_GodsList = new LinkedList<God*>();	//Creamos
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's por voluntad de los dioses
 	_random = new Random();
 
@@ -71,11 +72,15 @@ World::~World() {}
  * una lista para acceso fácil a los mismos.
  */
 void World::onsetOfGoods(){
-	God* newGod;
-	for(int i = 0; i < Constants::CANTIDAD_DE_DIOSES; i++){
-		newGod = new God("zeus");
-		_Goods->insertTail(newGod);
-	}
+	God* Zeus = new God("ZEUS");
+	God* Zeus2 = new God("HADES");
+	God* Zeus3 = new God("POSEIDON");
+	God* Zeus4 = new God("THOR");
+
+	_GodsList->insertTail(Zeus);
+	_GodsList->insertTail(Zeus2);
+	_GodsList->insertTail(Zeus3);
+	_GodsList->insertTail(Zeus4);
 }
 
 /**
@@ -199,7 +204,44 @@ void* World::GiantsGeneration(void* pPop){
 	pthread_exit(NULL);
 }
 
+bool World::fightTheGods(){
+	/*LinkedList<Population*>* ListaPueblos = new LinkedList<Population*>();
 
+
+
+	ListaPueblos->insertTail(_Dwarves);
+	ListaPueblos->insertTail(_Dark_Elves);
+	ListaPueblos->insertTail(_Elves);
+	ListaPueblos->insertTail(_Giants);*/
+
+	Population* ListaPueblos[4] = {_Dwarves,_Dark_Elves,_Elves,_Giants};
+
+
+
+	Node<God*>* DiosEnPeleaActual = _GodsList->getHead();
+	cout<<"ENTRA AL METODO DE PELEA"<<endl;
+	for(int i = 0; i < _GodsList->getLength(); i++){
+		for(int j = 0; j < 4; j++){
+			ListaPueblos[i]->receiveAttack(_random->getRandomNumber(50));
+
+			Node<Entity*>* tmpEntity = ListaPueblos[i]->getIndividuals()->getHead();
+			int pAtaqueADios = 0;
+			for(int i = 0; i < ListaPueblos[j]->getIndividuals()->getLength(); i++){
+				pAtaqueADios+= tmpEntity->getData()->getGenome()->getAttack();
+				tmpEntity = tmpEntity->getNext();
+			}
+			cout<<"ANTES DEL ATAQUE: "<<DiosEnPeleaActual->getData()->getName() <<" "<< DiosEnPeleaActual->getData()->getLife()<<endl;
+
+			DiosEnPeleaActual->getData()->receiveAttack(pAtaqueADios);
+
+			cout<<"DESPUES DEL ATAQUE: "<<DiosEnPeleaActual->getData()->getName() <<" "<< DiosEnPeleaActual->getData()->getLife()<<endl;
+
+		}
+		DiosEnPeleaActual = DiosEnPeleaActual->getNext();
+	}
+
+
+}
 int World::getBestFighterOption(Population* popA, Population* popB){
 	if(popA->getBestFitness() > popB->getBestFitness()){
 		return 1;
@@ -230,7 +272,7 @@ void* World::TimeController(void* pPop){
 			}
 
 		}
-		if(_Dwarves->getCurrentGeneration() > 15 && _FightIsAvailable == false){
+		/*if(_Dwarves->getCurrentGeneration() > 15 && _FightIsAvailable == false){
 				pthread_mutex_lock(&mutex);
 				int A = getBestFighterOption(_Dwarves,_Elves);
 				int B = getBestFighterOption(_Dark_Elves,_Giants)+2;
@@ -290,11 +332,13 @@ void* World::TimeController(void* pPop){
 				_DarkElvesWriter->startFight("false",0,0);
 			}
 			_FightTimer++;
-		}
+		}*/
 
 		if(Constants::getVillagesWhoFinishedItsLinage() >= 4){
-			cout<<" "<<endl;
-			cout<<"## La simulación ha finalizado ##"<< endl;
+			cout<<"PELEA CONTRA LOS DIOSES"<<endl;
+			fightTheGods();
+			_RunningSimulation=false;
+			/*cout<<"## La simulación ha finalizado ##"<< endl;
 			int endDwarves = World::_Dwarves->getIndividuals()->getLength();
 			int endGiants = World::_Giants->getIndividuals()->getLength();
 			int endElves = World::_Elves->getIndividuals()->getLength();
@@ -318,7 +362,7 @@ void* World::TimeController(void* pPop){
 			cout<<"################################"<< endl;
 			Constants::resetVillagesLinageCounter();
 			_RunningSimulation=false;
-			cout<<" "<<endl;
+			cout<<" "<<endl;*/
 		}
 		sleep(1);
 		_TimeWriter->updateTime(timeInSeconds);

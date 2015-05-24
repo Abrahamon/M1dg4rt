@@ -52,6 +52,7 @@ public:
 	int getBestAttribute();
 	LinkedList<Entity*>* getBestEntities(LinkedList<Entity*>* indList);
 	LinkedList<Entity*>* getArmy();
+	void receiveAttack(int pNumeroDeMuertes);
 
 };
 

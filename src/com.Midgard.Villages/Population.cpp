@@ -350,6 +350,19 @@ LinkedList<Entity*>* Population::getArmy(){
 	return PopulationArmy;
 }
 
+void Population::receiveAttack(int pNumeroDeMuertes){
+
+	Node<Entity*>* tmp = _individuos->getHead();
+
+	for(int j =0; j<pNumeroDeMuertes;j++){
+		if(tmp == 0) return;
+
+		tmp = tmp->getNext();
+		_individuos->deleteData(tmp->getPrevious()->getData());
+	}
+
+	return;
+}
 
 
 
