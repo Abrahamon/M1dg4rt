@@ -8,10 +8,6 @@
 #include "World.h"
 
 Dwarves* World::_Dwarves = 0;
-<<<<<<< HEAD
-Giants* World::_Giants =0;
-Dark_Elves* World::_Dark_Elves = 0;
-=======
 Dark_Elves* World::_Dark_Elves = 0;
 Elves* World::_Elves = 0;
 Giants* World::_Giants = 0;
@@ -34,12 +30,10 @@ int World::timeInSeconds =0;
 int World::timeSinceLastWar=0;
 int World::reportFrecuency = 0;
 
->>>>>>> d8149d842bd1e0144583886dccec55c2af72bc5e
 /**
  * Constructor
  */
 World::World() {
-
 
 
 	_Goods = new LinkedList<Good*>();	//Creamos
@@ -65,7 +59,6 @@ World::World() {
 	if(Constants::GIANTS=="true")
 		_Giants = new Giants();
 	this->onsetOfGoods();
-
 }
 
 /**
@@ -90,47 +83,6 @@ void World::onsetOfGoods(){
  * necesarios, uno correspondiente a cada población.
  */
 void World::start(){
-<<<<<<< HEAD
-//	pthread_t HiloDwarves;
-//	pthread_create(&HiloDwarves,0,World::DoGeneration,(void*)this); //Se crea el pthread
-
-	int rc;
-	pthread_t threads[4];
-	rc =pthread_create(&threads[0], NULL, metodo1, (void *)0);
-	rc =pthread_create(&threads[1], NULL, metodo2, (void *)1);
-//	rc =pthread_create(&threads[2], NULL, metodo3, (void *)2);
-//	rc =pthread_create(&threads[3], NULL, metodo4, (void *)3);
-
-
-	//	pthread_exit(NULL);
-
-/*	cout<<"individuo 1 con ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<
-			" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<
-			" con bloot: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getBlot()<<
-			" con energy : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getEnergy()<<
-			" con intelligence : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getIntelligence()<<
-			" con magic : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getMagic()<<
-			" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getRunesPower()<<
-			" con speed : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getSpeed()<<endl;
-	cout<<"individuo 2 con ataque: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getAttack()<<
-				" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getDefense()<<
-				" con bloot: "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getBlot()<<
-				" con energy : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getEnergy()<<
-				" con intelligence : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getIntelligence()<<
-				" con magic : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getMagic()<<
-				" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getRunesPower()<<
-				" con speed : "<<_Dwarves->getIndividuals()->getHead()->getNext()->getData()->getGenome()->getSpeed()<<endl<<endl;
-//	cout<<"edad del ultimo: "<<_Dwarves->getIndividuals()->getTail()->getData()->getAge()<<". Ataque: "<<_Dwarves->getIndividuals()->getTail()->getData()->getGenome()->getAttack()<<endl<<endl;	cout<<"entities final : "<<_Dwarves->getIndividuals()->getLength()<<endl;
-//	cout<<"individuo INICIAL con ataque: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getAttack()<<
-//			" con defensa: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getDefense()<<
-//			" con bloot: "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getBlot()<<
-//			" con energy : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getEnergy()<<
-//			" con intelligence : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getIntelligence()<<
-//			" con magic : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getMagic()<<
-//			" con runes power : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getRunesPower()<<
-//			" con speed : "<<_Dwarves->getIndividuals()->getHead()->getData()->getGenome()->getSpeed()<<endl;
-	//	cout<<"TERMINO\n";
-=======
 	resetJSONs();
 	/*for(int i = 5; i > 0; i--){
 		cout<<"Starting simulation in "<<i<<"..."<<endl;
@@ -156,16 +108,10 @@ void World::start(){
 	pthread_t Controller;
 	pthread_create(&Controller,0,World::TimeController,(void*)this);
 }
->>>>>>> d8149d842bd1e0144583886dccec55c2af72bc5e
 
 void* World::consoleLog(std::string pPopulation,short pGeneration){
 	pthread_mutex_lock(&mutex);
 
-<<<<<<< HEAD
-		//this->_Dwarves->DoGeneration();
-		/if(i%10 == 0){
-			if(!_Dwarves->getEvolvingState()){
-=======
 	string s = boost::lexical_cast<string>(pGeneration);
 	cout<<pPopulation<<s<<endl;
 
@@ -181,7 +127,6 @@ void* World::DwarvesGeneration(void* pPop){
 
 			}
 			if(_Dwarves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
->>>>>>> d8149d842bd1e0144583886dccec55c2af72bc5e
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
@@ -205,56 +150,12 @@ void* World::DarkElvesGeneration(void* pPop){
 				 _Dark_Elves->getCurrentGeneration() > 0){
 				//_ReproduceDarkElves = false;
 
-<<<<<<< HEAD
-void* World::metodo1(void* threadID){
-	sleep(1);
-	while(true){
-		sleep(1);
-		cout<<"1 GENERACION: "<<_Dwarves->getCurrentGeneration()<<" \n";
-		sleep(3);
-		_Dwarves->DoGeneration();
-	}
-	pthread_exit(NULL);
-}
-
-void* World::metodo2(void* threadID){
-	sleep(1);
-	while(true){
-		sleep(1);
-		cout<<"2 GENERACION: "<<_Dark_Elves->getCurrentGeneration()<<"\n";
-		sleep(1);
-		_Dark_Elves->DoGeneration();
-	}
-	pthread_exit(NULL);
-}
-void* World::metodo3(void* threadID){
-	while(true){
-		cout<<"metodo 3\n";
-		sleep(7);
-	}
-	pthread_exit(NULL);
-}
-void* World::metodo4(void* threadID){
-	while(true){
-		cout<<"metodo 4\n";
-		sleep(9);
-	}
-	pthread_exit(NULL);
-}
-
-void* World::DoGeneration(void* pPop){
-	//Dwarves* pDwarves = new Dwarves();
-	//pDwarves = (Dwarves*) pPop;
-	ofstream file;
-	file.open("Pruebas/Prueba20.ods");
-=======
 			}
 			if(_Dark_Elves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
 				consoleLog("Dark Gen: ",World::_Dark_Elves->getCurrentGeneration());
->>>>>>> d8149d842bd1e0144583886dccec55c2af72bc5e
 
 			string quantity = lexical_cast<string>(World::_Dark_Elves->getIndividuals()->getLength());
 			string message = "DarkElves:2:"+ quantity + ":0:0:#";
