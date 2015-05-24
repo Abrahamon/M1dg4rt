@@ -32,6 +32,7 @@ public:
 	static int MAX_POBLACION_INICIAL;
 	static string HARDWARE_CONFIG;
 	static string DEBUG;
+	static string HARD_DEBUG;
 	static int NUMBER_CHILDS_PER_PARENTS;
 	static float REPRODUCTION_PER_GENERATION;
 	static int CANTIDAD_DE_DIOSES;

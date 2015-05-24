@@ -40,10 +40,12 @@ private:
 	static JsonWriter* _DarkElvesWriter;
 	static JsonWriter* _ElvesWriter;
 	static JsonWriter* _GiantsWriter;
+	static JsonWriter* _TimeWriter;
 	static int timeSleep;
 	static int reportFrecuency;
+	static int timeInSeconds;
+	static int timeSinceLastWar;
 
-	Population* getFighter();
 	static int getBestFighterOption(Population* popA, Population* popB);
 	static void resetJSONs();
 

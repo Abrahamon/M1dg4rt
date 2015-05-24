@@ -18,6 +18,7 @@ int Constants::FIGHT_FRECUENCY = 0;
 int Constants::GENERATION_SLEEP_uSeconds = 0;
 string Constants::HARDWARE_CONFIG;
 string Constants::DEBUG;
+string Constants::HARD_DEBUG;
 float Constants::REPRODUCTION_PER_GENERATION = 0;
 int Constants::NUMBER_CHILDS_PER_PARENTS =0;
 string Constants::HUMANS;
@@ -54,6 +55,7 @@ Constants::Constants(){
 	FIGHT_FRECUENCY = atoi(reader->getParameter("FIGHT_FRECUENCY"));
 	HARDWARE_CONFIG = reader->getParameter("HARDWARE_CONFIG");
 	DEBUG = reader->getParameter("DEBUG");
+	HARD_DEBUG = reader->getParameter("HARD_DEBUG");
 	NUMBER_CHILDS_PER_PARENTS = atoi(reader->getParameter("NUMBER_CHILDS_PER_PARENTS"));
 	REPRODUCTION_PER_GENERATION = atof(reader->getParameter("REPRODUCTION_PER_GENERATION"));
 	CANTIDAD_DE_DIOSES = atoi(reader->getParameter("CANTIDAD_DE_DIOSES"));
@@ -65,7 +67,7 @@ Constants::Constants(){
 	JSONS_PATH = reader->getParameter("JSONS_PATH");
 	IDCounter = 0;
 	VillagesWhoFinishedItsLinage = 0;
-	FRECUENCY_REPORT_Gens = atoi(reader->getParameter("FRECUENCY_REPORT_Gens"));
+	FRECUENCY_REPORT_Gens = atoi(reader->getParameter("FRECUENCY_REPORT_SECONDS"));
 }
 
 int Constants::getIDCounter(){

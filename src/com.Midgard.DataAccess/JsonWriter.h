@@ -27,6 +27,8 @@ public:
 	void updateVillageInfo(std::string pData, std::string pueblo);
 	void startFight(std::string pBool,int A, int B);
 	void updateVillageEntitiesList(std::string pPueblo,LinkedList<Entity*>* lista);
+	void resetVillageArmy(std::string pPueblo);
+	void updateTime(int pTime);
 };
 
 

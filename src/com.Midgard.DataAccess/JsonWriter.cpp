@@ -5,6 +5,46 @@ using namespace std;
 JsonWriter::JsonWriter() {
 	Path_to_Json = Constants::JSONS_PATH;
 }
+void JsonWriter::updateTime(int pTime){
+	std::string message = lexical_cast<string>(pTime);
+	message+=" #";
+	vector<string> Lista;
+	stringstream ss(message);
+	string temp;
+	while (ss >> temp)
+		Lista.push_back(temp);
+
+	Jzon::Node node = Jzon::object();
+	{
+	  Jzon::Node array = Jzon::array();
+	  {
+		  int i = 0;
+		  string op = "";
+		  while(true){
+			  Jzon::Node array_node = Jzon::object();
+
+			  array_node.add("time", Lista[i]);
+			  i++;
+			  array.add(array_node);
+			  if(Lista[i] == "#"){
+				  break;
+			  }
+
+		  }
+		  node.add("records", array);
+	  }
+
+	}
+	Jzon::Writer writer;
+	writer.writeFile(node, Path_to_Json+"time.json");
+}
+void JsonWriter::resetVillageArmy(std::string pPueblo){
+	Jzon::Writer writer;
+	Jzon::Node node = Jzon::object();
+	node.add("War","Not Started");
+	writer.writeFile(node, Path_to_Json+pPueblo+".json");
+}
+
 void JsonWriter::updateVillageEntitiesList(std::string pPueblo,LinkedList<Entity*>* lista){
 
 	int iterador = 0;
