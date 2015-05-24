@@ -10,6 +10,7 @@
 
 #include "../com.Midgard.DataStructures/linkedList.h"
 #include "../com.Midgard.Genetic/Genome.h"
+#include "../com.Midgard.DataAccess/Constants.h"
 #include <fstream>
 #include <string>
 #include <cstdlib>
@@ -43,6 +44,7 @@ public:
 	Entity* _Father;			//Entity's father
 	Entity* _Mother;			//Entity's mother
 	Entity* _Brother;			//Entity's brother
+	int _ID;
 
 
 	//Entity's Getters
@@ -58,6 +60,7 @@ public:
 	Entity* getBrother();
 	uint8_t getX();
 	uint8_t getY();
+	void setID(int pID);
 
 	//Entity's Setters
 	void Birthday();
@@ -67,6 +70,7 @@ public:
 	void setGender(bool pGender);
 	void setX(uint8_t pX);
 	void setY(uint8_t pY);
+	int getID();
 
 
 	//Fight Methods

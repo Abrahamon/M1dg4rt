@@ -6,13 +6,15 @@
  */
 
 #include "Population.h"
-
+pthread_mutex_t Population::mutex;
 /**
  * Constructor
  */
+
 Population::Population() {
 	this->_Random = new Random();
 	this->_Evolving = true;
+	this->_reproduction = new Reproduction();
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
 	this->CurrentGeneration=0;
@@ -97,13 +99,14 @@ Entity* Population::randomSelectTheFittestMother(){
  * 5.LLama a una verificacion de edad, donde los mayores a cierta edad tienen probabilidades cada vez mas altas de morir.
  */
 void Population::DoGeneration(){
+	//pthread_mutex_lock(&mutex);
 	int newBorns = _Random->getRandomNumber(1+(Constants::REPRODUCTION_PER_GENERATION*_individuos->getLength()*0.5));
 
 	for(int k=0; k < newBorns;k++){
 		//La seleccion natural ocurre en las dos siguiente lineas.
 		Entity* NewFather = randomSelectTheFittestFather();
 		Entity* NewMother = randomSelectTheFittestMother();
-		Entity* NewSon = Reproduction::getInstance()->reproducir(NewFather, NewMother);
+		Entity* NewSon = _reproduction->reproducir(NewFather, NewMother);
 		_individuos->insertTail(NewSon);
 	}
 
@@ -112,7 +115,9 @@ void Population::DoGeneration(){
 	EverybodyBirthday();
 	DEATH();
 
-//	_Fitness->setBase(_individuos);	//de nuevo fitness
+	//mejores(_individuos); //PRUEBA DE MEJORES INDIVIDUOS
+
+	//_Fitness->setBase(_individuos);	//de nuevo fitness
 
 	return;
 }
@@ -238,6 +243,7 @@ float Population::desviacionEstandart(LinkedList<Entity*>* pList){
 	return ans;
 }
 
+
 short Population::getCurrentGeneration() { return CurrentGeneration; }
 int Population::getCantidadDeIndividuos(){ return _individuos->getLength(); }
 float Population::getBestFitness(){
@@ -299,6 +305,50 @@ int Population::getBestAttribute(){
 
 }
 
+
+// Metodo encargardo de obtener los 20 mejores individuos de la poblacion
+
+LinkedList<Entity*>* Population::getBestEntities(LinkedList<Entity*>* indList){
+	LinkedList<Entity*>* bests=new LinkedList<Entity*>(); //Lista donde estaran los individuos
+	Node <Entity*>* tmp= indList->getHead(); //Nodo temporal
+	Node <Entity*>* mejorindividuo; //Nodo donde esta el mejor individuo
+	float restriccion=2000; //Restriccion de que no se copie el mismo valor de fitness
+	for (int i=0;i<=20*indList->getLength();i++){  //for para encontrar a 20 individuos
+		float mejor =0;  //fitness mas alto
+		float temporal =0;
+		for (int l=0;l<=indList->getLength();l++){ // for encargado de encontrar un individuo con fitness alto
+			temporal=_Fitness->caculateFitness(tmp->getData());
+			//cout<<"posibles"<<temporal<<endl;
+			if(temporal>mejor && temporal<restriccion){
+				mejor=temporal;
+				//cout<<"entro"<<mejor<<endl;
+				mejorindividuo=tmp;
+				tmp=tmp->getNext();
+			}
+			tmp=tmp->getNext();
+		}
+		restriccion=mejor;
+		cout<<"final"<<restriccion<<endl;
+		bests->insertTail(mejorindividuo->getData());
+	}
+	return bests;
+}
+
+LinkedList<Entity*>* Population::getArmy(){
+	int randomIterator = _Random->getRandomNumber(_individuos->getLength());
+	randomIterator-=20;
+	LinkedList<Entity*>* PopulationArmy = new LinkedList<Entity*>();
+
+	Node<Entity*>* tmp = _individuos->getHead();
+	for(int i = 0; i < randomIterator; i++){
+		tmp = tmp->getNext();
+	}
+	for(int j = 0; j < 20; j++){
+		PopulationArmy->insertTail(tmp->getData());
+		tmp = tmp->getNext();
+	}
+	return PopulationArmy;
+}
 
 
 

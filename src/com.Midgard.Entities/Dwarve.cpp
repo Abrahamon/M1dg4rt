@@ -23,6 +23,7 @@ Dwarve::Dwarve(bool pGender, Entity* pFather, Entity* pMother,Entity* pBrother,
 	_Experience = 0;
 	_Life = pLife;
 	_Superstition = 0 ;//La supersticion debería heredarla de la madre/padre.
+	_ID = Constants::getIDCounter();
 }
 
 Dwarve::~Dwarve() {

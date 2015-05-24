@@ -13,7 +13,10 @@
 #include "../com.Midgard.Genetic/Reproduction.h"
 #include "../com.Midgard.Genetic/Fitness.h"
 #include "../com.Midgard.Resources/RandomNumberGenerator/Random.h"
+#include "../com.Midgard.DataStructures/vBinaryTree.h"
+#include "../com.Midgard.DataStructures/vBinaryNode.h"
 #include <math.h>
+#include <pthread.h>
 
 class Population {
 private:
@@ -22,6 +25,7 @@ protected:
 	Fitness* _Fitness;
 	LinkedList<Entity*>* _individuos;
 	Random* _Random;
+	Reproduction* _reproduction;
 	string _Eda;
 	bool _Evolving;
 	short CurrentGeneration;
@@ -40,12 +44,15 @@ public:
 	LinkedList<Entity*>* getIndividuals();
 	bool getEvolvingState();
 	float desviacionEstandart(LinkedList<Entity*>* pList);
-
+	static pthread_mutex_t mutex;
 	short getCurrentGeneration();
 	int getCantidadDeIndividuos();
 	float getWorstFitness();
 	float getBestFitness();
 	int getBestAttribute();
+	LinkedList<Entity*>* getBestEntities(LinkedList<Entity*>* indList);
+	LinkedList<Entity*>* getArmy();
+
 };
 
 #endif /* COM_MIDGARD_VILLAGES_POPULATION_H_ */

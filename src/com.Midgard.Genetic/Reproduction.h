@@ -26,15 +26,11 @@ using namespace std;
 class Reproduction {
 
 private:
-	static Reproduction* _Reproduction;
 	Genome* mutate(Genome* pGenome);
 	Random* _Random;
 public:
 	Reproduction();
 	virtual ~Reproduction();
-
-	static Reproduction* getInstance();
-
 	Entity* reproducir(Entity* pFather, Entity* pMother);
 };
 
