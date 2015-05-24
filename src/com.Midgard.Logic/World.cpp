@@ -8,11 +8,19 @@
 #include "World.h"
 
 Dwarves* World::_Dwarves = 0;
+JsonWriter* World::Jwriter =0;
 /**
  * Constructor
  */
 World::World() {
 
+	Jwriter = new JsonWriter();
+	std::string sizePop = std::to_string(Constants::MAX_POBLACION_INICIAL);
+	cout << sizePop << endl;
+
+	string text = "Dwarves:0:"+sizePop+":0:7:Elves:0:"+sizePop+":0:7:DarkElves:0:"+sizePop+":0:7:Giants:0:"+sizePop+":0:7:#";
+	Jwriter->JsonSend(text);
+	cout<<"fucks per minute !@#$%^&*()*&^%$# \n";
 
 	_Goods = new LinkedList<Good*>();	//Creamos
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's por voluntad de los dioses
@@ -54,6 +62,7 @@ void World::start(){
 	pthread_t HiloDwarves;
 	pthread_create(&HiloDwarves,0,World::DoGeneration,(void*)this); //Se crea el pthread
 
+
 	//for(int i =0; i<5; i++){
 
 		//this->_Dwarves->DoGeneration();
@@ -85,7 +94,7 @@ void* World::DoGeneration(void* pPop){
 
 	//file << "Generation"<<","<<"Cantidad"<<"\n";
 	file << "Generation"<<","<<"Mejor"<<","<<"Fuerza"<<"\n";
-	int MaxCorridas = 10;
+	int MaxCorridas = 1;
 	int MaxGeneraciones = 60;
 	int CantidadDeIndividuos[MaxGeneraciones];
 
@@ -109,6 +118,13 @@ void* World::DoGeneration(void* pPop){
 			Peores[j]+= World::_Dwarves->getBestAttribute();
 
 			World::_Dwarves->DoGeneration();
+
+			std::string sizePop = std::to_string(World::_Dwarves->getCantidadDeIndividuos());
+			cout << sizePop << endl;
+
+			string text = "Dwarves:0:"+sizePop+":0:7:Elves:0:"+"20"+":0:7:DarkElves:0:"+"20"+":0:7:Giants:0:"+"20"+":0:7:#";
+			Jwriter->JsonSend(text);
+			usleep(1000000);
 		}
 		delete _Dwarves;
 		_Dwarves = new Dwarves();
@@ -129,8 +145,6 @@ void* World::DoGeneration(void* pPop){
 	//file << World::_Dwarves->getCurrentGeneration()<<","<<World::_Dwarves->getCantidadDeIndividuos()<<"\n";
 	file.close();
 	cout << "Archivo Cerrado" << endl;
-	system("mplayer -msglevel all=0 -msgmodule alarm.wav");
-
 	pthread_exit(NULL);
 }
 

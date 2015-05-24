@@ -12,6 +12,7 @@
  */
 Population::Population() {
 	this->_Random = new Random();
+	this->_superstition = 0;
 	this->_Evolving = true;
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();

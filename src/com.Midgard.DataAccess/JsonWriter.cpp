@@ -15,6 +15,7 @@ JsonWriter::JsonWriter() {
 void JsonWriter::JsonSend(std::string pData) {
 
 	string str = pData;
+	cout<<"Paso1"<<endl;
 	for (int i=0; i<str.length(); i++)
 	{
 	    if (str[i] == ':')

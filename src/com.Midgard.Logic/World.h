@@ -15,6 +15,7 @@
 #include "../com.Midgard.Villages/Giants.h"
 #include "../com.Midgard.DataStructures/PyArray.h"
 #include "../com.Midgard.Entities/Good.h"
+#include "../com.Midgard.DataAccess/JsonWriter.h"
 #include <fstream>
 
 class World {
@@ -25,6 +26,7 @@ private:
 	Dark_Elves* _Dark_Elves;
 	Elves* _Elves;
 	Giants* _Giants;
+
 
 
 public:
@@ -38,6 +40,7 @@ public:
 	bool loadMap(std::string pathToFile);
 
 	static Dwarves* _Dwarves;
+	static JsonWriter* Jwriter;
 };
 
 #endif /* COM_MIDGARD_LOGIC_WORLD_H_ */
