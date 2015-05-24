@@ -21,11 +21,11 @@ class Random {
 
 private:
 
-	static SerialStream ardu;
+	SerialStream ardu;
 	static Random* _SlaveRandom;
 	int get(char pData);
 	char getChar(int pData);
-	char _Dictionary[18];
+	char _Dictionary[18]={'0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?'};
 	void initConnection();
 
 public:

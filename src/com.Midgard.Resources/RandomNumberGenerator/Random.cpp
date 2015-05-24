@@ -7,22 +7,23 @@
 
 #include "Random.h"
 Random* Random::_SlaveRandom = 0;
-SerialStream Random::ardu;
-
-Random::Random() { }
+Random::Random() {}
 
 Random::~Random() {}
 
 Random* Random::getInstance(){
 	if(_SlaveRandom == 0){
 		_SlaveRandom = new Random();
+
 		initConnection();
 	}
 	return _SlaveRandom;
 }
 
 void Random::initConnection(){
+	cout<<"11"<<endl;
 	ardu.Open("/dev/ttyACM0");
+	cout<<"22"<<endl;
 	ardu.SetBaudRate(SerialStreamBuf::BAUD_9600);
 	ardu.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
 	cout<<"33"<<endl;
@@ -38,7 +39,6 @@ int Random::getRandomNumber(int pMax){
 			return getRandomNumber(pMax);
 		}
 		else{
-			cout<<"todo bien\n";
 			return answer;
 		}
 	}else{
