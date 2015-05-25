@@ -3,7 +3,7 @@
 	<HARD_DEBUG value = "false"/>
 	<CANTIDAD_GENES value="8"/>
 	<MAX_POBLACION_INICIAL value="12"/>
-	<CANTIDAD_MAX_GENERACIONES value="60"/>
+	<CANTIDAD_MAX_GENERACIONES value="35"/>
 	<GENERATION_SLEEP_uSeconds value="800000"/>
 	<FRECUENCY_REPORT_SECONDS value="10"/>
 	<FIGHT_FRECUENCY value="10"/>
@@ -18,4 +18,7 @@
 	<DWARVES value = "true"/>
 	<ELVES value = "true"/>
 	<GIANTS value = "true"/>
+	<GODS_MIN_LIFE value = "20000"/>
+	<GODS_MAX_LIFE value = "100000"/>
+	<GODS_DEFENSE value = "0.9"/>
 </root>

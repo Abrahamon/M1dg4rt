@@ -44,52 +44,23 @@ Entity* Reproduction::reproducir(Entity* pFather, Entity* pMother){
 		pGenFather = pFatherGenome->getCromosome(i);
 		pGenMother = pMotherGenome->getCromosome(i);
 		temporal=_Random->getRandomNumber(7)+1;
-		//cout<<"porcentaje padre "<<temporal<<endl;
 		pNewGen1 = 0;
-		//cout<<"valor padre "<<pGenFather<<endl<<"valor madre "<<pGenMother<<endl;
 		for (int l=1;l<=8;l++){
 			if(l<=temporal){
 				primerval=usobitv->tomar(pGenFather,l);
-			//	cout<<"valor del padre "<<primerval<<endl;
 				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
-			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
 			else{
 				primerval=usobitv->tomar(pGenMother,l);
-			//	cout<<"valor de la madre "<<primerval<<endl;
 				pNewGen1=usobitv->cambiar(pNewGen1,l,primerval);
-			//	cout<<"valor hijo antes "<<pNewGen1<<endl;
 			}
 		}
-//		for(int l=0;l<=size;l++){
-//			if ((l%2)!=0){
-//				temporal=usobitv->tomar(pGenMother,n);
-//				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
-//				cout<<"valor hijo antes "<<pNewGen1<<endl;
-//				temporal=usobitv->tomar(pGenMother,n+1);
-//				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
-//				cout<<"valor hijo antes "<<pNewGen1<<endl;
-//				n=n+2;
-//			}
-//			if ((l%2)==0){
-//				temporal=usobitv->tomar(pGenFather,n);
-//				pNewGen1=usobitv->cambiar(pNewGen1,n,temporal);
-//				cout<<"valor hijo antes "<<pNewGen1<<endl;
-//				temporal=usobitv->tomar(pGenFather,n+1);
-//				pNewGen1=usobitv->cambiar(pNewGen1,n+1,temporal);
-//				cout<<"valor hijo antes "<<pNewGen1<<endl;
-//				n=n+2;
-//			}
-//		}
+
 		newGenome->setCromosome(i,pNewGen1);
-		//cout<<"nuevo Gen Id "<<i<<". Es: "<<pNewGen1<<" equivale: "<<pNewGen1<<endl;
-//		cout<<"valor hijo antes2 "<<pNewGen1<<endl;
-		//cout<<"nuevo Gen Id "<<i<<". Es: "<<bitset<16>(pNewGen1).to_string()<<" equivale: "<<pNewGen1<<endl;
 	}
-	//La mutacion ocurre dentro de la reproduccion
 	newGenome = mutate(newGenome);
-	Entity* newEntity = new Entity(true,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
-	//cout<<"New Entity: "<< newEntity->getID() << endl;
+	bool genero = _Random->getRandomBool();
+	Entity* newEntity = new Entity(genero,pFather,pMother,0,newGenome,((pFather->getLife()+pMother->getLife())/2));
 	return newEntity;
 }
 

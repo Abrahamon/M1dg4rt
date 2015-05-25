@@ -25,6 +25,7 @@
             </tr>
             </thead>
             <tbody>
+
             <tr ng-repeat="y in nombres">
                 <td><input id ="botonHabitante" type="button" value={{y.Nombre}}
                            ng-click="caracteristicas(y.Nombre,y.Attack,y.Speed,y.Defence,y.Intelligence,y.Magic,y.Energy,y.Blot,y.RunesPower)" ></td>
@@ -122,6 +123,14 @@
             </table>
 
             <input id ="botonPelea" type="button" value="Prueba Pelea"  ng-click="cerrarBatalla()" >
+
+            <p id="papa">{{NombreDeIndividuo}}<br><img src="pictures/2.png" alt="Smiley face" width="52" height="75"><br></p>
+            <p id="mama">{{NombreDeIndividuo}}<br><img src="pictures/1.png" alt="Smiley face" width="52" height="75"> </p>
+            <p id="arbol"><img src="pictures/arbol.png" alt="Smiley face" width="230" height="25"> </p>
+            <p id="hijo">{{NombreDeIndividuo}}<br><img src="pictures/2.png" alt="Smiley face" width="52" height="75"></p>
+
+
+
 
             <table id = TimeTable >
                 <thead>

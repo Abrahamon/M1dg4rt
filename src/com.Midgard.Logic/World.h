@@ -15,8 +15,7 @@
 #include "../com.Midgard.Villages/Elves.h"
 #include "../com.Midgard.Villages/Giants.h"
 #include "../com.Midgard.DataStructures/PyArray.h"
-#include "../com.Midgard.Entities/Good.h"
-#include <pthread.h>
+#include "../com.Midgard.Entities/God.h"
 #include <fstream>
 #include "../com.Midgard.DataAccess/JsonWriter.h"
 #include <boost/lexical_cast.hpp>
@@ -28,8 +27,7 @@ class World {
 
 private:
 	PyArray<char>* _matrix; //Matriz para la lógica del movimiento
-	LinkedList<Good*>* _Goods;
-
+	static LinkedList<God*>* _GodsList;
 	static bool _ReproduceDwarves;
 	static bool _ReproduceDarkElves;
 	static bool _ReproduceElves;
@@ -48,11 +46,14 @@ private:
 	static int timeInSeconds;
 	static int timeSinceLastWar;
 
+	static bool fightTheGods();
 	static int getBestFighterOption(Population* popA, Population* popB);
 	static void resetJSONs();
 
+
 public:
 	World();
+
 	virtual ~World();
 
 	void onsetOfGoods();
@@ -74,6 +75,7 @@ public:
 	static Dark_Elves* _Dark_Elves;
 	static Elves* _Elves;
 	static Giants* _Giants;
+
 
 };
 

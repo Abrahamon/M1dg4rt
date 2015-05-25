@@ -46,7 +46,6 @@ void JsonWriter::resetVillageArmy(std::string pPueblo){
 }
 
 void JsonWriter::updateVillageEntitiesList(std::string pPueblo,LinkedList<Entity*>* lista){
-
 	int iterador = 0;
 	Node<Entity*>* tmpEntity = lista->getHead();
 	string stringToJSON ="";
