@@ -222,7 +222,9 @@ bool World::fightTheGods(){
 	cout<<"ENTRA AL METODO DE PELEA"<<endl;
 	for(int i = 0; i < _GodsList->getLength(); i++){
 		for(int j = 0; j < 4; j++){
+			cout<<"PreATAQUE DIOS "<< ListaPueblos[i]->getIndividuals()->getLength() << endl;
 			ListaPueblos[i]->receiveAttack(_random->getRandomNumber(50));
+			cout<<"PostATAQUE DIOS "<< ListaPueblos[i]->getIndividuals()->getLength() << endl;
 
 			Node<Entity*>* tmpEntity = ListaPueblos[i]->getIndividuals()->getHead();
 			int pAtaqueADios = 0;
@@ -230,6 +232,7 @@ bool World::fightTheGods(){
 				pAtaqueADios+= tmpEntity->getData()->getGenome()->getAttack();
 				tmpEntity = tmpEntity->getNext();
 			}
+			cout<<endl;
 			cout<<"ANTES DEL ATAQUE: "<<DiosEnPeleaActual->getData()->getName() <<" "<< DiosEnPeleaActual->getData()->getLife()<<endl;
 
 			DiosEnPeleaActual->getData()->receiveAttack(pAtaqueADios);

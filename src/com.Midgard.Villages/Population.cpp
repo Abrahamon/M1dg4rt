@@ -151,12 +151,14 @@ void Population::DEATH(){
 			//se salva
 		}
 		else if(edad <10){
+
 			if(_Random->getRandomNumber(100)>30){
 				_individuos->deleteData(tmp->getPrevious()->getData());
 				//30% probabilidades de morir entre 50 y 70
 			}
 		}
 		else if(edad < 15){
+
 			if(_Random->getRandomNumber(100)>50){
 				//5robabilidades de morir entre 50 y 70
 				_individuos->deleteData(tmp->getPrevious()->getData());
@@ -353,14 +355,13 @@ LinkedList<Entity*>* Population::getArmy(){
 void Population::receiveAttack(int pNumeroDeMuertes){
 
 	Node<Entity*>* tmp = _individuos->getHead();
-
 	for(int j =0; j<pNumeroDeMuertes;j++){
-		if(tmp == 0) return;
-
+		if(tmp == 0)
+			return;
 		tmp = tmp->getNext();
 		_individuos->deleteData(tmp->getPrevious()->getData());
-	}
 
+	}
 	return;
 }
 
