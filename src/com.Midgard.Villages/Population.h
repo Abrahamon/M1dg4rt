@@ -29,6 +29,7 @@ protected:
 	string _Eda;
 	bool _Evolving;
 	short CurrentGeneration;
+	int _superstition;
 
 public:
 	Population();

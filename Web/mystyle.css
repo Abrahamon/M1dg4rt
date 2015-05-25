@@ -1,3 +1,27 @@
+#papa{
+    display: inline-table;
+    position: fixed;
+    top: 215px;
+    left: 970px;
+}
+#mama{
+    display: inline-block;
+    position: fixed;
+    top: 215px;
+    left: 1200px;
+}
+#arbol{
+    display: inline-block;
+    position: fixed;
+    top: 310px;
+    left: 1000px;
+}
+#hijo{
+    display: inline-block;
+    position: fixed;
+    top: 336px;
+    left: 1090px;
+}
 #ListaMiembros{
     width: 200px;
     top: 100px;

@@ -12,7 +12,7 @@
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<PROBABILIDAD_DE_MUTAR value = "10000" />
 	<CANTIDAD_DE_DIOSES value = "4" />
-	<JSONS_PATH value = "/home/fabian/workspace2/C++/M1dg4rt/Web/JSON/" />
+	<JSONS_PATH value = "/home/tvlenin/Proyectos c++/M1dg4rt/Web/JSON/" />
 	<HUMANS value = "false"/>
 	<DARK_ELVES value = "true"/>
 	<DWARVES value = "true"/>

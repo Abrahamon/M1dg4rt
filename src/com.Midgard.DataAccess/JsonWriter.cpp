@@ -226,4 +226,3 @@ void JsonWriter::updateVillageInfo(std::string pData,string pueblo) {
 
 
 
-

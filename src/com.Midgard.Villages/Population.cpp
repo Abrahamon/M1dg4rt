@@ -13,6 +13,7 @@ pthread_mutex_t Population::mutex;
 
 Population::Population() {
 	this->_Random = new Random();
+	this->_superstition = 0;
 	this->_Evolving = true;
 	this->_reproduction = new Reproduction();
 	this->_individuos = new LinkedList<Entity*>();

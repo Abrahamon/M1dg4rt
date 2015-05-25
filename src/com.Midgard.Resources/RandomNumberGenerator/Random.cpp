@@ -67,4 +67,3 @@ bool Random::getRandomBool(){
 		return true;
 	}
 }
-

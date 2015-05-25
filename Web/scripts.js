@@ -41,7 +41,9 @@ app.controller('TableData', function($scope, $http, $interval) {
     $scope.contadorDeOpacidad = 0;  //Contador para la animación de aparición del mapa.
     $scope.LockFight=false;         //Establece si está transcurriendo o no una batalla.
     $scope.BatallaCerrada = false;  //Establece si ya la batalla fue cerrada.
-
+    $scope.NombrePapa = "Padre";
+    $scope.NombrePapa = "Padre";
+    $scope.NombrePapa = "Padre";
     $scope.names;
     $scope.pueblo;
     $scope.NombreDeIndividuo;
