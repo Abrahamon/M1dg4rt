@@ -41,6 +41,7 @@ private:
 	static JsonWriter* _ElvesWriter;
 	static JsonWriter* _GiantsWriter;
 	static JsonWriter* _TimeWriter;
+	static JsonWriter* _GodsWriter;
 	static int timeSleep;
 	static int reportFrecuency;
 	static int timeInSeconds;

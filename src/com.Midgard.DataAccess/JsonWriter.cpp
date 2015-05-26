@@ -156,7 +156,7 @@ void JsonWriter::startFight(std::string pBool,int A, int B){
 	Jzon::Writer writer;
 	writer.writeFile(node, Path_to_Json+"fight.json");
 }
-void JsonWriter::updateVillageInfo(std::string pData,string pueblo) {
+void JsonWriter::updateVillageInfo(std::string pData,std::string pueblo) {
 
 	string str = pData;
 	for (int i=0; i<str.length(); i++)
@@ -217,12 +217,26 @@ void JsonWriter::updateVillageInfo(std::string pData,string pueblo) {
 		writer.writeFile(node, Path_to_Json+"puebloElves.json");
 	}
 }
-/*
- * JsonWriter.cpp
- *
- *  Created on: Apr 26, 2015
- *      Author: tvlenin
- */
+
+void JsonWriter::updateGodsLife(string pEstadoDeGuerra,int Dios1,int Dios2, int Dios3, int Dios4,int turno) {
+	Jzon::Node node = Jzon::object();{
+	  Jzon::Node array = Jzon::array();{
+		  Jzon::Node array_node = Jzon::object();
+		  array_node.add("War", pEstadoDeGuerra);
+		  array_node.add("Dios1", lexical_cast<string>(Dios1));
+		  array_node.add("Dios2", lexical_cast<string>(Dios2));
+		  array_node.add("Dios3", lexical_cast<string>(Dios3));
+		  array_node.add("Dios4", lexical_cast<string>(Dios4));
+		  array_node.add("turno", lexical_cast<string>(turno));
+		  array.add(array_node);
+	  }
+	  node.add("records", array);
+	}
+
+	Jzon::Writer writer;
+	writer.writeFile(node, Path_to_Json+"GodsWar.json");
+
+}
 
 
 
