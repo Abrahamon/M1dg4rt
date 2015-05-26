@@ -25,10 +25,12 @@ JsonWriter* World::_DarkElvesWriter = 0;
 JsonWriter* World::_ElvesWriter = 0;
 JsonWriter* World::_GiantsWriter = 0;
 JsonWriter* World::_TimeWriter = 0;
+JsonWriter* World::_GodsWriter =0;
 int World::timeSleep = 0;
 int World::timeInSeconds =0;
 int World::timeSinceLastWar=0;
 int World::reportFrecuency = 0;
+LinkedList<God*>* World::_GodsList;
 
 /**
  * Constructor
@@ -36,7 +38,7 @@ int World::reportFrecuency = 0;
 World::World() {
 
 
-	_Goods = new LinkedList<Good*>();	//Creamos
+	_GodsList = new LinkedList<God*>();	//Creamos
 	_matrix = new PyArray<char>(30,30); //Se inicializa la matriz de 30x30 en 0's por voluntad de los dioses
 	_random = new Random();
 
@@ -45,6 +47,7 @@ World::World() {
 	_ElvesWriter = new JsonWriter();
 	_GiantsWriter = new JsonWriter();
 	_TimeWriter = new JsonWriter();
+	_GodsWriter = new JsonWriter();
 
 	timeSleep = Constants::GENERATION_SLEEP_uSeconds;
 	reportFrecuency = Constants::FRECUENCY_REPORT_Gens;
@@ -71,11 +74,15 @@ World::~World() {}
  * una lista para acceso fácil a los mismos.
  */
 void World::onsetOfGoods(){
-	Good* newGood;
-	for(int i = 0; i < Constants::CANTIDAD_DE_DIOSES; i++){
-		newGood = new Good();
-		_Goods->insertTail(newGood);
-	}
+	God* Dios1 = new God("ZEUS");
+	God* Dios2 = new God("HADES");
+	God* Dios3 = new God("POSEIDON");
+	God* Dios4 = new God("THOR");
+
+	_GodsList->insertTail(Dios1);
+	_GodsList->insertTail(Dios2);
+	_GodsList->insertTail(Dios3);
+	_GodsList->insertTail(Dios4);
 }
 
 /**
@@ -121,20 +128,18 @@ void* World::consoleLog(std::string pPopulation,short pGeneration){
 void* World::DwarvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceDwarves == true){
-			if(((_Dwarves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Dwarves->getCurrentGeneration() > 0){
-				//_Reproduce = false;
+			string quantity = lexical_cast<string>(World::_Dwarves->getIndividuals()->getLength());
+			string gene = lexical_cast<string>(World::_Dwarves->getCurrentGeneration());
+			string message = "Dwarves:"+gene+":"+ quantity +":0:0:#";
+			_DwarvesWriter->updateVillageInfo(message,"Dwarves");
 
-			}
 			if(_Dwarves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
 				consoleLog("Dwar Gen: ",World::_Dwarves->getCurrentGeneration());
 
-			string quantity = lexical_cast<string>(World::_Dwarves->getIndividuals()->getLength());
-			string message = "Dwarves:2:"+ quantity + ":0:0:#";
-			_DwarvesWriter->updateVillageInfo(message,"Dwarves");
+
 
 			World::_Dwarves->DoGeneration();
 			usleep(timeSleep);
@@ -146,20 +151,16 @@ void* World::DwarvesGeneration(void* pPop){
 void* World::DarkElvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceDarkElves == true){
-			if(((_Dark_Elves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Dark_Elves->getCurrentGeneration() > 0){
-				//_ReproduceDarkElves = false;
+			string quantity = lexical_cast<string>(World::_Dark_Elves->getIndividuals()->getLength());
+			string gene = lexical_cast<string>(World::_Dark_Elves->getCurrentGeneration());
+			string message = "DarkElves:"+gene+":"+ quantity +":0:0:#";
+			_DarkElvesWriter->updateVillageInfo(message,"DarkElves");
 
-			}
 			if(_Dark_Elves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
 				consoleLog("Dark Gen: ",World::_Dark_Elves->getCurrentGeneration());
-
-			string quantity = lexical_cast<string>(World::_Dark_Elves->getIndividuals()->getLength());
-			string message = "DarkElves:2:"+ quantity + ":0:0:#";
-			_DarkElvesWriter->updateVillageInfo(message,"DarkElves");
 
 			World::_Dark_Elves->DoGeneration();
 			usleep(timeSleep);
@@ -171,20 +172,15 @@ void* World::DarkElvesGeneration(void* pPop){
 void* World::ElvesGeneration(void* pPop){
 	while(true){
 		if(_ReproduceElves == true){
-			if(((_Elves->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-				 _Elves->getCurrentGeneration() > 0){
-				//_ReproduceElves = false;
-
-			}
+			string quantity = lexical_cast<string>(World::_Elves->getIndividuals()->getLength());
+			string gene = lexical_cast<string>(World::_Elves->getCurrentGeneration());
+			string message = "Elves:"+gene+":"+ quantity +":0:0:#";
+			_ElvesWriter->updateVillageInfo(message,"Elves");
 			if(_Elves->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
 				consoleLog("Elve Gen: ",World::_Elves->getCurrentGeneration());
-
-			string quantity = lexical_cast<string>(World::_Elves->getIndividuals()->getLength());
-			string message = "Elves:2:"+ quantity + ":0:0:#";
-			_ElvesWriter->updateVillageInfo(message,"Elves");
 
 			World::_Elves->DoGeneration();
 			usleep(timeSleep);
@@ -196,20 +192,16 @@ void* World::ElvesGeneration(void* pPop){
 void* World::GiantsGeneration(void* pPop){
 	while(true){
 		if(_ReproduceGiants == true){
-			if(((_Giants->getCurrentGeneration() % Constants::FIGHT_FRECUENCY) == 0) &&
-					_Giants->getCurrentGeneration() > 0){
-				//_ReproduceGiants = false;
+			string quantity = lexical_cast<string>(World::_Giants->getIndividuals()->getLength());
+			string gene = lexical_cast<string>(World::_Giants->getCurrentGeneration());
+			string message = "Giants:"+gene+":"+ quantity +":0:0:#";
+			_GiantsWriter->updateVillageInfo(message,"Giants");
 
-			}
 			if(_Giants->getCurrentGeneration() == Constants::CANTIDAD_MAX_GENERACIONES){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
 				consoleLog("Gian Gen: ",World::_Giants->getCurrentGeneration());
-
-			string quantity = lexical_cast<string>(World::_Giants->getIndividuals()->getLength());
-			string message = "Giants:2:"+ quantity + ":0:0:#";
-			_GiantsWriter->updateVillageInfo(message,"Giants");
 
 			World::_Giants->DoGeneration();
 			usleep(timeSleep);
@@ -219,7 +211,74 @@ void* World::GiantsGeneration(void* pPop){
 	pthread_exit(NULL);
 }
 
+bool World::fightTheGods(){
+	Population* ListaPueblos[4] = {_Dwarves,_Dark_Elves,_Elves,_Giants};
 
+	God* Dioses[4] = {_GodsList->getHead()->getData(),
+					  _GodsList->getHead()->getNext()->getData(),
+					  _GodsList->getHead()->getNext()->getNext()->getData(),
+					  _GodsList->getHead()->getNext()->getNext()->getNext()->getData()};
+
+	Node<God*>* DiosEnPeleaActual = _GodsList->getHead();
+
+	for(int i = 0; i < 4; i++){
+		for(int j = 0; j < 4; j++){
+			int Poblacion = ListaPueblos[i]->getIndividuals()->getLength();
+			int AtaqueDios = _random->getRandomNumber(Poblacion/4);
+			//cout<<"PreATAQUE DIOS "<< Poblacion << endl;
+			ListaPueblos[i]->receiveAttack(_random->getRandomNumber(Poblacion/2));
+			//cout<<"PostATAQUE DIOS "<< Poblacion << endl;
+
+			Node<Entity*>* tmpEntity = ListaPueblos[i]->getIndividuals()->getHead();
+			int pAtaqueADios = 0;
+			for(int i = 0; i < ListaPueblos[j]->getIndividuals()->getLength(); i++){
+				pAtaqueADios+= tmpEntity->getData()->getGenome()->getAttack();
+				tmpEntity = tmpEntity->getNext();
+			}
+			cout<<endl;
+			cout<<"ANTES DEL ATAQUE: "<<Dioses[i]->getName() <<" "<< Dioses[i]->getLife()<<endl;
+
+			Dioses[i]->receiveAttack(pAtaqueADios);
+
+			cout<<"DESPUES DEL ATAQUE: "<<Dioses[i]->getName() <<" "<< Dioses[i]->getLife()<<endl;
+			_GodsWriter->updateGodsLife("true",
+												   Dioses[0]->getLife(),
+												   Dioses[1]->getLife(),
+												   Dioses[2]->getLife(),
+												   Dioses[3]->getLife(),1);
+			if(j == 0){
+				string quantity = lexical_cast<string>(World::_Dwarves->getIndividuals()->getLength()-AtaqueDios);
+				string gene = lexical_cast<string>(World::_Dwarves->getCurrentGeneration());
+				string message = "Dwarves:"+gene+":"+ quantity + ":0:0:#";
+				_DwarvesWriter->updateVillageInfo(message,"Dwarves");
+			}
+			if(j == 1){
+				string quantity = lexical_cast<string>(World::_Dark_Elves->getIndividuals()->getLength()-AtaqueDios);
+				string gene = lexical_cast<string>(World::_Dark_Elves->getCurrentGeneration());
+				string message = "DarkElves:"+gene+":"+ quantity + ":0:0:#";
+				_DarkElvesWriter->updateVillageInfo(message,"DarkElves");
+			}
+			if(j == 2){
+				string quantity = lexical_cast<string>(World::_Elves->getIndividuals()->getLength()-AtaqueDios);
+				string gene = lexical_cast<string>(World::_Elves->getCurrentGeneration());
+				string message = "Elves:"+gene+":"+ quantity + ":0:0:#";
+				_ElvesWriter->updateVillageInfo(message,"Elves");
+			}
+			if(j == 3){
+				string quantity = lexical_cast<string>(World::_Giants->getIndividuals()->getLength()-AtaqueDios);
+				string gene = lexical_cast<string>(World::_Giants->getCurrentGeneration());
+				string message = "Giants:"+gene+":"+ quantity + ":0:0:#";
+				_GiantsWriter->updateVillageInfo(message,"Giants");
+			}
+			sleep(2);
+		}
+		DiosEnPeleaActual = DiosEnPeleaActual->getNext();
+
+
+	}
+
+
+}
 int World::getBestFighterOption(Population* popA, Population* popB){
 	if(popA->getBestFitness() > popB->getBestFitness()){
 		return 1;
@@ -246,35 +305,36 @@ void* World::TimeController(void* pPop){
 				cout << "DarkElves: "<< _Dark_Elves->getIndividuals()->getLength()
 					 <<"   Generacion: "<< _Dark_Elves->getCurrentGeneration()<<endl;
 				cout<<"-------------------------------------------"<< endl;
+				cout<<endl;
 			}
-			cout<<endl;
+
 		}
 		if(_Dwarves->getCurrentGeneration() > 15 && _FightIsAvailable == false){
+				pthread_mutex_lock(&mutex);
 				int A = getBestFighterOption(_Dwarves,_Elves);
 				int B = getBestFighterOption(_Dark_Elves,_Giants)+2;
 
 				if(A== 1 || B == 1){
 					_ReproduceDwarves = false;
-					//_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getArmy());
-					_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getBestEntities(_Dwarves->getIndividuals()));
+					_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getArmy());
+					//_DwarvesWriter->updateVillageEntitiesList("Dwarves",_Dwarves->getBestEntities(_Dwarves->getIndividuals()));
 				}
 				if(A== 2 || B == 2){
 					_ReproduceElves = false;
-					//_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getArmy());
-					_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getBestEntities(_Elves->getIndividuals()));
+					_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getArmy());
+					//_ElvesWriter->updateVillageEntitiesList("Elves",_Elves->getBestEntities(_Elves->getIndividuals()));
 				}
 				if(A== 3 || B == 3){
 					_ReproduceDarkElves = false;
-					//_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getArmy());
-					_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getBestEntities(_Dark_Elves->getIndividuals()));
+					_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getArmy());
+					//_DarkElvesWriter->updateVillageEntitiesList("DarkElves",_Dark_Elves->getBestEntities(_Dark_Elves->getIndividuals()));
 				}
 				if(A== 4 || B == 4){
 					_ReproduceGiants = false;
-					//_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getArmy());
-					_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getBestEntities(_Giants->getIndividuals()));
+					_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getArmy());
+					//_GiantsWriter->updateVillageEntitiesList("Giants",_Giants->getBestEntities(_Giants->getIndividuals()));
 				}
-				_FightIsAvailable = true;
-				_DarkElvesWriter->startFight("true",A,B);
+
 
 				if(Constants::DEBUG == "true"){
 					cout<<endl;
@@ -284,6 +344,9 @@ void* World::TimeController(void* pPop){
 					cout<<"##########################"<<endl;
 					cout<<endl;
 				}
+				_FightIsAvailable = true;
+				_DarkElvesWriter->startFight("true",A,B);
+				pthread_mutex_unlock(&mutex);
 		}
 		if(_FightIsAvailable == true){
 			if(_FightTimer >= 35){ //Cuando se acabe la batalla, se debe correr este código.
@@ -310,22 +373,33 @@ void* World::TimeController(void* pPop){
 		}
 
 		if(Constants::getVillagesWhoFinishedItsLinage() >= 4){
-			cout<<" "<<endl;
+			_DarkElvesWriter->startFight("false",0,0);
+			if(Constants::DEBUG == "true"){
+				cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+				cout << "La guerra contra los dioses ha comenzado"<<endl;
+				cout << endl;
+			}
+			fightTheGods();
 			cout<<"## La simulación ha finalizado ##"<< endl;
 			int endDwarves = World::_Dwarves->getIndividuals()->getLength();
 			int endGiants = World::_Giants->getIndividuals()->getLength();
 			int endElves = World::_Elves->getIndividuals()->getLength();
 			int endDarkElves = World::_Dark_Elves->getIndividuals()->getLength();
 
-			string msgD  = "Dwarves:2:"+ lexical_cast<string>(endDwarves) + ":0:0:#";
-			string msgG  = "Giants:2:"+ lexical_cast<string>(endGiants) + ":0:0:#";
-			string msgE  = "Elves:2:"+ lexical_cast<string>(endElves) + ":0:0:#";
-			string msgDE = "DarkElves:2:"+ lexical_cast<string>(endDarkElves) + ":0:0:#";
+			/*int p1 = _Dwarves->getCurrentGeneration();
+			int p2 = _Giants->getCurrentGeneration();
+			int p3 = _Elves->getCurrentGeneration();
+			int p4 = _Dark_Elves->getCurrentGeneration();*/
 
-			_DwarvesWriter->updateVillageInfo(msgD,"Dwarves");
+			//string msgD  = "Dwarves:"+p1+ lexical_cast<string>(endDwarves) + ":0:0:#";
+			//string msgG  = "Giants:"+p2+ lexical_cast<string>(endGiants) + ":0:0:#";
+			//string msgE  = "Elves:"+p3+ lexical_cast<string>(endElves) + ":0:0:#";
+			//string msgDE = "DarkElves:"+p4 +lexical_cast<string>(endDarkElves) + ":0:0:#";
+
+			/*_DwarvesWriter->updateVillageInfo(msgD,"Dwarves");
 			_GiantsWriter->updateVillageInfo(msgG,"Giants");
 			_ElvesWriter->updateVillageInfo(msgE,"Elves");
-			_DarkElvesWriter->updateVillageInfo(msgDE,"DarkElves");
+			_DarkElvesWriter->updateVillageInfo(msgDE,"DarkElves");*/
 
 			cout << "Total de Inviduos: "<<Constants::IDCounter << endl;
 			cout << "Cantidad de Dwarves: "<< endDwarves << endl;
@@ -352,14 +426,17 @@ void* World::TimeController(void* pPop){
 	pthread_exit(NULL);
 }
 void World::resetJSONs(){
-	_DwarvesWriter->updateVillageInfo("Dwarves:2:0:0:0:#","Dwarves");
+	_GodsWriter->startFight("false",0,0);
+	_DwarvesWriter->updateVillageInfo("Dwarves:0:1:0:0:#","Dwarves");
 	_DwarvesWriter->resetVillageArmy("Dwarves");
-	_GiantsWriter->updateVillageInfo("Giants:2:0:0:0:#","Giants");
+	_GiantsWriter->updateVillageInfo("Giants:0:1:0:0:#","Giants");
 	_GiantsWriter->resetVillageArmy("Giants");
-	_ElvesWriter->updateVillageInfo("Elves:2:0:0:0:#","Elves");
+	_ElvesWriter->updateVillageInfo("Elves:0:1:0:0:#","Elves");
 	_ElvesWriter->resetVillageArmy("Elves");
-	_DarkElvesWriter->updateVillageInfo("DarkElves:2:0:0:0:#","DarkElves");
+	_DarkElvesWriter->updateVillageInfo("DarkElves:0:1:0:0:#","DarkElves");
 	_DarkElvesWriter->resetVillageArmy("DarkElves");
+	//_GodsWriter->updateGodsLife("false",0,0,0,0,1);
+	_DarkElvesWriter->updateTime(0);
 
 }
 void* World::Fight(){

@@ -1,4 +1,3 @@
-
 #ifndef SRC_COM_LDMM_DATAACCESS_JSONWRITER_H_
 #define SRC_COM_LDMM_DATAACCESS_JSONWRITER_H_
 #include <string>
@@ -28,6 +27,7 @@ public:
 	void startFight(std::string pBool,int A, int B);
 	void updateVillageEntitiesList(std::string pPueblo,LinkedList<Entity*>* lista);
 	void resetVillageArmy(std::string pPueblo);
+	void updateGodsLife(std::string pEstadoDeGuerra,int Dios1,int Dios2, int Dios3, int Dios4,int turno);
 	void updateTime(int pTime);
 };
 

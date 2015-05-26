@@ -29,6 +29,7 @@ protected:
 	string _Eda;
 	bool _Evolving;
 	short CurrentGeneration;
+	int _superstition;
 
 public:
 	Population();
@@ -52,6 +53,7 @@ public:
 	int getBestAttribute();
 	LinkedList<Entity*>* getBestEntities(LinkedList<Entity*>* indList);
 	LinkedList<Entity*>* getArmy();
+	void receiveAttack(int pNumeroDeMuertes);
 
 };
 
