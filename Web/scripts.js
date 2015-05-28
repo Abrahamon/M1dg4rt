@@ -174,7 +174,7 @@ app.controller('TableData', function($scope, $http, $interval) {
     $interval(function(){
         $http.get("JSON/fight.json").success(function (response) {
             $scope.FightAvailable=response.records[0].FightAvailable;
-            
+
             if($scope.FightAvailable == "false"){
                 $scope.cerrarBatalla();
                 $scope.StartFightCounter = 0;
