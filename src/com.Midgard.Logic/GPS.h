@@ -21,11 +21,10 @@ private:
 	LinkedList<Cell*>* _closedList;
 	LinkedList<Cell*>* _pathList;
 
-
 	int getH(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY);
 	Cell* getBestCell(LinkedList<Cell*>* openList,bool retry);
 	Cell* getBestBetween(Cell* A, Cell* B,bool retry);
-	bool isOnClosedList(Cell* pCell);
+	bool isOnClosedList(Cell* pCell); //
 
 
 public:

@@ -18,6 +18,7 @@ GPS::~GPS() {}
 
 
 bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,bool retry){
+
 	int pG = 0;
 	bool finished = false;
 

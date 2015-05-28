@@ -14,8 +14,8 @@ template<class k>
 class PyArray {
 private:
 	LinkedList<LinkedList<k>*>* _Array;
-	int _MaxX;
-	int _MaxY;
+	int _MaxX; //X Maximo
+	int _MaxY; //Y Maximo
 
 public:
 	PyArray(int NumberOfRows, int NumberOfColumns);
