@@ -4,6 +4,10 @@
 <head>
     <img id="mapa" width="600" height="570" src="pictures/map1.jpg"  hidden >
     <img id="mapaPelea" width="6000" src="pictures/prueba1.jpg"  hidden >
+    <img id="Lenin" width="600" src="pictures/diosLenin.png"  hidden >
+    <img id="Abraham" width="600" src="pictures/diosAbraham.png"  hidden >
+    <img id="Fabian" width="600" src="pictures/diosFabian.png"  hidden >
+    <img id="Mauricio" width="600" src="pictures/diosMauricio.png"  hidden >
     <link rel="stylesheet" type="text/css" href="mystyle.css">
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -12,6 +16,9 @@
 </head>
     <body id = "Cuerpo" >
         <canvas id="MapaCanvas" width="700" height="500" style="border:1px solid #d3d3d3;">
+
+        </canvas>
+        <canvas id="DiosesCanvas" width="700" height="500" >
 
         </canvas>
 
@@ -77,47 +84,34 @@
         </div>
 
         <div id="Menu" >
-
-
-
             <table id="TablaDatos">
                 <thead>
                     <tr id="EncabezadoDeTabla">
-                        <td>Pueblo</td>
-                        <td>Edda</td>
-                        <td>#Miembros</td>
-                        <td>Supersticion</td>
-                        <td>Inteligencia</td>
+                        <td>Civilization</td>
+                        <td>Generation</td>
+                        <td>Members</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="x in name1">
                         <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
-                        <td>{{x.Edda}}</td>
+                        <td align="center">{{x.Edda}}</td>
                         <td>{{x.Miembros}}</td>
-                        <td>{{x.Inteligencia}}</td>
-                        <td>{{x.Supersticion}}</td>
                     </tr>
                     <tr ng-repeat="x in name2">
                         <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
-                        <td>{{x.Edda}}</td>
+                        <td align="center">{{x.Edda}}</td>
                         <td>{{x.Miembros}}</td>
-                        <td>{{x.Inteligencia}}</td>
-                        <td>{{x.Supersticion}}</td>
                     </tr>
                     <tr ng-repeat="x in name3">
                         <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
-                        <td>{{x.Edda}}</td>
+                        <td align="center">{{x.Edda}}</td>
                         <td>{{x.Miembros}}</td>
-                        <td>{{x.Inteligencia}}</td>
-                        <td>{{x.Supersticion}}</td>
                     </tr>
                     <tr ng-repeat="x in name4">
                         <td><input id ="botones" type="button" value={{x.Pueblo}}  ng-click="onsearch(x.Pueblo); cargar(x.Pueblo)" ></td>
-                        <td>{{x.Edda}}</td>
+                        <td align="center">{{x.Edda}}</td>
                         <td>{{x.Miembros}}</td>
-                        <td>{{x.Inteligencia}}</td>
-                        <td>{{x.Supersticion}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -128,8 +122,6 @@
             <p id="mama">{{NombreDeIndividuo}}<br><img src="pictures/1.png" alt="Smiley face" width="52" height="75"> </p>
             <p id="arbol"><img src="pictures/arbol.png" alt="Smiley face" width="230" height="25"> </p>
             <p id="hijo">{{NombreDeIndividuo}}<br><img src="pictures/2.png" alt="Smiley face" width="52" height="75"></p>
-
-
 
 
             <table id = TimeTable >
@@ -143,6 +135,34 @@
                 <tr ng-repeat="x in TotalTime">
 
                         <td>{{x.time}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table id = GodsTable >
+                <thead>
+                <tr id = "EncabezadoDeGods">
+                    <td align="center">Dioses</td>
+                    <td align="center">Vida Restante</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in GodsInfo">
+                    <td> {{Dios1}}</td>
+                    <td  align="right">{{x.Dios1}}</td>
+                </tr>
+                <tr ng-repeat="x in GodsInfo">
+                    <td> {{Dios2}}</td>
+                    <td  align="right">{{x.Dios2}}</td>
+                </tr>
+                <tr ng-repeat="x in GodsInfo">
+                    <td> {{Dios3}}</td>
+                    <td  align="right">{{x.Dios3}}</td>
+                </tr>
+                <tr ng-repeat="x in GodsInfo">
+                    <td> {{Dios4}}</td>
+                    <td  align="right">{{x.Dios4}}</td>
                 </tr>
                 </tbody>
             </table>

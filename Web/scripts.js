@@ -1,8 +1,14 @@
 var c = document.getElementById("MapaCanvas");
 var ctx = c.getContext("2d");
+var cd = document.getElementById("DiosesCanvas");
+var ctxDioses = cd.getContext("2d");
 
 var img = document.getElementById("mapa");
 var imgPelea = document.getElementById("mapaPelea");
+var lenin = document.getElementById("Lenin");
+var Mauricio = document.getElementById("Mauricio");
+var fabian = document.getElementById("Fabian");
+var Abraham = document.getElementById("Abraham");
 imgPelea.width=100;
 ctx.drawImage(img,0,0);
 
@@ -23,7 +29,6 @@ var y3 = 330;
 
 var x4 = 530;
 var y4 = 330;
-
 
 var cont;
 var points = [1,2,45,4,8,4,5,5]; //array con la cantidad de miembros
@@ -59,6 +64,14 @@ app.controller('TableData', function($scope, $http, $interval) {
     $scope.Cantidad2 = 1;
     $scope.Cantidad3 = 1;
     $scope.Cantidad4 = 1;
+
+    $scope.FightGods = "false";
+    $scope.GodsSet = false;
+    $scope.Dios1 = "Zeus";
+    $scope.Dios2 = "Hades";
+    $scope.Dios3 = "Poseidón";
+    $scope.Dios4 = "Afrodita";
+    $scope.GodsInfo;
 
 
 
@@ -97,7 +110,7 @@ app.controller('TableData', function($scope, $http, $interval) {
             }, 100)
 
     }
-    ///Metodo para abrir imagen de pelea
+    ///Metodo para cerrar imagen de pelea
     $scope.cerrarBatalla = function(){
         if($scope.BatallaCerrada == false){
             $scope.Pelea = 0;
@@ -125,16 +138,72 @@ app.controller('TableData', function($scope, $http, $interval) {
     },500)
 
     $interval(function(){
-        $http.get("JSON/puebloDwarves.json").success(function (response) {$scope.name1 = response.records;$scope.Cantidad1 = response.records[0].Miembros+1;});
-        $http.get("JSON/puebloElves.json").success(function (response) {$scope.name2 = response.records;$scope.Cantidad2 = response.records[0].Miembros+1;});
-        $http.get("JSON/puebloGiants.json").success(function (response) {$scope.name3 = response.records;$scope.Cantidad3 = response.records[0].Miembros+1;});
-        $http.get("JSON/puebloDarkElves.json").success(function (response) {$scope.name4 = response.records;$scope.Cantidad4 = response.records[0].Miembros+1;});
+        $http.get("JSON/GodsWar.json").success(function (response) {
+            $scope.FightGods = response.records[0].War;
+            if($scope.FightGods == "true"){
+                $interval(function(){ctxDioses.drawImage(lenin,50,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(Mauricio,210,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(fabian,370,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(Abraham,530,100,140,200);},100,1)
+                if($scope.GodsSet == false){
+
+
+
+                    x1 =10;
+                    y1 = 310;
+
+                    x2 = 190;
+                    y2 = 310;
+
+                    x3 = 370;
+                    y3 = 310;
+
+                    x4 = 550;
+                    y4 = 310;
+                    $scope.GodsSet = true;
+                }
+
+            }
+            if($scope.FightGods == "false"){
+                cd.width = cd.width;
+                x1 = 30;
+                y1 = 0;
+
+                x2 = 540;
+                y2 = 0;
+
+                x3 = 30;
+                y3 = 330;
+
+                x4 = 530;
+                y4 = 330;
+                $scope.GodsSet = false;
+            }
+        });
+    },1000)
+
+
+    $interval(function(){
+        if($scope.FightGods == "true"){
+
+        }
+
+    },500)
+
+
+    $interval(function(){
+        $http.get("JSON/puebloDwarves.json").success(function (response) {$scope.name1 = response.records;$scope.Cantidad1 = response.records[0].Miembros;});
+        $http.get("JSON/puebloElves.json").success(function (response) {$scope.name2 = response.records;$scope.Cantidad2 = response.records[0].Miembros;});
+        $http.get("JSON/puebloGiants.json").success(function (response) {$scope.name3 = response.records;$scope.Cantidad3 = response.records[0].Miembros;});
+        $http.get("JSON/puebloDarkElves.json").success(function (response) {$scope.name4 = response.records;$scope.Cantidad4 = response.records[0].Miembros;});
+        $http.get("JSON/GodsWar.json").success(function (response) {$scope.GodsInfo = response.records;});
+
     },500)
 
     $interval(function(){
         $http.get("JSON/fight.json").success(function (response) {
             $scope.FightAvailable=response.records[0].FightAvailable;
-
+            
             if($scope.FightAvailable == "false"){
                 $scope.cerrarBatalla();
                 $scope.StartFightCounter = 0;
@@ -161,8 +230,8 @@ app.controller('TableData', function($scope, $http, $interval) {
                         if ($scope.PuebloPelea1 == 3) {$scope.mover3();$scope.PuebloPelea1 = 3;}
                         if ($scope.PuebloPelea1 == 4) {$scope.mover4();$scope.PuebloPelea1 = 4;}
 
-                        if ($scope.PuebloPelea2 == 1) {$scope.mover1();$scope.PuebloPelea1 = 1;}
-                        if ($scope.PuebloPelea2 == 2) {$scope.mover2();$scope.PuebloPelea1 = 2;}
+                        if ($scope.PuebloPelea2 == 1) {$scope.mover1();$scope.PuebloPelea2 = 1;}
+                        if ($scope.PuebloPelea2 == 2) {$scope.mover2();$scope.PuebloPelea2 = 2;}
                         if ($scope.PuebloPelea2 == 3) {$scope.mover3();$scope.PuebloPelea1 = 3;}
                         if ($scope.PuebloPelea2 == 4) {$scope.mover4();$scope.PuebloPelea1 = 4;}
 
@@ -177,7 +246,6 @@ app.controller('TableData', function($scope, $http, $interval) {
 
 
     $interval(function(){
-
         if($scope.Pelea == 0) {
             ctx.clearRect ( 0 , 0 , 695, 494 );
             $scope.Pintar();
@@ -234,6 +302,7 @@ app.controller('TableData', function($scope, $http, $interval) {
             }, 10, $scope.Cantidad4)
 
         }
+
     },3000)
 
 

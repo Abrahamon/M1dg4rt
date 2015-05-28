@@ -43,16 +43,7 @@ Entity* Population::randomSelectTheFittest(){
 
 
 	for(int i = 0; i<cantidadElementos; i++){
-//		cout<<"es la suma de todos : "<<_Fitness->getSumOfAll()<<endl;
-//		cout<<"fitnes de :"<<i<<" es de: "<<_Fitness->caculateFitness(tmpNode->getData())<<endl;
-//		cout<<"fitnes de :"<<i<<" es de: "<<_Fitness->caculateFitness(tmpNode->getNext()->getData())<<endl;
-//		cout<<"fitnes de :"<<i<<" es de: "<<_Fitness->caculateFitness(tmpNode->getNext()->getNext()->getData())<<endl;
-		//cout<<"random obtained: "<<randomObtained<<endl;
-	//	cout<<"multiplicado : "<<_Fitness->caculateFitness(tmpNode->getData()) *(_Fitness->getSumOfAll())<<endl;
-	//	cout<<"multiplicado : "<<_Fitness->caculateFitness(tmpNode->getNext()->getData()) *(_Fitness->getSumOfAll())<<endl;
-
 		if(  (_Fitness->caculateFitness(tmpNode->getData()) *_Fitness->getSumOfAll()) > randomObtained ){
-			//cout<<"seleccione al random mas apto, con ataque = "<<tmpNode->getData()->getGenome()->getAttack()<<endl;
 			break;
 		}
 		randomObtained = randomObtained - (_Fitness->caculateFitness(tmpNode->getData())*_Fitness->getSumOfAll());
@@ -152,12 +143,14 @@ void Population::DEATH(){
 			//se salva
 		}
 		else if(edad <10){
+
 			if(_Random->getRandomNumber(100)>30){
 				_individuos->deleteData(tmp->getPrevious()->getData());
 				//30% probabilidades de morir entre 50 y 70
 			}
 		}
 		else if(edad < 15){
+
 			if(_Random->getRandomNumber(100)>50){
 				//5robabilidades de morir entre 50 y 70
 				_individuos->deleteData(tmp->getPrevious()->getData());
@@ -352,16 +345,14 @@ LinkedList<Entity*>* Population::getArmy(){
 }
 
 void Population::receiveAttack(int pNumeroDeMuertes){
-
+	cout<< "Numero de ataque: "<<pNumeroDeMuertes<< endl;
+	cout<< "PRE: "<<_individuos->getLength()<< endl;
 	Node<Entity*>* tmp = _individuos->getHead();
-
 	for(int j =0; j<pNumeroDeMuertes;j++){
-		if(tmp == 0) return;
-
 		tmp = tmp->getNext();
 		_individuos->deleteData(tmp->getPrevious()->getData());
 	}
-
+	cout<< "POST: "<<_individuos->getLength()<< endl;
 	return;
 }
 

@@ -16,9 +16,11 @@
 #include "../com.Midgard.Villages/Giants.h"
 #include "../com.Midgard.DataStructures/PyArray.h"
 #include "../com.Midgard.Entities/God.h"
-#include <fstream>
+
+
 #include "../com.Midgard.DataAccess/JsonWriter.h"
 #include <boost/lexical_cast.hpp>
+#include <fstream>
 
 using namespace std;
 using boost::lexical_cast;
@@ -41,6 +43,7 @@ private:
 	static JsonWriter* _ElvesWriter;
 	static JsonWriter* _GiantsWriter;
 	static JsonWriter* _TimeWriter;
+	static JsonWriter* _GodsWriter;
 	static int timeSleep;
 	static int reportFrecuency;
 	static int timeInSeconds;

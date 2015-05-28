@@ -106,8 +106,8 @@ void LinkedList<k>::deleteData(k pData){
 		Node<k>* pDelete = _head;	//Se guarda el puntero en una variable temporal
 		_head = _head->getNext();
 		_tail->setNext(_head);
-		_length--;
 		delete pDelete;				//Se libera la memoria de la variable temporal
+		_length--;
 		return;
 	}
 
@@ -124,8 +124,8 @@ void LinkedList<k>::deleteData(k pData){
 			Node<k>* pDelete = _tail;	//Se guarda el puntero en una variable temporal
 			_tail = tmpNode;
 			_tail->setNext(_head);		//Se libera la memoria de la variable temporal
-			_length--;
 			delete pDelete;
+			_length--;
 			return;
 		}
 		else{

@@ -85,6 +85,12 @@
     position: fixed;
     border: 1px solid black;
 }
+#GodsTable{
+    width: 350px;
+    top: 464px;
+    position: fixed;
+    border: 1px solid black;
+}
 #EncabezadoDeTabla{
     width: 100px;
     box-sizing: border-box;
@@ -103,6 +109,16 @@
     border: groove 5px;
 
  }
+#DiosesCanvas {
+    background-size: 900px 580px;
+    width: 700px;
+    height: 578px;
+    position: fixed;
+    resize: both;
+    top: 50px;
+    left: 10px;
+
+}
 #Menu {
 
     background-color: #61765e;
