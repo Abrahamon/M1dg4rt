@@ -56,7 +56,6 @@ int Random::get(char pData){
     ardu >> buffer;
 	sscanf(buffer,"%d",&RandomData);
 	//usleep(100000);
-	//ardu.clear();
     return RandomData;
 }
 

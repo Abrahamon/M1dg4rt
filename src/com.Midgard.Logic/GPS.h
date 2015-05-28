@@ -17,7 +17,6 @@
 class GPS {
 private:
 	PyArray<char>* _map;
-	Entity* _Owner;
 	LinkedList<Cell*>* _closedList;
 	LinkedList<Cell*>* _pathList;
 
@@ -28,7 +27,7 @@ private:
 
 
 public:
-	GPS(Entity* pOwner);
+	GPS();
 	virtual ~GPS();
 	void findPath(Entity* pEnd);
 	bool getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,bool retry);

@@ -7,8 +7,7 @@
 
 #include "GPS.h"
 
-GPS::GPS(Entity* pOwner) {
-	_Owner = pOwner;
+GPS::GPS() {
 	_map = new PyArray<char>(30,30);
 	_closedList = new LinkedList<Cell*>();
 	_pathList = new LinkedList<Cell*>();
@@ -32,17 +31,12 @@ bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,boo
 
 	while(!finished){
 		LinkedList<Cell*>* _openList = new LinkedList<Cell*>();
-		std::cout << "CLOSEEEEED LIST LENGHT: "<< _closedList->getLength() << std::endl;
 		if(pX == endX && pY == endY){
 
 			finished = true;
 			return true;
 		}
 		else{
-
-			std::cout << "currentX " << (int) pX << std::endl;
-			std::cout << "currentY " << (int) pY << std::endl;
-
 			Cell* topCell = new Cell();
 			Cell* bottomCell = new Cell();
 			Cell* leftCell = new Cell();
@@ -104,8 +98,6 @@ bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,boo
 			pG++;	//Aumentar el G actual en 1, pues se avanzó una celda.
 			pX = newCell->getX();
 			pY = newCell->getY();
-
-			std::cout << "=========" << std::endl;
 			//sleep(2);
 		}
 	}
@@ -179,7 +171,7 @@ bool GPS::isOnClosedList(Cell* pCell){
 }
 
 void GPS::loadMap(){
-	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba8.map");
+	ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba1.map");
 
 	int mat = 0;
 		if (MapFile.is_open()){
