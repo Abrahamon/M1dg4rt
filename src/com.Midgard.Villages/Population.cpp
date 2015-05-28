@@ -345,14 +345,11 @@ LinkedList<Entity*>* Population::getArmy(){
 }
 
 void Population::receiveAttack(int pNumeroDeMuertes){
-	cout<< "Numero de ataque: "<<pNumeroDeMuertes<< endl;
-	cout<< "PRE: "<<_individuos->getLength()<< endl;
 	Node<Entity*>* tmp = _individuos->getHead();
 	for(int j =0; j<pNumeroDeMuertes;j++){
 		tmp = tmp->getNext();
 		_individuos->deleteData(tmp->getPrevious()->getData());
 	}
-	cout<< "POST: "<<_individuos->getLength()<< endl;
 	return;
 }
 

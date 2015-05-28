@@ -46,8 +46,10 @@ private:
 	static int reportFrecuency;
 	static int timeInSeconds;
 	static int timeSinceLastWar;
+	static int MaxGenerations;
 
-	static bool fightTheGods();
+	static int* fightTheGods();
+	static bool ContinueFight(int PopMembers[4], God* Dioses[4]);
 	static int getBestFighterOption(Population* popA, Population* popB);
 	static void resetJSONs();
 
@@ -66,7 +68,6 @@ public:
 	static void* ElvesGeneration(void* pPop);
 	static void* GiantsGeneration(void* pPop);
 	static void* consoleLog(std::string pPopulation,short pGeneration);
-	static void* Fight();
 	static void* TimeController(void* pPop);
 
 
