@@ -44,7 +44,6 @@ PyArray<k>::PyArray(int NumberOfRows, int NumberOfColumns) {
 	}*/
 	for(int i = 0; i < NumberOfRows; i++){
 		LinkedList<k>* tmp = new LinkedList<k>();
-		int x = i;
 		for(int j = 0; j < NumberOfColumns; j++){
 			tmp->insertTail(0);
 		}
