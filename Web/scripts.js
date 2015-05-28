@@ -1,8 +1,14 @@
 var c = document.getElementById("MapaCanvas");
 var ctx = c.getContext("2d");
+var cd = document.getElementById("DiosesCanvas");
+var ctxDioses = cd.getContext("2d");
 
 var img = document.getElementById("mapa");
 var imgPelea = document.getElementById("mapaPelea");
+var lenin = document.getElementById("Lenin");
+var Mauricio = document.getElementById("Mauricio");
+var fabian = document.getElementById("Fabian");
+var Abraham = document.getElementById("Abraham");
 imgPelea.width=100;
 ctx.drawImage(img,0,0);
 
@@ -135,7 +141,14 @@ app.controller('TableData', function($scope, $http, $interval) {
         $http.get("JSON/GodsWar.json").success(function (response) {
             $scope.FightGods = response.records[0].War;
             if($scope.FightGods == "true"){
+                $interval(function(){ctxDioses.drawImage(lenin,50,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(Mauricio,210,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(fabian,370,100,140,200);},100,1)
+                $interval(function(){ctxDioses.drawImage(Abraham,530,100,140,200);},100,1)
                 if($scope.GodsSet == false){
+
+
+
                     x1 =10;
                     y1 = 310;
 
@@ -149,6 +162,22 @@ app.controller('TableData', function($scope, $http, $interval) {
                     y4 = 310;
                     $scope.GodsSet = true;
                 }
+
+            }
+            if($scope.FightGods == "false"){
+                cd.width = cd.width;
+                x1 = 30;
+                y1 = 0;
+
+                x2 = 540;
+                y2 = 0;
+
+                x3 = 30;
+                y3 = 330;
+
+                x4 = 530;
+                y4 = 330;
+                $scope.GodsSet = false;
             }
         });
     },1000)

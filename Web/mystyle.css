@@ -109,6 +109,16 @@
     border: groove 5px;
 
  }
+#DiosesCanvas {
+    background-size: 900px 580px;
+    width: 700px;
+    height: 578px;
+    position: fixed;
+    resize: both;
+    top: 50px;
+    left: 10px;
+
+}
 #Menu {
 
     background-color: #61765e;
