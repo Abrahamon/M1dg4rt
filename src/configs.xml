@@ -7,7 +7,7 @@
 	<GENERATION_SLEEP_uSeconds value="100000"/>
 	<FRECUENCY_REPORT_SECONDS value="10"/>
 	<FIGHT_FRECUENCY value="10"/>
-	<HARDWARE_CONFIG value = "false"/>
+	<HARDWARE_CONFIG value = "true"/>
 	<REPRODUCTION_PER_GENERATION value = "1" />
 	<NUMBER_CHILDS_PER_PARENTS value = "1" />
 	<PROBABILIDAD_DE_MUTAR value = "10000" />
