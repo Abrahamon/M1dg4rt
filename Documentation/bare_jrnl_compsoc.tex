@@ -81,7 +81,7 @@
         Fabian Solano\\
         e-mail:fasm2296@gmail.com\\
         Lenin Torres\\
-        e-mail:ttvleninj@gmail.com\\
+        e-mail:ttvleninn@gmail.com\\
         Mauricio Montero Jiménez\\
         e-mail:maumonteroj@gmail.com\\
 }
@@ -111,7 +111,11 @@ Our code will represent concurrently each time a given number of different civil
 
 \section{User Manual}
 
-
+This project was created in three environments, the main core was developed with C++ 11, compiled with GCC and G++ in Linux with Eclipse. The graphical interface was created with Angular JS, and a map editor with Python using the Tkinter library. 
+To run the logic core, you must have installed and configured Lib Serial, to allow serial communication with the random number generator, but if is desired in the XML configuration file , setup the Hardware variable to false, in that case all our code will use the ran library provided by the standard library in C++.//*
+Other configurable variables in that XML file are for example MAX POBLACION INICIAL which indicate the starting number of individuals in each generation. CANTIDAD MAX GENERACIONES indicates the maximum number of allowed generations. REPRODUCTION PER GENERATION a value from 0 to 1, increase the maximum number of reproductions by generation. PROBABILIDAD DE MUTAR is for mutation probability. And the attributes of the goods life, and defense. The meaning of each variable will be explained ahead.//*
+Now for the GUI, just find and execute in the Web folder the only HTML file, that file automatically reads the Json files to show a representation of what is happening. This means that the only step is to search the midgard.cpp file and execute it, then the rest happens by their own, and the web page is updated very close to real time.//*
+When a fight with goods appears the simulation has reach almost its end, this is the last module, which shows the end and its result.//
 
 \section{Libraries and functions}
 
@@ -207,7 +211,7 @@ Our code will represent concurrently each time a given number of different civil
             
     	\item Bit Vector\\
         The bit vector is a class that we each bit position can be accessed individually which allows us to control a value at the bit level \cite{2}. This class is particularized to use logical operators (OR, AND, or other) against the value or bit string that will be used to get a bit of value in any position or place a bit of value in any position.\\ 
-        In this specific problem, a human genome where each chromosome is a series of bits are simulated, where the bit vector allows us to change or get a bit of each chromosome.The following algorithms are used to implement the bit vector.\\ 
+        In this specific problem, a human genome where each chromosome is a series of bits are simulated, where the bit vector allows us to change or get a bit of each chromosome\cite{36}.The following algorithms are used to implement the bit vector.\\ 
         \begin{figure}[h!]
         \centering
         \includegraphics[width=\columnwidth]{src/bitvectortomar.png}
@@ -219,7 +223,7 @@ Our code will represent concurrently each time a given number of different civil
         \includegraphics[width=\columnwidth]{src/bitvectorponer.png}
         \caption{Bitvector Method}
         \end{figure}
-        The images show the method to take and put a bit,long way in putting a method that returns the length of a binary number. In the method take is used a mask of 0s and in the method put is uses a mask of 0s and 1s.
+        The images show the method to take and put a bit,long way in putting a method that returns the length of a binary number. In the method take is used a mask\cite{35} of 0s and in the method put is uses a mask of 0s and 1s.
 
 \end{enumerate}
 
@@ -230,7 +234,7 @@ During the first days of development we analyze the importance of develop the ci
 \begin{enumerate} 
 	\item Random Number Generator by IC 4017 and 4011\\
     
-    After some research we realize that many people use the 4017 IC to generate random numbers so we try to use it to our project. But before doing it physically we prefer to run it on a circuit simulator program such as MultiSim, which allowed us to identify if the circuit will actually work or not. After some tests in the program, the circuit was not doing its full functionality as expected.
+    After some research we realize that many people use the 4017 IC to generate random numbers so we try to use it to our project. But before doing it physically we prefer to run it on a circuit simulator program such as MultiSim, which allowed us to identify if the circuit will actually work or not. After some tests in the program, the circuit was not doing its full functionality as expected.\cite{23} \cite{28}
     \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\columnwidth]{src/Rand_V1.jpg}
@@ -393,10 +397,6 @@ This is a theoretical complexity analysis.
 
 
 
-
-
-
-
 \section{Implemented methods} 
 	\begin{enumerate}
     
@@ -404,7 +404,7 @@ This is a theoretical complexity analysis.
     
     In computer science, A* is a computer algorithm that is used in path finding and graph moving, the process of plotting an efficiently traversal path between multiple points, called nodes or blocks. This is mainly used because of its performance and accuracy, it enjoys widespread use. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance.\\
 
-Peter Hart, Nils Nilsson and Bertram Raphael of Stanford Research Institute first described the algorithm in 1968.It is an extension of Edsger Dijkstra's 1959 algorithm. A* achieves better time performance by using heuristics. Heuristic refers to the estimated movement cost to move from the given square on the grid to the final destination. The A* algorithm can be complicated at first, but by doing some research, reading about the implementation and by identify some examples around the web, understanding the main concept is really simple.\\
+Peter Hart, Nils Nilsson and Bertram Raphael of Stanford Research Institute first described the algorithm in 1968.It is an extension of Edsger Dijkstra's 1959 algorithm. A* achieves better time performance by using heuristics. Heuristic refers to the estimated movement cost to move from the given square on the grid to the final destination. The A* algorithm can be complicated at first, but by doing some research, reading about the implementation and by identify some examples around the web, understanding the main concept is really simple.\cite{24} \cite{30} \cite{34}\\
 
 	\begin{enumerate}[Algorithm's Steps]
     
@@ -445,7 +445,7 @@ H = the estimated movement cost to move from that given square on the grid to th
     
     \item Map Editor\\
     A* Algorithm requires a lot of testing to verify its functionality, but manually modifying the matrix each time we want to test some changes to the algorithms design its kind of boring and complicated. To avoid manually modifying the matrix, a Map Editor was developed. This simple program was developed in Python 2.7 under Linux, the Python language was used to do so, because of its simplicity to develop the graphical user interface.\\
-    Program functionality is really basic, it just identifies the current mouse coordinates inside the screen, and map it to a single matrix position, depending on the users path selection it changes the number in the matrix, the only walkable path is grass, which is represented by a "1", in the matrix. Other kinds of terrains are represented by numbers greater than "1". The following picture shows the Map Editor window, and a map loaded.
+    Program functionality is really basic, it just identifies the current mouse coordinates inside the screen, and map it to a single matrix position, depending on the users path selection it changes the number in the matrix, the only walkable path is grass, which is represented by a "1", in the matrix. Other kinds of terrains are represented by numbers greater than "1". The following picture shows the Map Editor window, and a map loaded.\cite{25}
     \begin{figure}[h!]
         \centering
         \includegraphics[width=\columnwidth]{src/MapEditor.png}
@@ -462,14 +462,14 @@ H = the estimated movement cost to move from that given square on the grid to th
 	As we have learned put some programmers to code by them selfs, so each make individual assumptions along  the project, and guessing about does not lead to success. That is why we decide to work as a whole team, approaching a least in some part some principles of several Techniques of algorithm's designs.
 \begin{enumerate}
 	\item Genetic Algorithm \\
-    Our while project is base in this probabilistic techniques. The reason why we use genetic algorithms, is because on the first place we do not know in which environment our solution will be tested, that environment is defined by random goods created at the beginning, also with our villages. Otherwise a brute force solution may take too many attempts, even with some trimmings to the solutions, because it will have to start testing from scratch solution by solution. That's the reason why in this presented problem we took this approach. 
+    Our while project is base in this probabilistic techniques. The reason why we use genetic algorithms, is because on the first place we do not know in which environment our solution will be tested, that environment is defined by random goods created at the beginning, also with our villages. Otherwise a brute force solution may take too many attempts, even with some trimmings to the solutions, because it will have to start testing from scratch solution by solution. That's the reason why in this presented problem we took this approach. \cite{29}
 
 
 \end{enumerate}
 
 \section{Results}
 
-To ensure very representative data, we take 30 samples, and show an average, whenever possible.\\
+To ensure very representative data, we take 30 samples, and show an average, whenever possible.\cite{26} \cite{27}\\
 
 \begin{enumerate}
 \item {Genetic Algorithm Tests}\\
@@ -620,105 +620,22 @@ As we can see in figures \ref{fig:256n2048v},\ref{fig:256n4096v} and \ref{fig:25
 
 	\item Singleton Pattern.
     This type of design pattern comes under creational pattern. In many situations we just want only and just one instance of an object. In our project we developed a class to handle all our constants, throughout the whole project it is not necessary to have two objects, to accomplish this this class contains a static method, which returns a instance of the only object created along the running program.    
-    
 	\end{enumerate}
-    
-\section{Activities by student}
-
-Activities references \cite{LaTeXTemplates } \cite{10} \cite{11}\cite{latexjorg}
-
-\begin{table}[h!]
-\centering
-\caption{Abraham's Activities}
-\begin{tabular}{c c c}
-\omit
-{\bf Date}&{\bf Hours}&{\bf Activity}\\  \hline
-{$05/16$}&{$1,5$}&{$Requirement analysis$}\\
-{$05/17$}&{$1$}&{$SVN for code and documentation$}\\
-{$05/20$}&{$4$}&{$Hierarchy of classes $}\\
-{$05/26$}&{$4$}&{$crossover without bit Vector$}\\
-{$05/00$}&{$2$}&{$Entities, vilalges classes $}\\
-{$05/28$}&{$4$}&{$Fitness Function$}\\
-{$05/29$}&{$5$}&{$We tried OpenCv$}\\
-{$05/30$}&{$2$}&{$Population with our random$}\\
-{$06/01$}&{$3$}&{$Graphs for random numbers$}\\
-{$06/02$}&{$2$}&{$Death and selection functions$}\\
-{$06/03$}&{$2$}&{$Documentation$}\\
-{$06/08$}&{$2$}&{$deviation of the genetic information$}\\
-{$06/20$}&{$2$}&{$Documentation$}\\
-\end{tabular}
-\end{table}
 
 
-\begin{table}[h!]
-\centering
-\caption{Fabian's Activities}
-\begin{tabular}{c c c}
-\omit
-{\bf Date}&{\bf Hours}&{\bf Activity}\\  \hline
-{$05/22/15$}&{$3$}&{$Initial project setup meeting$}\\
-{$05/23/15$}&{$3$}&{$Random number circuit research$}\\{$05/23/15$}&{$2$}&{$Setupo random number problem$}\\
-{$05/24/15$}&{$3$}&{$New research for a random number circuit$}\\
-{$05/24/15$}&{$2$}&{$Circuit emulation using MultiSim 12$}\\
-{$05/24/15$}&{$3$}&{$Test the circuit on breadboard$}\\
-{$05/24/15$}&{$2$}&{$Elaboration of the circuit on PCB$}\\
-{$05/25/15$}&{$2$}&{$Check circuit usability$}\\
-{$05/25/15$}&{$4$}&{$Basic classes for the simulation$}\\
-{$05/25/15$}&{$1$}&{$TinyXML installation, Constatns Class$}\\
-{$05/25/15$}&{$4$}&{$Genome,Entity classes and main logic$}\\
-{$05/25/15$}&{$4$}&{$Random name obtainer for Entity class$}\\
-{$05/25/15$}&{$2$}&{$Arduino and C++ communication$}\\
-{$05/26/15$}&{$2$}&{$Changed the circuit power supply$}\\
+\section{User Interface}
+	
+    UI was developed in HTML5 and used AngularJS to add more functionalities, AngularJs  is a Front-end technology, you can desing good UI in less lines of code. The UI is a web page, to run the graphics user interface need open the page and run the main program in C++. The main program run the genetic algorithm and sent  information in files with .Json extension. Using the \$interval function, AngularJs read from json periodically and update the information of the civilization, like a generation and number of members. The name of the civilization is a button of HTML, if you click in some button in other chart you can see a list of members, and this members are buttons, everyone of this buttons fill a new chart with the information of members, information like a name, attack, speed, defense, intelligence, magic, energy, blot and runes power. the civilization are represented with points in groups in the corners, when two civilization go to war the points go to the center of the map.
+    \cite{37}
+    \cite{38}
+    \cite{39}
+     \begin{figure}[h!]
+    \centering
+    \includegraphics[width=\columnwidth]{src/UI.jpg}
+	\caption{UI web page}
+    \label{fig:2n4096v}
+    \end{figure}
 
-
-\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\caption{Lenin's Activities}
-\begin{tabular}{c c}
-\omit
-{\bf Date}&{\bf Activity}\\  \hline
-{$2015-05-16$}&{$First Requirement analysis, setup of the SVN$}\\
-{$$}&{}\\
-{$$}&{}\\
-{$$}&{}\\
-{$$}&{}
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{Mauricio's Activities}                                                                                                                      \\ \hline
-Date     & hours & Activity                                                                                                                                    \\ \hline
-04/16/15 & 1,5   & First Requirement analysis, setup of the SVN                                                                                                \\ \hline
-04/17/15 & 1     & Investigated of genetic algorithms                                                                                                          \\ \hline
-04/18/15 & 1     & do documentation                                                                                                                            \\ \hline
-04/22/15 & 4     & \begin{tabular}[c]{@{}l@{}}Tasks are assigned to each job in the circuit \\ and crossover\end{tabular}                                      \\ \hline
-04/23/15 & 3     & I work in a circuit with sensor signal                                                                                                      \\ \hline
-04/26/15 & 0.5   & Do documentation                                                                                                                            \\ \hline
-04/28/15 & 2     & Work on the circuit is connected with Arduino                                                                                               \\ \hline
-04/29/15 & 5     & Group meeting, I work in OpenCV.                                                                                                            \\ \hline
-04/30/15 & 8     & \begin{tabular}[c]{@{}l@{}}I created an algorithm that obtains over a \\ number and created a method that performs \\ mutation\end{tabular} \\ \hline
-05/01/15 & 2     & Work in mutation and inversion.                                                                                                             \\ \hline
-05/02/15 & 4     & Work in mutation, inversion and documentation                                                                                               \\ \hline
-05/03/15 & 2     & Fix bug in inversion                                                                                                                        \\ \hline
-05/06/15 & 3     & Reunion grupal, trabajo en el bit vector                                                                                                    \\ \hline
-05/07/15 & 2     & finished the bit vector                                                                                                                     \\ \hline
-05/08/15 & 5     & \begin{tabular}[c]{@{}l@{}}I created an algorithm for the crossover, \\ mutation and investment using the bit vector\end{tabular}           \\ \hline
-05/10/15 & 2     & I work in the crossover error                                                                                                               \\ \hline
-05/14/15 & 2.5   & \begin{tabular}[c]{@{}l@{}}Investigate how to solve the problem and \\ fix it crossover\end{tabular}                                        \\ \hline
-05/19/15 & 8     & \begin{tabular}[c]{@{}l@{}}Documentation, work on the part of \\ selection of individuals to go to fight\end{tabular}                       \\ \hline
-05/21/15 & 5     & Group meeting                                                                                                                               \\ \hline
-05/24/15 & 5     & \begin{tabular}[c]{@{}l@{}}Group meeting, I work in documentation and \\ GUI\end{tabular}                                                   \\ \hline
-05/25/15 & 2     & I work in documentation                                                                                                                     \\ \hline
-\end{tabular}
-\end{table}
-
-
-\cite{LaTeXTemplates}
 
 \section{Encountered problems}
 \begin{enumerate}
@@ -802,7 +719,14 @@ Date     & hours & Activity                                                     
     this attempt we force the arduino to do all the shifts and comparisons, but take too much time. So we decided that the C++ should get random bits from the circuit and create by his own the number.
     
     \item Random Number Generator Problem\\
-    The random number generator didn't generate the last number for 3 bits. For numbers greater than 3 bits, numbers greater than x=2n-n are not generated. 
+    The random number generator didn't generate the last number for 3 bits. For numbers greater than 3 bits, numbers greater than x=2n-n are not generated.
+    
+    \item Work without bit vector\\
+    
+    Without the bit vector processing crossover it is very repetitive to insert each bit in a child, in addition to the mutation is done almost everything that is done in the bit vector and the investment function becomes as calling mutation often besides all these would perform almost the same functions often
+    
+     \item Write Json from AngularJS\\
+    Read Json file from AngularJS is too easy, but write a Json file is quite hard. As angular is oriented to be on the web and not work directly with the hard drive, this makes the action more difficult.For this reason only read in AngularJS. 
 	
 \end{enumerate}
 
@@ -814,7 +738,9 @@ Date     & hours & Activity                                                     
     \item A GA will try to figure out the best solution to a problem based on probabilistic results, data and numbers. Each time a generation is created, it is expected that the whole population fitness will increased.
     \item Implement design patterns such as a Singleton, its really useful because it helps to make the code more flexible and legible. A Singleton pattern is useful when we need an specific class and its variables to be available to all other classes, for example the Constants class.
     \item Its important to use , when using pthreads in the program. The mutex reduce problems associated with many methods or classes trying to access the same variables or methods at a time, by locking the information and unlocking it when the pthread has finished using it.
-    \item Every approach has its own weakness, that is why sometimes some may produce very efficient solutions and other not so. After understanding the problem many analyzes should happen to ensure the reduce the complexity.\cite{22}   
+    \item Every approach has its own weakness, that is why sometimes some may produce very efficient solutions and other not so. After understanding the problem many analyzes should happen to ensure the reduce the complexity.\cite{22} 
+    \item The different types of crossover always maintain a constant range of variation between parents and children, he only way to get a different and single value in some occasions is through mutation or investment.
+    \item The use of masks, shifts and logical operators are the best way to work at the bit level.
 \end{enumerate}
 
 
@@ -823,11 +749,140 @@ Date     & hours & Activity                                                     
 
 	The class diagram is attached with this document.\\
     
-    All our code is free and available at:\\ https://github.com/Abrahamon/M1dg4rt.git \\ 
+    All our code is Open source and available at:\\ https://github.com/Abrahamon/M1dg4rt.git \\ 
 
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibfile}
+
+\section{Activities by student}
+
+Activities references \cite{LaTeXTemplates } \cite{10} \cite{11}\cite{latexjorg} \cite{31}\cite{32}\cite{33}\\*
+
+\begin{table}[h!]
+\centering
+\caption{Abraham's Activities}
+\begin{tabular}{c c c}
+\omit
+{\bf Date}&{\bf Hours}&{\bf Activity}\\  \hline
+{$05/16$}&{$1,5$}&{$Requirement analysis$}\\
+{$05/17$}&{$1$}&{$SVN for code and documentation$}\\
+{$05/20$}&{$4$}&{$Hierarchy of classes $}\\
+{$05/26$}&{$4$}&{$crossover without bit Vector$}\\
+{$05/00$}&{$2$}&{$Entities, vilalges classes $}\\
+{$05/28$}&{$4$}&{$Fitness Function$}\\
+{$05/29$}&{$5$}&{$We tried OpenCv$}\\
+{$05/30$}&{$2$}&{$Population with our random$}\\
+{$06/01$}&{$3$}&{$Graphs for random numbers$}\\
+{$06/02$}&{$2$}&{$Death and selection functions$}\\
+{$06/03$}&{$2$}&{$Documentation$}\\
+{$06/08$}&{$2$}&{$deviation of the genetic information$}\\
+{$06/20$}&{$2$}&{$Documentation$}\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Lenin's Activities}
+\begin{tabular}{c c c}
+\omit
+{\bf Date}&{\bf Hours}&{\bf Activity}\\  \hline
+{$04/23$}&{$3$}&{$Research for web development$}\\
+{$04/26$}&{$3$}&{$Write in Json$}\\
+{$04/29$}&{$2$}&{$Draw points in Angular $}\\
+{$05/03$}&{$3$}&{$Read Json in Angular$}\\
+{$05/08$}&{$2$}&{$Table of information $}\\
+{$05/12$}&{$3$}&{$Move points around map$}\\
+{$05/15$}&{$4$}&{$Try read Json in Angular$}\\
+{$05/17$}&{$2$}&{$Points go to war$}\\
+{$05/19$}&{$3$}&{$Separate Json information$}\\
+{$05/23$}&{$2$}&{$Family tree$}\\
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Fabian's Activities}
+\begin{tabular}{c c c}
+\omit
+{\bf Date}&{\bf Hours}&{\bf Activity}\\  \hline
+{$04/22/15$}&{$3$}&{$Initial project setup meeting$}\\
+{$04/23/15$}&{$3$}&{$Random number circuit research$}\\{$04/23/15$}&{$2$}&{$Setupo random number problem$}\\
+{$04/24/15$}&{$3$}&{$New research for a random number circuit$}\\
+{$04/24/15$}&{$2$}&{$Circuit emulation using MultiSim 12$}\\
+{$04/24/15$}&{$3$}&{$Test the circuit on breadboard$}\\
+{$04/24/15$}&{$2$}&{$Elaboration of the circuit on PCB$}\\
+{$04/25/15$}&{$2$}&{$Check circuit usability$}\\
+{$04/25/15$}&{$4$}&{$Basic classes for the simulation$}\\
+{$04/25/15$}&{$1$}&{$TinyXML installation, Constatns Class$}\\
+{$04/25/15$}&{$4$}&{$Genome,Entity classes and main logic$}\\
+{$04/25/15$}&{$4$}&{$Random name obtainer for Entity class$}\\
+{$04/25/15$}&{$2$}&{$Arduino and C++ communication$}\\
+{$04/26/15$}&{$2$}&{$Changed the circuit power supply$}\\
+{$04/27/15$}&{$2.5$}&{$Map Editor development$}\\
+{$04/27/15$}&{$1$}&{$C++ Algorithm to read map matrix$}\\
+{$04/28/15$}&{$1$}&{$OpenCV Installation and research$}\\
+{$04/29/15$}&{$3$}&{$Find and correct Genetic Algorithm errors$}\\
+{$04/29/15$}&{$1.5$}&{$Correct errors with ifStream$}\\
+{$04/30/15$}&{$1.5$}&{$Array's class development$}\\
+{$04/30/15$}&{$1$}&{$Correct LibSerial Library errors$}\\
+{$05/5/15$}&{$1.5$}&{$Load method to upload map contents to World$}\\
+{$05/6/15$}&{$1.5$}&{$Correction on getAge() method$}\\
+{$05/8/15$}&{$1.5$}&{$Set and get methods to change values in Matrix$}\\
+{$05/8/15$}&{$4$}&{$Implementation of a GPS and Cell Classes$}\\
+{$05/9/15$}&{$3$}&{$GA testing with new Mutation method$}\\
+{$05/15/15$}&{$4$}&{$Development of some GUI details with AngularJS$}\\
+{$05/19/15$}&{$3$}&{$pThreads and Mutex research$}\\
+{$05/19/15$}&{$4$}&{$pThreads implementation on GA$}\\
+{$05/20/15$}&{$4$}&{$Testing and graphing Genetic Algorithm results$}\\
+{$05/20/15$}&{$4$}&{$Random class$}\\
+{$05/22/15$}&{$4$}&{$Correct pthreads errors, using Mutex$}\\
+{$05/23/15$}&{$4$}&{$JSON Writer methods for GUI/Logic Communication$}\\
+{$05/23/15$}&{$5$}&{$Simulation's main logic$}\\
+{$05/23/15$}&{$2$}&{$God's fight logic$}\\
+{$05/24/15$}&{$2$}&{$Methods for receive attack$}\\
+
+
+
+
+
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+\begin{tabular}{lll}
+\hline
+\multicolumn{3}{c}{Mauricio's Activities}                                                                                                                      \\ \hline
+Date     & hours & Activity                                                                                                                                    \\ \hline
+04/16/15 & 1,5   & First Requirement analysis, setup of the SVN                                                                                                \\ \hline
+04/17/15 & 1     & Investigated of genetic algorithms                                                                                                          \\ \hline
+04/18/15 & 1     & do documentation                                                                                                                            \\ \hline
+04/22/15 & 4     & \begin{tabular}[c]{@{}l@{}}Tasks are assigned to each job in the circuit \\ and crossover\end{tabular}                                      \\ \hline
+04/23/15 & 3     & I work in a circuit with sensor signal                                                                                                      \\ \hline
+04/26/15 & 0.5   & Do documentation                                                                                                                            \\ \hline
+04/28/15 & 2     & Work on the circuit is connected with Arduino                                                                                               \\ \hline
+04/29/15 & 5     & Group meeting, I work in OpenCV.                                                                                                            \\ \hline
+04/30/15 & 8     & \begin{tabular}[c]{@{}l@{}}I created an algorithm that obtains over a \\ number and created a method that performs \\ mutation\end{tabular} \\ \hline
+05/01/15 & 2     & Work in mutation and inversion.                                                                                                             \\ \hline
+05/02/15 & 4     & Work in mutation, inversion and documentation                                                                                               \\ \hline
+05/03/15 & 2     & Fix bug in inversion                                                                                                                        \\ \hline
+05/06/15 & 3     & Reunion grupal, trabajo en el bit vector                                                                                                    \\ \hline
+05/07/15 & 2     & finished the bit vector                                                                                                                     \\ \hline
+05/08/15 & 5     & \begin{tabular}[c]{@{}l@{}}I created an algorithm for the crossover, \\ mutation and investment using the bit vector\end{tabular}           \\ \hline
+05/10/15 & 2     & I work in the crossover error                                                                                                               \\ \hline
+05/14/15 & 2.5   & \begin{tabular}[c]{@{}l@{}}Investigate how to solve the problem and \\ fix it crossover\end{tabular}                                        \\ \hline
+05/19/15 & 8     & \begin{tabular}[c]{@{}l@{}}Documentation, work on the part of \\ selection of individuals to go to fight\end{tabular}                       \\ \hline
+05/21/15 & 5     & Group meeting                                                                                                                               \\ \hline
+05/24/15 & 5     & \begin{tabular}[c]{@{}l@{}}Group meeting, I work in documentation and \\ GUI\end{tabular}                                                   \\ \hline
+05/25/15 & 2     & I work in documentation                                                                                                                     \\ \hline
+\end{tabular}
+\end{table}
+
+
+\cite{LaTeXTemplates}
+
 
 
 \end{document}
