@@ -218,7 +218,7 @@ void* World::GiantsGeneration(void* pPop){
 }
 
 bool World::ContinueFight(int PopMembers[4], God* Dioses[4]){
-	if(PopMembers[0] <= 0 && PopMembers[1] <= 0 && PopMembers[2] <= 0 && PopMembers[3] <= 0) return false;
+	if(PopMembers[0] <= 1 && PopMembers[1] <= 1 && PopMembers[2] <= 1 && PopMembers[3] <= 1) return false;
 	else if(Dioses[0]->getLife() <= 0 && Dioses[1]->getLife() <= 0 &&
 			Dioses[2]->getLife() <= 0 && Dioses[3]->getLife() <= 0) return false;
 	else{
@@ -244,6 +244,7 @@ void World::fightTheGods(){
 	while(ContinueFight(PopMembers,Dioses) == true){
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 4; j++){
+				if (ContinueFight(PopMembers,Dioses) == false) break;
 				if(PopMembers[j] > 0){
 					Node<Entity*>* tmpEntity = ListaPueblos[j]->getIndividuals()->getHead();
 					int AtaquePoblacion = 0;
@@ -442,6 +443,8 @@ void* World::TimeController(void* pPop){
 			cout<<"################################"<< endl;
 			Constants::resetVillagesLinageCounter();
 			_RunningSimulation=false;
+			system("mplayer -really-quiet success.ogg");
+			system("mplayer -really-quiet simulationEnded.ogg");
 			cout<<" "<<endl;
 		}
 		sleep(1);
