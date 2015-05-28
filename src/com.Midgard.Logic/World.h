@@ -49,8 +49,12 @@ private:
 	static int timeInSeconds;
 	static int timeSinceLastWar;
 	static int MaxGenerations;
+	static int _finalDwarvesPopulation;
+	static int _finalDarkElvesPopulation;
+	static int _finalElvesPopulation;
+	static int _finalGiantsPopulation;
 
-	static int* fightTheGods();
+	static void fightTheGods();
 	static bool ContinueFight(int PopMembers[4], God* Dioses[4]);
 	static int getBestFighterOption(Population* popA, Population* popB);
 	static void resetJSONs();

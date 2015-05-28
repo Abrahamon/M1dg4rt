@@ -14,7 +14,7 @@ void loop() {
     
     int exponente = incomingByte-48;
  //   Serial.println(exponente);
-    Serial.println(getNumber(exponente));
+    Serial.println(randomBit());
   
   }
   //Serial.println(analogRead(input));

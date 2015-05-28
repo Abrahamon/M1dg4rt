@@ -21,9 +21,9 @@ class Random {
 
 private:
 
-	SerialStream ardu;
+	static SerialStream ardu;
 	static Random* _SlaveRandom;
-	int get(char pData);
+	static int get(char pData);
 	char getChar(int pData);
 	char _Dictionary[18]={'0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?'};
 	void initConnection();
@@ -34,6 +34,8 @@ public:
 	int getRandomNumber(int pMax);
 	bool getRandomBool();
 	Random* getInstance();
+	static int getNumber(int MaxType);
+	static int randomNumber(int numArray[],int ind,int resultado,int maxType);
 };
 
 #endif /* COM_MIDGARD_RESOURCES_RANDOM_H_ */
