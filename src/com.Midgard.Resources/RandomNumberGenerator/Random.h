@@ -25,13 +25,13 @@ private:
 	static Random* _SlaveRandom;
 	static int get(char pData);
 	char getChar(int pData);
-	char _Dictionary[18]={'0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?'};
+//	char _Dictionary[18]={'0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?'};
 	void initConnection();
 
 public:
 	Random();
 	virtual ~Random();
-	int getRandomNumber(int pMax);
+	static int getRandomNumber(int pMax);
 	bool getRandomBool();
 	Random* getInstance();
 	static int getNumber(int MaxType);

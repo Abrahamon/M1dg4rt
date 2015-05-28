@@ -34,7 +34,6 @@ public:
 	void vaciar();
 	Node<k>* getHead();
 	Node<k>* getTail();
-	Node<k>* getPos(int n);
 	int getLength();
 	bool isEmpty();
 	bool findData(k pData);
@@ -45,20 +44,6 @@ Node<k>* LinkedList<k>::getHead(){ return _head; }
 
 template<class k>
 Node<k>* LinkedList<k>::getTail(){ return _tail; }
-
-template<class k>
-Node<k>* LinkedList<k>::getPos(int n){
-	if(_length == 0 || n >= _length)
-		return 0;
-	else{
-		Node<k>* resp = _head;
-		for(int i = 0; i<NULL;i++){
-			if(i==n-1){
-				return resp;
-			}
-		}
-	}
-}
 
 template<class k>
 int LinkedList<k>::getLength(){ return _length; }
@@ -91,9 +76,8 @@ template<class k>
 //Node<k>* LinkedList<k>::insertTail(k pData){
 void LinkedList<k>::insertTail(k pData){
 	Node<k>* tmp = new Node<k>(pData);
-	cout<<"1: "<<_head->getData()<<endl;
+
 	if(_head == 0){
-		cout<<"1: "<<_head->getData()<<endl;
 		_length++;
 		_head = tmp;
 		_tail = _head;

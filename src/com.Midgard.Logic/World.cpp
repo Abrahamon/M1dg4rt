@@ -59,14 +59,17 @@ World::World() {
 	MaxGenerations = Constants::CANTIDAD_MAX_GENERACIONES;
 
 	if(Constants::DWARVES=="true"){
+		cout<<"fin344\n";
 		_Dwarves = new Dwarves();
 	}
+	cout<<"fin2\n";
 	if(Constants::ELVES=="true")
 		_Elves = new Elves();
 	if(Constants::DARK_ELVES=="true")
 		_Dark_Elves = new Dark_Elves();
 	if(Constants::GIANTS=="true")
 		_Giants = new Giants();
+	cout<<"fin\n";
 	this->onsetOfGoods();
 }
 
@@ -282,7 +285,7 @@ void World::fightTheGods(){
 
 					string currentGeneration = lexical_cast<string>(MaxGenerations);
 					int PoblacionRestante = PopMembers[j] - AtaqueDios;
-					if(PoblacionRestante < 0) PoblacionRestante = 0;
+					if(PoblacionRestante < 0) PoblacionRestante = 1;
 
 					PopMembers[j] = PoblacionRestante;
 					if(j == 0){

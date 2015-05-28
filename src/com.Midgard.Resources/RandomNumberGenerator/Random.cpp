@@ -23,7 +23,7 @@ Random* Random::getInstance(){
 }
 
 void Random::initConnection(){
-	ardu.Open("/dev/ttyACM1");
+	ardu.Open("/dev/ttyACM0");
 	ardu.SetBaudRate(SerialStreamBuf::BAUD_9600);
 	ardu.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
 }
@@ -33,7 +33,7 @@ int Random::getRandomNumber(int pMax){
 	}
 	if(Constants::HARDWARE_CONFIG == "true"){
 		int exp = log2(pMax)+1;
-		int answer = get(_Dictionary[exp]);	//Para crear numeros en el arduino
+		int answer = get(exp);	//Para crear numeros en el arduino
 		//int answer = getNumber(exp);			//Para crear bits en el arduino
 		if(answer>pMax){
 			return getRandomNumber(pMax);

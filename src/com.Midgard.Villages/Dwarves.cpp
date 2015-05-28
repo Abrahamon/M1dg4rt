@@ -11,10 +11,12 @@
  * Constructor que inizializa la poblacion de acuerda a config.xml
  */
 Dwarves::Dwarves() {
+
 	_random = new Random();
 	bool newGender;
 	Genome* newGenome ;
 	for(int i = 0; i < Constants::MAX_POBLACION_INICIAL; i++){
+		cout<<"termineA\n";
 		newGender = _random->getRandomBool();
 		newGenome = new Genome(_random->getRandomNumber(100),
 				_random->getRandomNumber(100),
@@ -24,6 +26,7 @@ Dwarves::Dwarves() {
 				_random->getRandomNumber(100),
 				_random->getRandomNumber(100),
 				_random->getRandomNumber(100));
+		cout<<"termine1\n";
 		Dwarve* newDwarve = new Dwarve(newGender,0,0,0,newGenome,_random->getRandomNumber(10));
 
 		this->_individuos->insertTail(newDwarve);
