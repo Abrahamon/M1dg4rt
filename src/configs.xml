@@ -1,5 +1,5 @@
 <root>
-	<DEBUG value = "true"/>
+	<DEBUG value = "false"/>
 	<HARD_DEBUG value = "false"/>
 	<CANTIDAD_GENES value="8"/>
 	<MAX_POBLACION_INICIAL value="12"/>
