@@ -139,7 +139,7 @@ void* World::DwarvesGeneration(void* pPop){
 			string message = "Dwarves:"+gene+":"+ quantity +":0:0:#";
 			_DwarvesWriter->updateVillageInfo(message,"Dwarves");
 
-			if(_Dwarves->getCurrentGeneration() == MaxGenerations){
+			if(_Dwarves->getCurrentGeneration() == MaxGenerations || _Dwarves->getEvolvingState()==false){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
@@ -162,7 +162,7 @@ void* World::DarkElvesGeneration(void* pPop){
 			string message = "DarkElves:"+gene+":"+ quantity +":0:0:#";
 			_DarkElvesWriter->updateVillageInfo(message,"DarkElves");
 
-			if(_Dark_Elves->getCurrentGeneration() == MaxGenerations){
+			if(_Dark_Elves->getCurrentGeneration() == MaxGenerations || _Dark_Elves->getEvolvingState()==false){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
@@ -182,7 +182,7 @@ void* World::ElvesGeneration(void* pPop){
 			string gene = lexical_cast<string>(World::_Elves->getCurrentGeneration());
 			string message = "Elves:"+gene+":"+ quantity +":0:0:#";
 			_ElvesWriter->updateVillageInfo(message,"Elves");
-			if(_Elves->getCurrentGeneration() == MaxGenerations){
+			if(_Elves->getCurrentGeneration() == MaxGenerations || _Elves->getEvolvingState()==false){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
@@ -203,7 +203,7 @@ void* World::GiantsGeneration(void* pPop){
 			string message = "Giants:"+gene+":"+ quantity +":0:0:#";
 			_GiantsWriter->updateVillageInfo(message,"Giants");
 
-			if(_Giants->getCurrentGeneration() == MaxGenerations){
+			if(_Giants->getCurrentGeneration() == MaxGenerations || _Giants->getEvolvingState()==false){
 				break;
 			}
 			if(Constants::HARD_DEBUG == "true")
@@ -282,7 +282,7 @@ void World::fightTheGods(){
 
 					string currentGeneration = lexical_cast<string>(MaxGenerations);
 					int PoblacionRestante = PopMembers[j] - AtaqueDios;
-					if(PoblacionRestante < 0) PoblacionRestante = 0;
+					if(PoblacionRestante <= 0) PoblacionRestante = 1;
 
 					PopMembers[j] = PoblacionRestante;
 					if(j == 0){
@@ -395,7 +395,7 @@ void* World::TimeController(void* pPop){
 				pthread_mutex_unlock(&mutex);
 		}
 		if(_FightIsAvailable == true){
-			if(_FightTimer >= 15){ //Cuando se acabe la batalla, se debe correr este código.
+			if(_FightTimer >= 30){ //Cuando se acabe la batalla, se debe correr este código.
 				_ReproduceDwarves = true;
 				_ReproduceElves = true;
 				_ReproduceDarkElves = true;
@@ -481,38 +481,37 @@ bool World::loadMap(std::string pathToFile){
 	ruta+=pathToFile;
 	//ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba1.map");
 	ifstream MapFile (ruta);
-
 	int mat = 0;
-		if (MapFile.is_open()){
-			for(int i = 0; i < 30; i ++){
-				for(int j = 0; j < 30; j++){
-					if(mat == 0){
-						char x = MapFile.get();
-						_matrix->setDataID(i,j,(char)x);
-						if(j == 29){
-							MapFile.get();
-						}
-
+	if (MapFile.is_open()){
+		for(int i = 0; i < 30; i ++){
+			for(int j = 0; j < 30; j++){
+				if(mat == 0){
+					char x = MapFile.get();
+					_matrix->setDataID(i,j,(char)x);
+					if(j == 29){
+						MapFile.get();
 					}
-					else{
-						char x = MapFile.get();
-						_matrix->setDataID(i,j,(char)x);
-						if(j==29){
-							MapFile.get();
-						}
+
+				}
+				else{
+					char x = MapFile.get();
+					_matrix->setDataID(i,j,(char)x);
+					if(j==29){
+						MapFile.get();
 					}
 				}
-				mat++;
 			}
-			MapFile.close();
-			//_matrix->printMatrix();
-			return true;
+			mat++;
 		}
+		MapFile.close();
+		//_matrix->printMatrix();
+		return true;
+	}
 
-		else {
-			cout << "**World/LoadMatrix ** - Unable to open file";
-			return false;
-		}
+	else {
+		cout << "**World/LoadMatrix ** - Unable to open file";
+		return false;
+	}
 }
 
 /**

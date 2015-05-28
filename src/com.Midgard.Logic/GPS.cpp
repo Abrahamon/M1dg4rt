@@ -211,7 +211,3 @@ void GPS::loadMap(){
 			cout << "**World/LoadMatrix ** - Unable to open file";
 		}
 }
-
-
-
-

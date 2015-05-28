@@ -67,10 +67,10 @@ app.controller('TableData', function($scope, $http, $interval) {
 
     $scope.FightGods = "false";
     $scope.GodsSet = false;
-    $scope.Dios1 = "Zeus";
-    $scope.Dios2 = "Hades";
-    $scope.Dios3 = "Poseidón";
-    $scope.Dios4 = "Afrodita";
+    $scope.Dios1 = "Fabian";
+    $scope.Dios2 = "Leninson";
+    $scope.Dios3 = "Abraham";
+    $scope.Dios4 = "Mauricio";
     $scope.GodsInfo;
 
 
@@ -147,8 +147,6 @@ app.controller('TableData', function($scope, $http, $interval) {
                 $interval(function(){ctxDioses.drawImage(Abraham,530,100,140,200);},100,1)
                 if($scope.GodsSet == false){
 
-
-
                     x1 =10;
                     y1 = 310;
 
@@ -165,19 +163,21 @@ app.controller('TableData', function($scope, $http, $interval) {
 
             }
             if($scope.FightGods == "false"){
-                cd.width = cd.width;
-                x1 = 30;
-                y1 = 0;
+                if($scope.FightAvailable == "false") {
+                    cd.width = cd.width;
+                    x1 = 30;
+                    y1 = 0;
 
-                x2 = 540;
-                y2 = 0;
+                    x2 = 540;
+                    y2 = 0;
 
-                x3 = 30;
-                y3 = 330;
+                    x3 = 30;
+                    y3 = 330;
 
-                x4 = 530;
-                y4 = 330;
-                $scope.GodsSet = false;
+                    x4 = 530;
+                    y4 = 330;
+                    $scope.GodsSet = false;
+                }
             }
         });
     },1000)
@@ -221,7 +221,7 @@ app.controller('TableData', function($scope, $http, $interval) {
                 }
                 if( $scope.LockFight == false) {
                     $http.get("JSON/fight.json").success(function (response) {
-                        $scope.guerra = response.records;
+                        //$scope.guerra = response.records;
                         $scope.PuebloPelea1 = response.records[0].Pueblo1;
                         $scope.PuebloPelea2 = response.records[0].Pueblo2;
 

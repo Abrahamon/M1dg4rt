@@ -19,6 +19,7 @@ Population::Population() {
 	this->_individuos = new LinkedList<Entity*>();
 	this->_Fitness = new Fitness();
 	this->CurrentGeneration=0;
+	STANDARD_DESV = Constants::STANDARD_DESV;
 }
 
 /**
@@ -184,9 +185,10 @@ LinkedList<Entity*>* Population::getIndividuals(){ return _individuos; }
  */
 bool Population::getEvolvingState(){
 	float desviEst = desviacionEstandart(_individuos);
-	cout<<"La desviacion estandart en el ataque es de: "<<desviEst<<endl;
-	if( desviEst < 0.1 ){
-		if(Constants::DEBUG == "true")
+	//cout<<"La desviacion estandart en el ataque es de: "<<desviEst<<endl;
+
+	if( desviEst < STANDARD_DESV ){
+		if(Constants::HARD_DEBUG == "true")
 			cout<<"Population.getEvolvingState() 	La poblacion no cambia su material genetico"<<endl;
 		_Evolving = false;
 	}

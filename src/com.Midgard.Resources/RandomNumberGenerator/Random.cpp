@@ -7,11 +7,10 @@
 
 #include "Random.h"
 Random* Random::_SlaveRandom = 0;
-
+SerialStream Random::ardu;
 Random::Random() {
 	initConnection();
 }
-
 
 Random::~Random() {}
 
@@ -34,7 +33,8 @@ int Random::getRandomNumber(int pMax){
 	}
 	if(Constants::HARDWARE_CONFIG == "true"){
 		int exp = log2(pMax)+1;
-		int answer = get(_Dictionary[exp]);
+		int answer = get(exp);	//Para crear numeros en el arduino
+		//int answer = getNumber(exp);			//Para crear bits en el arduino
 		if(answer>pMax){
 			return getRandomNumber(pMax);
 		}
@@ -46,14 +46,17 @@ int Random::getRandomNumber(int pMax){
 	}
 	return 0;
 }
-
+/*
+ * Usleep cuando creamos bits en el arduino
+ */
 int Random::get(char pData){
 	int RandomData;
     char buffer[1024];
     ardu << pData;
     ardu >> buffer;
-    sscanf(buffer,"%d",&RandomData);
-	cout<<RandomData<<" data ...."<<endl;
+	sscanf(buffer,"%d",&RandomData);
+	//usleep(100000);
+	//ardu.clear();
     return RandomData;
 }
 
@@ -65,4 +68,30 @@ bool Random::getRandomBool(){
 	}else{
 		return true;
 	}
+}
+
+
+int Random::getNumber(int maxType){
+  int numArray[maxType];
+
+  for(int i = 0; i < maxType ; i++){
+	  int a = get('1');
+	  numArray[i]=a;
+  }
+  int num = randomNumber(numArray,0,0,maxType);
+  return num;
+}
+
+int Random::randomNumber(int numArray[],int ind,int resultado,int maxType){
+  if(ind == maxType){
+    return resultado;
+  }
+  else if(numArray[ind] == 1){
+    resultado+= pow(2,ind);
+    randomNumber(numArray,ind+=1,resultado,maxType);
+  }
+  else{
+    randomNumber(numArray,ind+=1,resultado,maxType);
+
+  }
 }

@@ -51,6 +51,7 @@ public:
 	float getWorstFitness();
 	float getBestFitness();
 	int getBestAttribute();
+	float STANDARD_DESV;
 	LinkedList<Entity*>* getBestEntities(LinkedList<Entity*>* indList);
 	LinkedList<Entity*>* getArmy();
 	void receiveAttack(int pNumeroDeMuertes);
