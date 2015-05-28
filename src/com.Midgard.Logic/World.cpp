@@ -463,38 +463,37 @@ bool World::loadMap(std::string pathToFile){
 	ruta+=pathToFile;
 	//ifstream MapFile ("src/com.Midgard.Resources/MapEditor/MapFiles/prueba1.map");
 	ifstream MapFile (ruta);
-
 	int mat = 0;
-		if (MapFile.is_open()){
-			for(int i = 0; i < 30; i ++){
-				for(int j = 0; j < 30; j++){
-					if(mat == 0){
-						char x = MapFile.get();
-						_matrix->setDataID(i,j,(char)x);
-						if(j == 29){
-							MapFile.get();
-						}
-
+	if (MapFile.is_open()){
+		for(int i = 0; i < 30; i ++){
+			for(int j = 0; j < 30; j++){
+				if(mat == 0){
+					char x = MapFile.get();
+					_matrix->setDataID(i,j,(char)x);
+					if(j == 29){
+						MapFile.get();
 					}
-					else{
-						char x = MapFile.get();
-						_matrix->setDataID(i,j,(char)x);
-						if(j==29){
-							MapFile.get();
-						}
+
+				}
+				else{
+					char x = MapFile.get();
+					_matrix->setDataID(i,j,(char)x);
+					if(j==29){
+						MapFile.get();
 					}
 				}
-				mat++;
 			}
-			MapFile.close();
-			//_matrix->printMatrix();
-			return true;
+			mat++;
 		}
+		MapFile.close();
+		//_matrix->printMatrix();
+		return true;
+	}
 
-		else {
-			cout << "**World/LoadMatrix ** - Unable to open file";
-			return false;
-		}
+	else {
+		cout << "**World/LoadMatrix ** - Unable to open file";
+		return false;
+	}
 }
 
 /**

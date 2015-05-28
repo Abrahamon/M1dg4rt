@@ -17,8 +17,7 @@
 class GPS {
 private:
 	PyArray<char>* _map;
-	Entity* _Owner;
-	LinkedList<Cell*>* _closedList;
+	LinkedList<Cell*>* _visitedList;
 	LinkedList<Cell*>*_openList;
 	LinkedList<Cell*>* _pathList;
 
@@ -34,14 +33,31 @@ private:
 	bool isOnOpendList(Cell* pCell);
 
 
+	void setStartGoal(Cell* start, Cell* goal);
+	void pathOpen(int pX, int pY, float newCost, Cell* pParent);
+	Cell* getNextCell();
+	void continuePath();
+	Cell* c_StartCell;
+	Cell* c_GoalCell;
+
 public:
-	GPS(Entity* pOwner);
+	GPS();
 	virtual ~GPS();
 	void findPath(Entity* pEnd);
 	bool getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,bool retry);
 	void metodoDeAbraham(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY);
 	void printBestPath();
 	void loadMap();
+
+
+	void FindPath(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY);
+	Cell* NextPathPos();
+	void clearOpenList();
+	void clearVisitedList();
+	void clearPathGoal();
+	bool  b_intializadStartGaol;
+	bool b_foundGoal;
+
 };
 
 #endif /* SRC_COM_MIDGARD_LOGIC_GPS_H_ */

@@ -7,15 +7,170 @@
 
 #include "GPS.h"
 
-GPS::GPS(Entity* pOwner) {
-	_Owner = pOwner;
+GPS::GPS() {
+	cout<<"A\n";
 	_map = new PyArray<char>(30,30);
-	_closedList = new LinkedList<Cell*>();
+	cout<<"A\n";
+	c_StartCell= 0;
+	c_GoalCell=0;
+	b_intializadStartGaol = false;
+	b_foundGoal = false;
+	_visitedList = new LinkedList<Cell*>();
 	_openList = new LinkedList<Cell*>();
 	_pathList = new LinkedList<Cell*>();
 }
 
 GPS::~GPS() {}
+
+void GPS::FindPath(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
+	if(!b_intializadStartGaol){
+		_openList = new LinkedList<Cell*>();
+		_visitedList = new LinkedList<Cell*>();
+		_pathList = new LinkedList<Cell*>();
+
+		Cell* start = new Cell(pX,pY,NULL);
+		Cell* goal = new Cell(endX,endY,NULL);
+		setStartGoal(start,goal);
+		b_intializadStartGaol = true;
+	}
+	if(b_intializadStartGaol){
+		continuePath();
+	}
+
+}
+
+void GPS::setStartGoal(Cell* start, Cell* goal){
+	c_StartCell = new Cell(start->getX(), start->getY(),0);
+	c_GoalCell =  new Cell(goal->getX(), goal->getY(),goal);
+
+	c_StartCell->setG(0);
+	c_StartCell->setH(c_StartCell->ManHattanDistance(c_GoalCell));
+	c_StartCell->setParent(0);
+
+	_openList->insertTail(c_StartCell);
+}
+
+Cell* GPS::getNextCell(){
+	float bestF = 999999.0f;
+	Cell* siguiente = NULL;
+
+	Node<Cell*>* tmp = _openList->getHead();
+	for(int i; i< _openList->getLength(); i++){
+		if(tmp->getData()->getF() < bestF){
+			bestF = tmp->getData()->getF();
+			siguiente = tmp->getData();
+		}
+	}
+	if(tmp != NULL){
+		this->_visitedList->insertTail(siguiente);
+		this->_openList->deleteData(siguiente);
+	}
+	return siguiente;
+}
+
+void GPS::pathOpen(int pX,int pY, float newCost, Cell* pParent){
+	//Verificar si hay paso por este camino
+	if(_map->getDataID(pX,pY) != 49){
+		return;	//no hay paso
+	}
+	Node<Cell*>* tmp = this->_visitedList->getHead();
+	for(int i = 0; i< _visitedList->getLength(); i++){
+		if(tmp->getData()->getX() == pX && tmp->getData()->getY()==pY){
+			return; // ya se visito esta posicion
+		}
+	}
+
+	Cell* newChild = new Cell(pX, pY, pParent);
+	newChild->setG(newCost);
+	newChild->setH(pParent->ManHattanDistance(c_GoalCell));
+
+	tmp = this->_openList->getHead();
+	for(int i = 0; i< _openList->getLength(); i++){
+
+		if(tmp->getData()->getX()==pX && tmp->getData()->getY()==pY){
+
+			float newF = newChild->getG()+newCost+tmp->getData()->getH();
+			if(tmp->getData()->getF() > newF){
+				tmp->getData()->setG(newChild->getG()+newCost);
+				tmp->getData()->setParent(newChild);
+			}else{
+				delete newChild;
+				return;
+			}
+		}
+	}
+	_openList->insertTail(newChild);
+}
+
+void GPS::continuePath(){
+	if(_openList->getLength()==0){
+		return;
+	}
+	Cell* currentCell = getNextCell();
+
+	if(currentCell->getX()==c_GoalCell->getX() && currentCell->getY()==c_GoalCell->getY()){
+		c_GoalCell->setParent(currentCell->getPrevious());
+		Cell* getPath;
+
+		for(Cell* ruta = c_GoalCell; ruta != NULL; ruta = ruta->getPrevious()){
+			_pathList->insertTail(ruta);
+		}
+		b_foundGoal = true;
+		return;
+	}else{
+		pathOpen(currentCell->getX()+1,currentCell->getY(),currentCell->getG()+1,currentCell);
+		pathOpen(currentCell->getX()-1,currentCell->getY(),currentCell->getG()+1,currentCell);
+		pathOpen(currentCell->getX(),currentCell->getY()+1,currentCell->getG()+1,currentCell);
+		pathOpen(currentCell->getX(),currentCell->getY()-1,currentCell->getG()+1,currentCell);
+		//para diagonales
+//		pathOpen(currentCell->getX()+1,currentCell->getY()-1,currentCell->getG()+1.4,currentCell);
+//		pathOpen(currentCell->getX()-1,currentCell->getY()-1,currentCell->getG()+1.4,currentCell);
+//		pathOpen(currentCell->getX()+1,currentCell->getY()+1,currentCell->getG()+1.4,currentCell);
+//		pathOpen(currentCell->getX()-1,currentCell->getY()-1,currentCell->getG()+1.4,currentCell);
+
+		Node<Cell*>* tmp =_openList->getHead();
+		for(int i = 0; i<_openList->getLength();i++){
+			if(currentCell->getX()==tmp->getData()->getX() && currentCell->getY()==tmp->getData()->getY()){
+				_openList->deleteData(tmp->getData());
+			}
+		}
+	}
+
+}
+
+Cell* GPS::NextPathPos(){
+//	int index =1;
+//	Cell* nextPos = new Cell(0,0,0);
+//	int x =_pathList->getPos(_pathList->getLength()-index)->getData()->getX();
+//	int y =_pathList->getPos(_pathList->getLength()-index)->getData()->getY();
+//	nextPos->setData(x,y,0,0);
+//
+//	Cell* distance = new Cell(0,0,0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int GPS::getHeuristicInOpenListOf(int pX, int pY){
 	Node<Cell*>* tmp = _openList->getHead();
@@ -53,8 +208,8 @@ void GPS::metodoDeAbraham(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
 	currentCell->setData(pX,pY,NULL,0);
 
 	_openList = new LinkedList<Cell*>(); // nuestra lista de compra
-	_closedList = new LinkedList<Cell*>();
-	_closedList->insertTail(currentCell);
+	_visitedList = new LinkedList<Cell*>();
+	_visitedList->insertTail(currentCell);
 
 	while(!finished){
 		if(pX == endX && pY == endY){
@@ -141,7 +296,7 @@ void GPS::metodoDeAbraham(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY){
 		}
 
 
-		_closedList->insertTail(currentCell);
+		_visitedList->insertTail(currentCell);
 		_openList->deleteData(currentCell);
 
 		currentCell = getBestCellAbraham(_openList);
@@ -198,13 +353,13 @@ bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,boo
 	currentCell->setData(pX,pY,NULL,0);
 
 	if(retry == false)
-		_closedList->insertTail(currentCell);
+		_visitedList->insertTail(currentCell);
 	else
 		_pathList->insertTail(currentCell);
 
 	while(!finished){
 		LinkedList<Cell*>* _openList = new LinkedList<Cell*>();
-		std::cout << "CLOSEEEEED LIST LENGHT: "<< _closedList->getLength() << std::endl;
+		std::cout << "CLOSEEEEED LIST LENGHT: "<< _visitedList->getLength() << std::endl;
 		if(pX == endX && pY == endY){
 
 			finished = true;
@@ -256,7 +411,7 @@ bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,boo
 			}
 
 			if(_openList->getLength() == 0){
-				//_closedList->vaciar();
+				//_visitedList->vaciar();
 				break;
 			}
 
@@ -267,7 +422,7 @@ bool GPS::getWalkableCells(uint8_t pX, uint8_t pY,uint8_t endX, uint8_t endY,boo
 
 
 			if(retry == false)
-				_closedList->insertTail(newCell);
+				_visitedList->insertTail(newCell);
 			else
 				_pathList->insertTail(newCell);
 
@@ -317,7 +472,7 @@ Cell* GPS::getBestBetween(Cell* A, Cell* B,bool retry){
 void GPS::printBestPath(){
 	LinkedList<Cell*>* l = new LinkedList<Cell*>();
 
-	for(Cell* i =_closedList->getTail()->getData(); i->getPrevious() != NULL; i = i->getPrevious() ){
+	for(Cell* i =_pathList->getTail()->getData(); i->getPrevious() != NULL; i = i->getPrevious() ){
 		std::cout << i->getX() << " " << i->getY() << std::endl;
 	}
 
@@ -335,10 +490,10 @@ void GPS::printBestPath(){
 //		}
 //	}
 //	else{
-//		Node<Cell*>* tmp = _closedList->getHead();
-//		for(int i = 0; i < _closedList->getLength(); i++){
+//		Node<Cell*>* tmp = _visitedList->getHead();
+//		for(int i = 0; i < _visitedList->getLength(); i++){
 //			std::cout << tmp->getData()->getX() << " " << tmp->getData()->getY() << std::endl;
-//			tmp=tmp->getNext();
+//			tmp=tmp->getNexclosedt();
 //		}
 //	}
 
@@ -356,8 +511,8 @@ bool GPS::isOnOpendList(Cell* pCell){
 }
 
 bool GPS::isOnClosedList(Cell* pCell){
-	Node<Cell*>* tmp = _closedList->getHead();
-	for(int i = 0; i < _closedList->getLength(); i++){
+	Node<Cell*>* tmp = _visitedList->getHead();
+	for(int i = 0; i < _visitedList->getLength(); i++){
 		if((tmp->getData()->getX() == pCell->getX()) && (tmp->getData()->getY() == pCell->getY())){
 			return true;
 		}
